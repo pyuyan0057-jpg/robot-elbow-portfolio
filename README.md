@@ -4,6 +4,8 @@
 
 [Watch the three-cycle SolidWorks arm and hand demonstration (MP4)](assets/arm-hand-motion.mp4) · [Run the elbow lab in Colab](https://colab.research.google.com/github/pyuyan0057-jpg/robot-elbow-portfolio/blob/main/notebooks/elbow_lab.ipynb)
 
+**Free-ball lift result.** When the pickup fixture releases the 150 g equivalent sphere with the arm hanging, the ball rolls and slips. It leaves both pads after **0.108 s at 1.22° of elbow lift** in the CAD-collision simulation. The publicly runnable two-pad model gives 0.104 s. [Watch the solver replay](assets/free-ball-lift.mp4) · [Method and 18 sensitivity cases](docs/free-ball.md) · [Nominal trajectory](examples/free-ball-cad-trajectory.csv)
+
 **Can the joint track a loaded lift, and can the hand retain a ball throughout it?** For a controller that underestimates the fingertip load by 150 g, integral action reduces final hold error from 1.85° to 0.011° in simulation. On the hand, the specified horizontal pinch admits local equilibrium; tilting the elbow introduces a moment that the same two fixed point contacts cannot balance. The whole-arm movie shows prescribed CAD motion. [Controllers, grasp checks and structural trade-offs](docs/controls-and-grasp.md)
 
 A single-axis elbow raises an existing hand and six-drive forearm through 90°. With 150 g at the middle fingertip, it needs **2.390 N·m to hold horizontal**. Widening the fixed motor ring reduced the support's contribution to fingertip sag from **0.2669 to 0.0576 mm** under the archived static load.
