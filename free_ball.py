@@ -215,6 +215,7 @@ def run(
     inertia_factor=0.4,
     damping_scale=1.0,
     transfer_s=0.0,
+    close_s=0.0,
 ):
     m = build(
         cfg,
@@ -248,7 +249,8 @@ def run(
             np.linalg.norm(d.geom_xpos[g] - (R @ (PALM + expected["pad_center"])))
             < 1e-8
         )
-        assert abs(np.linalg.norm(d.geom_xpos[g] - d.xpos[ball]) - 0.0192) < 1e-8
+        if not close_s:
+            assert abs(np.linalg.norm(d.geom_xpos[g] - d.xpos[ball]) - 0.0192) < 1e-8
     assert abs(m.body_mass.sum() - reg["moving_mass_empty_kg"] - 0.150) < 1e-8
     digits = []
     for i, entry in enumerate(cfg["digits"]):
@@ -262,6 +264,12 @@ def run(
                 entry["locked_stroke_m"],
             )
         )
+    if close_s:
+        if not 0 < close_s < prep:
+            raise ValueError("The supported closing ramp must finish before release.")
+        for qa, _, ref, _, _ in digits:
+            d.qpos[qa] = -ref
+        mj.mj_forward(m, d)
     first = reg["loaded_com_m"]
     loaded_mass = reg["moving_mass_empty_kg"] + 0.15
     ctl_steps = round(0.001 / dt)
@@ -328,10 +336,11 @@ def run(
         torque += (1 - math.exp(-dt / 0.012)) * (request - torque)
         d.qfrc_applied[0] = torque
         tensions = []
+        closure = min(1.0, (k * dt) / close_s) if close_s else 1.0
         for qa, da, ref, ks, stroke in digits:
             q = ref + d.qpos[qa]
             short = np.sum(2 * A * (1 - np.cos(q / 2)) + 2 * H * np.sin(q / 2) - RC * q)
-            tension = 10000 * max(0.0, stroke - short)
+            tension = 10000 * max(0.0, closure * stroke - short)
             tensions.append(tension)
             d.qfrc_applied[da] = (
                 tension * (A * np.sin(q / 2) + H * np.cos(q / 2) - RC) - ks * q - 0.002
@@ -458,11 +467,10 @@ def run(
         and r["travel_rel_mm"] > 2 * cfg["radius_m"] * 1000
         for r in tail
     )
-    status = (
-        "dropped"
-        if caught and first_floor is not None and sustained is not None
-        else ("settled pinch" if stable else "unresolved")
-    )
+    if caught and first_floor is not None:
+        status = "missed pickup" if last_pad_time is None else "dropped"
+    else:
+        status = "settled pinch" if stable else "unresolved"
     result = dict(
         status=status,
         release=at_release,

@@ -8,6 +8,37 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class FreeBallTest(unittest.TestCase):
+    def test_pickup_comparison_archive(self):
+        with (ROOT / "examples/pickup-pose-cases.csv").open() as stream:
+            cases = {row["case"]: row for row in csv.DictReader(stream)}
+        self.assertEqual(len(cases), 390)
+        self.assertTrue(
+            all(row["plane_s"] and row["passed"] == "False" for row in cases.values())
+        )
+        self.assertEqual(
+            sum(row["outcome"] == "missed pickup" for row in cases.values()), 37
+        )
+        for prefix in ("p0", "p1"):
+            row = cases[f"verify-{prefix}-nominal"]
+            self.assertLess(
+                float(row["first_interrupted_s"]), float(row["final_pad_exit_s"])
+            )
+            self.assertLess(float(row["final_pad_exit_s"]), float(row["plane_s"]))
+
+    @unittest.skipUnless(
+        importlib.util.find_spec("mujoco"),
+        "Install requirements-free-ball.txt to run dynamics",
+    )
+    def test_adjusted_supported_pickup(self):
+        from pickup_pose import evaluate
+
+        result, rows = evaluate((3.63, -3.48, 4.16), 31.31)
+        self.assertFalse(result["passed"])
+        self.assertEqual(result["outcome"], "dropped")
+        self.assertAlmostEqual(result["final_pad_exit_s"], 0.164, delta=0.01)
+        self.assertGreater(min(rows[0]["index_N"], rows[0]["thumb_N"]), 0.8)
+        self.assertAlmostEqual(rows[-1]["plane_N"], 0.150 * 9.80665, places=3)
+
     def test_archived_separation_and_flight(self):
         with (ROOT / "examples/free-ball-cases.csv").open() as stream:
             cases = {r["case"]: r for r in csv.DictReader(stream)}
