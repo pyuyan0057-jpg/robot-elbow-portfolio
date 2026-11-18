@@ -2,6 +2,8 @@
 
 [中文说明](README.zh-CN.md) · [Hardware permissions](docs/sources-and-rights.md) · [Mechanics and FEA](docs/mechanics.md)
 
+[Integral thumb recess and hanging-release results](docs/fixed-thumb.md) · A fixed concave pad prolonged initial two-finger contact with a 33 g ball. Both 33 g and 150 g spheres fell during the hanging test, before the lift.
+
 [Pickup-position and thumb-angle study](docs/pickup-pose.md) · With the same open-hand closure, moving the pickup and changing thumb opposition delayed final pad separation from 0.070 to 0.168 s in a selected case. The thumb first lost contact at 0.022 s. The ball fell before the horizontal hold.
 
 [Watch the three-cycle SolidWorks arm and hand demonstration (MP4)](assets/arm-hand-motion.mp4) · [Run the elbow lab in Colab](https://colab.research.google.com/github/pyuyan0057-jpg/robot-elbow-portfolio/blob/main/notebooks/elbow_lab.ipynb)

@@ -109,6 +109,14 @@ def build(
             global_com = PALM + com
             # Approximate the centroidal link moment with a finite-width rod.
             inertia = m * (link["length_m"] ** 2 + 0.012**2) / 12
+            finger_mass += m
+            first += m * global_com
+            finger_inertia += inertia + m * np.dot(global_com[1:], global_com[1:])
+            if i == 1 and j == len(digit["links"]) - 1 and "pad_delta_kg" in cfg:
+                dm = cfg["pad_delta_kg"]
+                com = (m * com + dm * np.array(cfg["pad_delta_com_m"])) / (m + dm)
+                m += dm
+                inertia = m * (link["length_m"] ** 2 + 0.012**2) / 12
             ET.SubElement(
                 bone,
                 "inertial",
@@ -116,11 +124,8 @@ def build(
                 pos=vec(com - root),
                 diaginertia=vec([inertia] * 3),
             )
-            finger_mass += m
-            first += m * global_com
-            finger_inertia += inertia + m * np.dot(global_com[1:], global_com[1:])
             parent, previous = bone, root
-        ET.SubElement(
+        pad_geom = ET.SubElement(
             parent,
             "geom",
             name="pad_" + digit["name"],
@@ -128,6 +133,9 @@ def build(
             size=str(cfg["pad_radius_m"]),
             pos=vec(np.array(digit["pad_center"]) - previous),
         )
+        if i == 1 and cfg.get("cut_cup"):
+            pad_geom.set("contype", "0")
+            pad_geom.set("conaffinity", "0")
     reg = json.loads((ROOT / "data/registered-pinch.json").read_text())
     m = reg["moving_mass_empty_kg"] - finger_mass
     com = (
@@ -150,6 +158,17 @@ def build(
             ET.SubElement(
                 body, "geom", name="hard_" + entry["name"], type="mesh", mesh=name
             )
+    if "cup_cells" in cfg:
+        asset = xml.find("asset")
+        if asset is None:
+            asset = ET.SubElement(xml, "asset")
+        thumb, origin = bodies[link_name(1, 1)]
+        for number, vertices in enumerate(cfg["cup_cells"]):
+            name = f"cup_{number}"
+            ET.SubElement(
+                asset, "mesh", name=name, vertex=vec((vertices - origin).ravel())
+            )
+            ET.SubElement(thumb, "geom", name=name, type="mesh", mesh=name)
     ET.SubElement(
         world,
         "geom",
@@ -216,6 +235,9 @@ def run(
     damping_scale=1.0,
     transfer_s=0.0,
     close_s=0.0,
+    ball_mass=0.150,
+    hanging_s=0.0,
+    hanging_only=False,
 ):
     m = build(
         cfg,
@@ -225,6 +247,7 @@ def run(
         private_hulls,
         inertia_factor=inertia_factor,
         damping_scale=damping_scale,
+        ball_mass=ball_mass,
     )
     d = mj.MjData(m)
     ball = m.body("ball").id
@@ -232,6 +255,9 @@ def run(
     ballgeom = m.geom("ball_surface").id
     padids = [m.geom("pad_" + s).id for s in ("index", "thumb")]
     padbodies = [m.geom_bodyid[g] for g in padids]
+    pad_owner = {g: i for i, g in enumerate(padids)}
+    for k in range(len(cfg.get("cup_cells", []))):
+        pad_owner[m.geom(f"cup_{k}").id] = 1
     initial = np.array(cfg["ball_in_palm"])
     reg = json.loads((ROOT / "data/registered-pinch.json").read_text())
     q0 = math.pi / 2 if horizontal else 0.0
@@ -251,7 +277,15 @@ def run(
         )
         if not close_s:
             assert abs(np.linalg.norm(d.geom_xpos[g] - d.xpos[ball]) - 0.0192) < 1e-8
-    assert abs(m.body_mass.sum() - reg["moving_mass_empty_kg"] - 0.150) < 1e-8
+    assert (
+        abs(
+            m.body_mass.sum()
+            - reg["moving_mass_empty_kg"]
+            - ball_mass
+            - cfg.get("pad_delta_kg", 0)
+        )
+        < 1e-8
+    )
     digits = []
     for i, entry in enumerate(cfg["digits"]):
         ids = [m.joint(f"q{i}{j}").id for j in range(len(entry["links"]))]
@@ -272,6 +306,12 @@ def run(
         mj.mj_forward(m, d)
     first = reg["loaded_com_m"]
     loaded_mass = reg["moving_mass_empty_kg"] + 0.15
+    if ball_mass != 0.150:
+        loaded_mass = reg["moving_mass_empty_kg"] + ball_mass
+        first = (
+            reg["moving_mass_empty_kg"] * np.array(reg["held_empty_com_m"])
+            + ball_mass * np.array(reg["ball_uvw_m"])
+        ) / loaded_mass
     ctl_steps = round(0.001 / dt)
     sample_steps = round(0.002 / dt)
     if (
@@ -281,7 +321,8 @@ def run(
     ):
         raise ValueError("Choose a timestep dividing both 1 and 2 ms.")
     prep_ticks = round(prep / dt)
-    end = transfer_s + lift_s + dwell
+    lift_start = transfer_s + hanging_s
+    end = lift_start if hanging_only else lift_start + lift_s + dwell
     torque = request = 0.0
     prev = q0
     vel = 0.0
@@ -320,8 +361,8 @@ def run(
         if k % ctl_steps == 0:
             target, speed = (
                 (q0, 0.0)
-                if t < transfer_s or horizontal
-                else reference(t - transfer_s, lift_s)
+                if t < lift_start or horizontal or hanging_only
+                else reference(t - lift_start, lift_s)
             )
             vel += (1 - math.exp(-0.001 / 0.006)) * ((d.qpos[arm] - prev) / 0.001 - vel)
             prev = d.qpos[arm]
@@ -363,18 +404,19 @@ def run(
                 mj.mj_contactForce(m, d, ic, f)
                 if f[0] <= 0.001:
                     continue
-                if other in padids:
-                    i = padids.index(other)
+                if other in pad_owner:
+                    i = pad_owner[other]
                     normal[i] += float(f[0])
                     n = c.frame[:3]
                     rel = point_velocity(m, d, ball, c.pos) - point_velocity(
                         m, d, padbodies[i], c.pos
                     )
-                    slip[i] = np.linalg.norm(rel - n * np.dot(n, rel))
-                    local[i] = d.geom_xmat[other].reshape(3, 3).T @ (
-                        c.pos - d.geom_xpos[other]
-                    )
-                    local[i] /= np.linalg.norm(local[i])
+                    slip[i] = max(slip[i], np.linalg.norm(rel - n * np.dot(n, rel)))
+                    if i == 0 or "cup_cells" not in cfg:
+                        local[i] = d.geom_xmat[other].reshape(3, 3).T @ (
+                            c.pos - d.geom_xpos[other]
+                        )
+                        local[i] /= np.linalg.norm(local[i])
                 elif other == m.geom("catch_plane").id:
                     floor_force += f[0]
                 else:

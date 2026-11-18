@@ -8,6 +8,21 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class FreeBallTest(unittest.TestCase):
+    @unittest.skipUnless(
+        importlib.util.find_spec("mujoco"),
+        "Install requirements-free-ball.txt to run dynamics",
+    )
+    def test_integral_cup_and_hanging_gate(self):
+        from thumb_cup import trial
+
+        for grams in (33, 150):
+            result, rows = trial(True, grams, cut=True)
+            self.assertFalse(result["hanging_pass"])
+            self.assertIsNone(result["lift_pass"])
+            self.assertLess(result["first_loss_s"], result["plane_s"])
+            self.assertAlmostEqual(rows[-1]["plane_N"], grams * 0.00980665, places=4)
+            self.assertEqual(rows[-1]["t_s"], 1.0)
+
     def test_pickup_comparison_archive(self):
         with (ROOT / "examples/pickup-pose-cases.csv").open() as stream:
             cases = {row["case"]: row for row in csv.DictReader(stream)}

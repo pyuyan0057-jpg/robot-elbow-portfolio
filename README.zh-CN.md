@@ -2,6 +2,8 @@
 
 [English](README.md) · [硬件授权说明](docs/sources-and-rights.md) · [计算、边界条件和网格收敛](docs/mechanics.md)
 
+[固定浅凹拇指指腹：CAD 与撤支撑对照](docs/fixed-thumb.md) · 对 Ø20 mm、33 g 球，双侧接触从 0.050 s 延至 0.084 s；33 g 与 150 g 两组均在手臂下垂时掉落。
+
 [调整取球位置与拇指对掌角后的抬臂试验](docs/pickup-pose.md) · 同样从张开收绳，一组调整将最终脱离从 0.070 s 延后到 0.168 s；拇指在 0.022 s 已首先松开，球仍在抬到水平前掉落。
 
 [观看 SolidWorks 整臂开合三遍（MP4）](assets/arm-hand-motion.mp4) · [打开在线计算实验](https://colab.research.google.com/github/pyuyan0057-jpg/robot-elbow-portfolio/blob/main/notebooks/elbow_lab.ipynb) · [双指收绳与支撑转移求解重放](assets/pinch-replay.gif)
