@@ -18,4 +18,4 @@
 
 ### Software and hardware permissions
 
-The [MIT licence](../LICENSE) applies to calculate.py, examples.py and the Python test suite. The hardware design, CAD illustrations and other project materials are outside that software licence. The project grants no hardware manufacturing licence. Contact the repository owner for prior written permission to use the project design for commercial manufacture, or to request access to private CAD files for evaluation. Vendor rights remain with their owners.
+The [MIT licence](../LICENSE) covers the listed Python programs and tests, the C++ replay controller and the notebook code cells. Rights to the hardware design, media, numerical data and other project materials are reserved. Contact the repository owner for prior written permission to use the project design for commercial manufacture, or to request access to private CAD files for evaluation. Vendor rights remain with their owners.

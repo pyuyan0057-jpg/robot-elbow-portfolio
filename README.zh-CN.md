@@ -1,6 +1,16 @@
-# 轻型机器人肘关节模组：选型计算与刚度优化
+# 轻型机器人肘关节与腱驱五指机械手
 
 [English](README.md) · [硬件授权说明](docs/sources-and-rights.md) · [计算、边界条件和网格收敛](docs/mechanics.md)
+
+[观看 SolidWorks 整臂开合三遍（MP4）](assets/arm-hand-motion.mp4) · [打开在线计算实验](https://colab.research.google.com/github/pyuyan0057-jpg/robot-elbow-portfolio/blob/main/notebooks/elbow_lab.ipynb) · [双指收绳与支撑转移求解重放](assets/pinch-replay.gif)
+
+整臂视频展示装配运动。关节跟踪由动力学闭环仿真计算，双指抓取由接触平衡与局部稳定性模型单独检验。
+
+- **负载估错后能否抬准？** 实际指端加载 300 g、控制器按 150 g 补偿时，带积分控制把末段平均绝对角度误差由 1.85° 降到 0.011°。在另一项外扰试验中，同一组积分参数使恢复时间由 0.137 s 增至 0.468 s。[11 个工况的结果](examples/control-cases.csv)
+- **捏球后能否抬起？** 将 158 个手部实体换算到持球姿态后，球心沿前臂方向距肘轴 270.53 mm。球心施加 150 g 等效载荷时，水平保持需要 2.196 N·m。原接触位置在水平方向通过校核，下垂时则有约 0.367 N·mm 重力矩无法由同一对理想点接触抵消。[肘角与抓取结果](data/pinch-angle-screen.csv)
+- **下一克材料加在哪里？** 固定支架加强增加 14.75 g，其弹性变形引起的手端下沉减少 0.02154 mm。运动侧转接件加强增加 5.03 g，对应下沉减少 0.05756 mm，水平保持扭矩增加 0.00130 N·m。[结构与控制对比表](data/candidate-tradeoff.csv)
+
+[收绳调校对比图](assets/pinch-spring-comparison.png) · [闭环跟踪曲线](assets/elbow-tracking.png) · [模型、工况与验证范围](docs/controls-and-grasp.md)
 
 单自由度肘关节带动已有五指手和六驱动前臂，从下垂抬到水平。中指端另加 150 g 时，水平保持需要 **2.390 N·m**。在归档静力工况下，加宽固定侧支架后，该支架引起的中指下沉由 **0.2669 降到 0.0576 mm**。
 

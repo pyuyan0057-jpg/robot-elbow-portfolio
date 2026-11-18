@@ -1,0 +1,12 @@
+angle_deg,gravity_axis_moment_Nmm,lp_feasible,fixed_contacts_equilibrium,locked_min_mu_16_sided,local_stability,min_scaled_rolling_eigenvalue
+0,-0.36722299990706553,False,False,,,
+15,-0.3547101796175954,False,False,,,
+30,-0.3180244467734729,False,False,,,
+45,-0.2596658734419859,False,False,,,
+60,-0.1836114999535731,False,False,,,
+75,-0.09504430617567451,False,False,,,
+85,-0.03200559331096952,False,False,,,
+89,-0.006408925047542848,False,False,,,
+89.9,-0.0006409247183950665,False,False,,,
+89.99,-6.409250409555322e-05,False,False,,,
+90,-4.624408968686291e-14,True,True,0.3000000029802322,True,0.00024680562936041893

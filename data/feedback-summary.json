@@ -1,0 +1,38 @@
+[
+  {
+    "mode": "fixed",
+    "finger": "index",
+    "target_N": 15.932213987666309,
+    "last_N": 14.432213987666309,
+    "abs_end_error_N": 1.5,
+    "equilibrium_samples": 17,
+    "samples": 81
+  },
+  {
+    "mode": "fixed",
+    "finger": "thumb",
+    "target_N": 4.600782777172155,
+    "last_N": 3.800782777172155,
+    "abs_end_error_N": 0.7999999999999998,
+    "equilibrium_samples": 17,
+    "samples": 81
+  },
+  {
+    "mode": "feedback",
+    "finger": "index",
+    "target_N": 15.932213987666309,
+    "last_N": 15.93005029223915,
+    "abs_end_error_N": 0.002163695427158885,
+    "equilibrium_samples": 1,
+    "samples": 81
+  },
+  {
+    "mode": "feedback",
+    "finger": "thumb",
+    "target_N": 4.600782777172155,
+    "last_N": 4.606155842933296,
+    "abs_end_error_N": 0.005373065761141049,
+    "equilibrium_samples": 1,
+    "samples": 81
+  }
+]

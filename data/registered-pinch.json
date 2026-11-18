@@ -1,0 +1,30 @@
+{
+  "registered_hand_bodies": 158,
+  "hand_mass_kg": 0.2592724325015814,
+  "moving_mass_empty_kg": 1.6010572037782058,
+  "held_ball_kg": 0.15,
+  "ball_uvw_m": [
+    0.27053213764324363,
+    -0.059627497274341676,
+    -0.042633686501688986
+  ],
+  "held_empty_com_m": [
+    0.11454030613293763,
+    -0.0011169404897839609,
+    0.002718787996826403
+  ],
+  "empty_axis_inertia": 0.034839131111439624,
+  "loaded_com_m": [
+    0.12790296194798415,
+    -0.006129103141436159,
+    -0.0011662199629929272
+  ],
+  "loaded_axis_inertia": 0.046350592500793306,
+  "horizontal_hold_nm": 2.196350318384465,
+  "contact_line_moment_arm_hand_mm": [
+    0.3223214535877288,
+    -0.24955691464972407,
+    3.1530333899354446e-14
+  ],
+  "source": "R2 moving ledger with transported hand body centres. Archived two-contact pinch; 150 g point load at sphere centre. Mesh-based central-inertia corrections."
+}

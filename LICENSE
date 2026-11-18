@@ -1,4 +1,5 @@
-Scope: calculate.py, examples.py and the Python files under tests/.
+Scope: calculate.py, examples.py, elbow_control.py, check_controls.py, grasp_lift.py,
+controls/replay.cpp, the code cells in notebooks/elbow_lab.ipynb and the Python files under tests/.
 
 MIT License
 
