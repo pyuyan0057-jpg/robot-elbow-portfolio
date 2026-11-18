@@ -1,0 +1,1 @@
+Reproducible torque sizing and CAD/FEA comparison for a lightweight robot elbow, with a configurable Python lift model, bracket revision images and mesh-convergence data.

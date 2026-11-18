@@ -1,0 +1,21 @@
+{
+  "gravity_m_s2": 9.80665,
+  "moving_mass_kg": 1.6010572037782058,
+  "com_m": [
+    0.11518189253667344,
+    -0.00012584834833877424,
+    0.0026593099337534156
+  ],
+  "axis_inertia_kg_m2": 0.03542188291464189,
+  "payload_position_mm": [
+    395.21436491736296,
+    -0.413479019127077,
+    -10.9556850375126
+  ],
+  "lift_time_s": 1.2,
+  "design_factor": 1.5,
+  "gear_ratio": 10,
+  "equivalent_efficiency": 0.85,
+  "motor_rotor_inertia_kg_m2": 7.534788e-05,
+  "bearing_spacing_m": 0.048
+}
