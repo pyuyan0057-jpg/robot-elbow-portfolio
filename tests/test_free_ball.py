@@ -9,6 +9,24 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class FreeBallTest(unittest.TestCase):
     @unittest.skipUnless(importlib.util.find_spec("mujoco"), "MuJoCo required")
+    def test_revised_middle_coils_at_equal_takeup(self):
+        from ring_timing import revised_middle_rates, trial
+
+        rates = revised_middle_rates()
+        self.assertAlmostEqual(rates[0], 0.003399951, places=8)
+        self.assertAlmostEqual(rates[2], 0.020125663, places=8)
+        ref, new = [], []
+        trial(0.50, 12, setup_samples=ref)
+        trial(0.50, 12, setup_samples=new, revised_middle=True)
+
+        def equal_stroke(rows):
+            return next(r for r in rows if abs(r["t_s"] + 0.50) < 1e-8)
+
+        a, b = equal_stroke(ref), equal_stroke(new)
+        self.assertGreater(b["angle_2_0_rad"], a["angle_2_0_rad"])
+        self.assertLess(b["angle_2_2_rad"], a["angle_2_2_rad"])
+
+    @unittest.skipUnless(importlib.util.find_spec("mujoco"), "MuJoCo required")
     def test_ring_lead_and_failed_lift_replay(self):
         from ring_timing import trial
 

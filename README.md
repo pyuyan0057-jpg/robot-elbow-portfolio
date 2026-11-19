@@ -1,5 +1,7 @@
 # A lightweight robotic elbow and tendon-driven hand
 
+[Recessed ring retainers and revised middle-finger springs](docs/recessed-ring.md) · The distal joint reached its stop 88 ms later. The 33 g ball still lost three-pad support.
+
 [Native finger clearance and ring-finger timing](docs/ring-timing.md) · The elbow held horizontal, but the 33 g ball shifted 51.86 mm and rested on hard parts.
 
 [Locked middle MCP and 33 g tripod tests](docs/tripod-locked.md) · Two manual indexing positions share the existing six drives. Neither produced a three-pad grasp at release.

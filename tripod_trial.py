@@ -23,17 +23,7 @@ def yaw_matrix(deg):
     )
 
 
-def solve(
-    case,
-    stroke,
-    mass=33,
-    dt=0.00025,
-    hulls=None,
-    springs=None,
-    setup_samples=None,
-    ring_schedule=None,
-    observe_failed_lift=False,
-):
+def tripod_model(case, stroke, mass, dt, hulls, springs, ring_schedule):
     deg, shift = CASES[case]
     yaw = yaw_matrix(deg)
     offset = (OFFSET[0] + shift, *OFFSET[1:])
@@ -65,6 +55,23 @@ def solve(
         # Common 1.85 s preparation across all leads, release and grasp timing unchanged.
         opt["prep"] = PREP_S + 1.0
 
+    return cfg, opt
+
+
+def solve(
+    case,
+    stroke,
+    mass=33,
+    dt=0.00025,
+    hulls=None,
+    springs=None,
+    setup_samples=None,
+    ring_schedule=None,
+    observe_failed_lift=False,
+):
+    deg, shift = CASES[case]
+    cfg, opt = tripod_model(case, stroke, mass, dt, hulls, springs, ring_schedule)
+
     def gate(rows, result, target):
         return (
             result["approach_peak_N"] <= 25
@@ -87,11 +94,11 @@ def solve(
         )
 
     result, rows = run(cfg, hanging_only=True, setup_samples=setup_samples, **opt)
-    held = gate(rows, result, 0)
+    held = bool(gate(rows, result, 0))
     lift = None
     if held or observe_failed_lift:
         result, rows = run(cfg, **opt)
-        lift = held and gate(rows, result, 90)
+        lift = held and bool(gate(rows, result, 90))
     floor = next((r["t_s"] for r in rows if r["plane_N"] > 0.001), None)
     return (
         dict(
