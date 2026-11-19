@@ -256,6 +256,7 @@ def run(
     hand_feedback=None,
     trial_metrics=None,
     release_contacts=None,
+    elbow_reference=reference,
 ):
     m = build(
         cfg,
@@ -393,7 +394,7 @@ def run(
             target, speed = (
                 (q0, 0.0)
                 if t < lift_start or horizontal or hanging_only
-                else reference(t - lift_start, lift_s)
+                else elbow_reference(t - lift_start, lift_s)
             )
             vel += (1 - math.exp(-0.001 / 0.006)) * ((d.qpos[arm] - prev) / 0.001 - vel)
             prev = d.qpos[arm]

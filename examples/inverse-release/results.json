@@ -1,0 +1,542 @@
+[
+  {
+    "profile": "balanced",
+    "dt_s": 0.000125,
+    "mass_g": 33,
+    "mu": 0.28,
+    "strokes_mm": [
+      19.87026464786481,
+      9.901765375973499,
+      27.936211745096067
+    ],
+    "digits": {
+      "index": {
+        "release_normal_N": 0.0,
+        "release_surface_gap_mm": 6.398071811747741,
+        "release_direction_error_deg": null,
+        "release_angles_deg": [
+          55.169381131324485,
+          22.33636997043154,
+          71.56374684858524
+        ]
+      },
+      "thumb": {
+        "release_normal_N": 0.16356952970141445,
+        "release_surface_gap_mm": -0.00042435396585460694,
+        "release_direction_error_deg": 9.186501630294266,
+        "release_angles_deg": [
+          8.287010942230586,
+          67.96590307642735
+        ]
+      },
+      "middle": {
+        "release_normal_N": 0.0,
+        "release_surface_gap_mm": 2.1478117333255504,
+        "release_direction_error_deg": null,
+        "release_angles_deg": [
+          65.00029034523901,
+          85.00168746593616,
+          41.86383025637955
+        ]
+      }
+    },
+    "triple_contact_samples": 0,
+    "sample_count": 2101,
+    "hanging_pass": false,
+    "lift_pass": false,
+    "fixture_force_N": 0.43724871317599934,
+    "fixture_torque_Nm": 0.0006677631738046826,
+    "all_step_peak_pull_N": 15.421267402966864,
+    "approach_peak_N": 15.41755473042479,
+    "adjacent_peak_N": 0.22426352459974688,
+    "adjacent_pair": "hard_E3_F1_0-1 / hard_E3_F2_0-1",
+    "status": "dropped",
+    "release": {
+      "pad_N": [
+        0.0,
+        0.16356952970141445,
+        0.0,
+        0.0
+      ],
+      "fixture_offset_mm": 7.082714757511096e-06,
+      "tendon_N": [
+        1.2665727567905822,
+        1.8867704179384264,
+        1.7630147729775711,
+        1.4531748091598309
+      ]
+    },
+    "first_single_pad_break_s": 0.0,
+    "first_both_pads_off_s": 0.006,
+    "final_pad_exit_s": 0.068,
+    "exit_elbow_deg": -0.04080542843306763,
+    "floor_s": 0.47400000000000003,
+    "first_hard_contact": "hard_E3_F0_1-1",
+    "first_hard_s": 0.106,
+    "pad_path_mm": [
+      2.1373950628457106,
+      0.10884572125338256,
+      0.0,
+      0.0
+    ],
+    "integrated_slip_mm": [
+      0.4738956389495506,
+      0.223817000810137,
+      0.0,
+      0.0
+    ],
+    "ball_relative_spin_path_rad": 11.13178150013321,
+    "final_elbow_deg": 90.3438097873658,
+    "tail_max_speed_m_s": 0.24624043636716522
+  },
+  {
+    "profile": "balanced",
+    "dt_s": 0.00025,
+    "mass_g": 33,
+    "mu": 0.28,
+    "strokes_mm": [
+      19.87026464786481,
+      9.901765375973499,
+      27.936211745096067
+    ],
+    "digits": {
+      "index": {
+        "release_normal_N": 0.0,
+        "release_surface_gap_mm": 6.500034146417374,
+        "release_direction_error_deg": null,
+        "release_angles_deg": [
+          55.08922168937358,
+          22.307223189544935,
+          71.56374483467843
+        ]
+      },
+      "thumb": {
+        "release_normal_N": 0.15693781562494427,
+        "release_surface_gap_mm": -0.0002879078153590342,
+        "release_direction_error_deg": 9.385200128864088,
+        "release_angles_deg": [
+          8.226620884094112,
+          68.17292865204081
+        ]
+      },
+      "middle": {
+        "release_normal_N": 0.0,
+        "release_surface_gap_mm": 2.259469452608098,
+        "release_direction_error_deg": null,
+        "release_angles_deg": [
+          65.0003019318595,
+          85.00028513690681,
+          42.42039010088955
+        ]
+      }
+    },
+    "triple_contact_samples": 0,
+    "sample_count": 2101,
+    "hanging_pass": false,
+    "lift_pass": false,
+    "fixture_force_N": 0.4332389370446952,
+    "fixture_torque_Nm": 0.0006485312165466751,
+    "all_step_peak_pull_N": 15.412522975915381,
+    "approach_peak_N": 15.409527095970287,
+    "adjacent_peak_N": 0.2702054465456268,
+    "adjacent_pair": "hard_E3_F1_0-1 / hard_E3_F2_0-1",
+    "status": "dropped",
+    "release": {
+      "pad_N": [
+        0.0,
+        0.15693781562494427,
+        0.0,
+        0.0
+      ],
+      "fixture_offset_mm": 7.2459325006506705e-06,
+      "tendon_N": [
+        1.2691222966587645,
+        1.8920379758804486,
+        1.8002019774000093,
+        1.4526848742456646
+      ]
+    },
+    "first_single_pad_break_s": 0.0,
+    "first_both_pads_off_s": 0.006,
+    "final_pad_exit_s": 0.068,
+    "exit_elbow_deg": -0.04070821874992696,
+    "floor_s": 0.47600000000000003,
+    "first_hard_contact": "hard_E3_F0_1-1",
+    "first_hard_s": 0.106,
+    "pad_path_mm": [
+      2.132507770777808,
+      0.11156741994279662,
+      0.0,
+      0.0
+    ],
+    "integrated_slip_mm": [
+      0.48415660931507204,
+      0.23818373283107225,
+      0.0,
+      0.0
+    ],
+    "ball_relative_spin_path_rad": 11.323702314062826,
+    "final_elbow_deg": 90.3438097873658,
+    "tail_max_speed_m_s": 0.2514336642398768
+  },
+  {
+    "profile": "index-spring-swap",
+    "dt_s": 0.000125,
+    "mass_g": 33,
+    "mu": 0.28,
+    "strokes_mm": [
+      19.87026464786481,
+      9.901765375973499,
+      27.936211745096067
+    ],
+    "digits": {
+      "index": {
+        "release_normal_N": 0.0,
+        "release_surface_gap_mm": 0.9883589703480133,
+        "release_direction_error_deg": null,
+        "release_angles_deg": [
+          40.55530113886566,
+          70.65588310989597,
+          26.643948066412893
+        ]
+      },
+      "thumb": {
+        "release_normal_N": 0.1054327061248965,
+        "release_surface_gap_mm": -0.004712917072577483,
+        "release_direction_error_deg": 0.3636812095103844,
+        "release_angles_deg": [
+          12.31112859208448,
+          56.651444660281314
+        ]
+      },
+      "middle": {
+        "release_normal_N": 0.0,
+        "release_surface_gap_mm": 0.0001761011950875968,
+        "release_direction_error_deg": null,
+        "release_angles_deg": [
+          62.277247918491355,
+          78.15217714951649,
+          46.24140899991975
+        ]
+      }
+    },
+    "triple_contact_samples": 0,
+    "sample_count": 2101,
+    "hanging_pass": false,
+    "lift_pass": false,
+    "fixture_force_N": 0.40367016610539425,
+    "fixture_torque_Nm": 5.777772405034668e-05,
+    "all_step_peak_pull_N": 15.459048984838887,
+    "approach_peak_N": 15.453954035968103,
+    "adjacent_peak_N": 0.4480419889343333,
+    "adjacent_pair": "hard_E3_M2_Retainer-6 / hard_E3_M2_Retainer-11",
+    "status": "dropped",
+    "release": {
+      "pad_N": [
+        0.0,
+        0.1054327061248965,
+        0.0,
+        0.0
+      ],
+      "fixture_offset_mm": 6.102400631820206e-06,
+      "tendon_N": [
+        1.180796817743003,
+        1.5786084996666574,
+        1.7635338745721276,
+        1.4525383737648903
+      ]
+    },
+    "first_single_pad_break_s": 0.0,
+    "first_both_pads_off_s": 0.002,
+    "final_pad_exit_s": 0.12,
+    "exit_elbow_deg": -0.04226081867849134,
+    "floor_s": 0.454,
+    "first_hard_contact": "hard_E3_F0_2-1",
+    "first_hard_s": 0.126,
+    "pad_path_mm": [
+      3.7543223670054573,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "integrated_slip_mm": [
+      0.323041656154517,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "ball_relative_spin_path_rad": 14.923902426267338,
+    "final_elbow_deg": 90.34328126250257,
+    "tail_max_speed_m_s": 0.44861023997930133
+  },
+  {
+    "profile": "index-spring-swap",
+    "dt_s": 0.00025,
+    "mass_g": 33,
+    "mu": 0.28,
+    "strokes_mm": [
+      19.87026464786481,
+      9.901765375973499,
+      27.936211745096067
+    ],
+    "digits": {
+      "index": {
+        "release_normal_N": 0.0,
+        "release_surface_gap_mm": 0.9865518137742271,
+        "release_direction_error_deg": null,
+        "release_angles_deg": [
+          40.56042786623515,
+          70.65200482305643,
+          26.643259367981184
+        ]
+      },
+      "thumb": {
+        "release_normal_N": 0.1050034023907188,
+        "release_surface_gap_mm": -0.0047176439101228596,
+        "release_direction_error_deg": 0.3623058302778987,
+        "release_angles_deg": [
+          12.310395495154765,
+          56.65328402577046
+        ]
+      },
+      "middle": {
+        "release_normal_N": 0.0,
+        "release_surface_gap_mm": 0.02803205920847418,
+        "release_direction_error_deg": null,
+        "release_angles_deg": [
+          63.86618285826786,
+          78.45593571148119,
+          44.25712151687822
+        ]
+      }
+    },
+    "triple_contact_samples": 0,
+    "sample_count": 2101,
+    "hanging_pass": false,
+    "lift_pass": false,
+    "fixture_force_N": 0.40428611024256655,
+    "fixture_torque_Nm": 6.44788987202507e-05,
+    "all_step_peak_pull_N": 15.450326344553163,
+    "approach_peak_N": 15.445890957412612,
+    "adjacent_peak_N": 0.441760257551413,
+    "adjacent_pair": "hard_E3_M2_Retainer-6 / hard_E3_M2_Retainer-11",
+    "status": "dropped",
+    "release": {
+      "pad_N": [
+        0.0,
+        0.1050034023907188,
+        0.0,
+        0.0
+      ],
+      "fixture_offset_mm": 6.653975225358532e-06,
+      "tendon_N": [
+        1.180550774685478,
+        1.5764170328647076,
+        1.6742117085759636,
+        1.4522540413016218
+      ]
+    },
+    "first_single_pad_break_s": 0.0,
+    "first_both_pads_off_s": 0.002,
+    "final_pad_exit_s": 0.122,
+    "exit_elbow_deg": -0.04178824804655727,
+    "floor_s": 0.454,
+    "first_hard_contact": "hard_E3_F0_2-1",
+    "first_hard_s": 0.124,
+    "pad_path_mm": [
+      3.7347291098024207,
+      0.1557404258672408,
+      0.0,
+      0.0
+    ],
+    "integrated_slip_mm": [
+      0.43161835962334133,
+      0.32104616583925116,
+      0.0,
+      0.0
+    ],
+    "ball_relative_spin_path_rad": 14.78427518051361,
+    "final_elbow_deg": 90.34328193556235,
+    "tail_max_speed_m_s": 0.44960650630105736
+  },
+  {
+    "profile": "preset",
+    "dt_s": 0.000125,
+    "mass_g": 33,
+    "mu": 0.28,
+    "strokes_mm": [
+      19.87026464786481,
+      9.901765375973499,
+      27.936211745096067
+    ],
+    "digits": {
+      "index": {
+        "release_normal_N": 0.0,
+        "release_surface_gap_mm": 17.871437566922463,
+        "release_direction_error_deg": null,
+        "release_angles_deg": [
+          46.65529467764634,
+          18.49731148146502,
+          71.56342212104947
+        ]
+      },
+      "thumb": {
+        "release_normal_N": 0.1050600683225821,
+        "release_surface_gap_mm": -0.004714494641707034,
+        "release_direction_error_deg": 0.362421621243095,
+        "release_angles_deg": [
+          12.31045036782859,
+          56.653131049610245
+        ]
+      },
+      "middle": {
+        "release_normal_N": 0.0,
+        "release_surface_gap_mm": 0.0005610159614697352,
+        "release_direction_error_deg": null,
+        "release_angles_deg": [
+          62.65830956688858,
+          78.32604085683839,
+          45.65812070283785
+        ]
+      }
+    },
+    "triple_contact_samples": 0,
+    "sample_count": 2101,
+    "hanging_pass": false,
+    "lift_pass": false,
+    "fixture_force_N": 0.40406486160490757,
+    "fixture_torque_Nm": 6.500639953018195e-05,
+    "all_step_peak_pull_N": 15.421267402966864,
+    "approach_peak_N": 15.41755473042479,
+    "adjacent_peak_N": 0.22426352459974688,
+    "adjacent_pair": "hard_E3_F1_0-1 / hard_E3_F2_0-1",
+    "status": "dropped",
+    "release": {
+      "pad_N": [
+        0.0,
+        0.1050600683225821,
+        0.0,
+        0.0
+      ],
+      "fixture_offset_mm": 6.203708971261973e-06,
+      "tendon_N": [
+        1.2285203235274516,
+        1.5766071802978536,
+        1.7390897729683066,
+        1.4526804320683095
+      ]
+    },
+    "first_single_pad_break_s": 0.0,
+    "first_both_pads_off_s": 0.002,
+    "final_pad_exit_s": 0.092,
+    "exit_elbow_deg": -0.0713418737571628,
+    "floor_s": 0.47000000000000003,
+    "first_hard_contact": "hard_E3_F0_1-1",
+    "first_hard_s": 0.116,
+    "pad_path_mm": [
+      2.7614193814310144,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "integrated_slip_mm": [
+      0.4701486244470822,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "ball_relative_spin_path_rad": 11.065973870347998,
+    "final_elbow_deg": 90.34075073861217,
+    "tail_max_speed_m_s": 0.21940895641824362
+  },
+  {
+    "profile": "preset",
+    "dt_s": 0.00025,
+    "mass_g": 33,
+    "mu": 0.28,
+    "strokes_mm": [
+      19.87026464786481,
+      9.901765375973499,
+      27.936211745096067
+    ],
+    "digits": {
+      "index": {
+        "release_normal_N": 0.0,
+        "release_surface_gap_mm": 17.869906845428883,
+        "release_direction_error_deg": null,
+        "release_angles_deg": [
+          46.66035586203664,
+          18.492001318039875,
+          71.5634213028532
+        ]
+      },
+      "thumb": {
+        "release_normal_N": 0.10560131773051219,
+        "release_surface_gap_mm": -0.004718242657840932,
+        "release_direction_error_deg": 0.36438744082892727,
+        "release_angles_deg": [
+          12.311524442439897,
+          56.650494254963526
+        ]
+      },
+      "middle": {
+        "release_normal_N": 0.0,
+        "release_surface_gap_mm": 0.05152470298492773,
+        "release_direction_error_deg": null,
+        "release_angles_deg": [
+          64.30485638276292,
+          78.44205611327914,
+          43.80718176202382
+        ]
+      }
+    },
+    "triple_contact_samples": 0,
+    "sample_count": 2101,
+    "hanging_pass": false,
+    "lift_pass": false,
+    "fixture_force_N": 0.40370370037058306,
+    "fixture_torque_Nm": 5.190942401196881e-05,
+    "all_step_peak_pull_N": 15.412522975915381,
+    "approach_peak_N": 15.409527095970287,
+    "adjacent_peak_N": 0.2702054465456268,
+    "adjacent_pair": "hard_E3_F1_0-1 / hard_E3_F2_0-1",
+    "status": "dropped",
+    "release": {
+      "pad_N": [
+        0.0,
+        0.10560131773051219,
+        0.0,
+        0.0
+      ],
+      "fixture_offset_mm": 6.6438410935243495e-06,
+      "tendon_N": [
+        1.2274905297373142,
+        1.5797187633897167,
+        1.659996887576204,
+        1.4521352820325364
+      ]
+    },
+    "first_single_pad_break_s": 0.0,
+    "first_both_pads_off_s": 0.002,
+    "final_pad_exit_s": 0.09,
+    "exit_elbow_deg": -0.06446866810371947,
+    "floor_s": 0.47000000000000003,
+    "first_hard_contact": "hard_E3_F0_1-1",
+    "first_hard_s": 0.116,
+    "pad_path_mm": [
+      2.5187050349436064,
+      0.269694819093962,
+      0.0,
+      0.0
+    ],
+    "integrated_slip_mm": [
+      0.3528275041640908,
+      0.5419502108887502,
+      0.0,
+      0.0
+    ],
+    "ball_relative_spin_path_rad": 11.291284882226224,
+    "final_elbow_deg": 90.34075073861221,
+    "tail_max_speed_m_s": 0.22538818217023562
+  }
+]
