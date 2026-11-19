@@ -1,0 +1,13 @@
+revision,pose,interference_pair,volume_mm3
+initial,N90_B0_E0,intermediate clamp support / shoulder yoke,29.229264
+initial,N90_B0_E0,two envelope end faces inside intermediate clamp,0.143692
+initial,N90_B90_E0,intermediate clamp support / shoulder yoke,29.229264
+initial,N90_B90_E0,two envelope end faces inside intermediate clamp,0.105676
+initial,P0_B0_E0,intermediate clamp support / shoulder yoke,29.229264
+initial,P0_B0_E0,two envelope end faces inside intermediate clamp,0.133184
+initial,P0_B90_E0,intermediate clamp support / shoulder yoke,29.229264
+initial,P0_B90_E0,two envelope end faces inside intermediate clamp,0.112851
+initial,P90_B0_E0,intermediate clamp support / shoulder yoke,29.229264
+initial,P90_B0_E0,two envelope end faces inside intermediate clamp,0.163079
+initial,P90_B90_E0,intermediate clamp support / shoulder yoke,29.229264
+initial,P90_B90_E0,two envelope end faces inside intermediate clamp,0.141974
