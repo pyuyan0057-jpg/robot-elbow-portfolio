@@ -22,7 +22,7 @@ def vec(x):
 
 
 def link_name(i, j):
-    return f"E3_F{(0,4,1)[i]}_{j}-1"
+    return f"E3_F{(0,4,1,2)[i]}_{j}-1"
 
 
 def build(
@@ -133,6 +133,9 @@ def build(
             size=str(cfg["pad_radius_m"]),
             pos=vec(np.array(digit["pad_center"]) - previous),
         )
+        if digit.get("hardware_pad"):
+            pad_geom.set("contype", "0")
+            pad_geom.set("conaffinity", "0")
         if i == 1 and cfg.get("cut_cup"):
             pad_geom.set("contype", "0")
             pad_geom.set("conaffinity", "0")
@@ -244,6 +247,7 @@ def run(
     ball_mass=0.150,
     hanging_s=0.0,
     hanging_only=False,
+    setup_samples=None,
 ):
     m = build(
         cfg,
@@ -308,8 +312,8 @@ def run(
     if close_s:
         if not 0 < close_s < prep:
             raise ValueError("The supported closing ramp must finish before release.")
-        for qa, _, ref, _, _ in digits:
-            d.qpos[qa] = -ref
+        for entry, (qa, _, ref, _, _) in zip(cfg["digits"], digits):
+            d.qpos[qa] = np.asarray(entry.get("initial_rad", 0.0)) - ref
         mj.mj_forward(m, d)
     first = reg["loaded_com_m"]
     loaded_mass = reg["moving_mass_empty_kg"] + 0.15
@@ -388,10 +392,15 @@ def run(
         d.qfrc_applied[0] = torque
         tensions = []
         closure = min(1.0, (k * dt) / close_s) if close_s else 1.0
-        for qa, da, ref, ks, stroke in digits:
+        for entry, (qa, da, ref, ks, stroke) in zip(cfg["digits"], digits):
+            takeup = closure * stroke
+            if "start_s" in entry:
+                start = entry["initial_stroke_m"]
+                fraction = np.clip((t - entry["start_s"]) / close_s, 0.0, 1.0)
+                takeup = start + fraction * (stroke - start)
             q = ref + d.qpos[qa]
             short = np.sum(2 * A * (1 - np.cos(q / 2)) + 2 * H * np.sin(q / 2) - RC * q)
-            tension = 10000 * max(0.0, closure * stroke - short)
+            tension = 10000 * max(0.0, takeup - short)
             tensions.append(tension)
             d.qfrc_applied[da] = (
                 tension * (A * np.sin(q / 2) + H * np.cos(q / 2) - RC) - ks * q - 0.002
@@ -415,7 +424,9 @@ def run(
                         mj.mj_contactForce(m, d, ic, force)
                         if force[0] > adjacent_peak:
                             adjacent_peak = float(force[0])
-                            adjacent_pair = " / ".join(m.geom(g).name for g in (c.geom1, c.geom2))
+                            adjacent_pair = " / ".join(
+                                m.geom(g).name for g in (c.geom1, c.geom2)
+                            )
                     continue
                 other = c.geom2 if c.geom1 == ballgeom else c.geom1
                 f = np.empty(6)
@@ -445,6 +456,17 @@ def run(
             omega, velocity = angular_velocity(m, d, ball)
             palmomega, _ = angular_velocity(m, d, palm)
             palm_rel = velocity - point_velocity(m, d, palm, d.xpos[ball])
+            if setup_samples is not None and t <= 0:
+                setup_samples.append(
+                    dict(
+                        t_s=t,
+                        **{
+                            f"angle_{i}_{j}_rad": float(ref[j] + d.qpos[adr])
+                            for i, (qa, _, ref, _, _) in enumerate(digits)
+                            for j, adr in enumerate(qa)
+                        },
+                    )
+                )
             if k == prep_ticks:
                 start_ball = offset.copy()
                 at_release = {
@@ -498,6 +520,11 @@ def run(
                             for i in range(2, len(names))
                         },
                         hard_N=hard_force,
+                        **(
+                            {"ball_hardware": "|".join(sorted(set(geo_names)))}
+                            if "ring" in names
+                            else {}
+                        ),
                         plane_N=floor_force,
                         **{
                             f"{name}_pad_{axis}_m": float(value)

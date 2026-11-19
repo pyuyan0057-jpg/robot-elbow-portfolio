@@ -23,7 +23,17 @@ def yaw_matrix(deg):
     )
 
 
-def solve(case, stroke, mass=33, dt=0.00025, hulls=None, springs=None):
+def solve(
+    case,
+    stroke,
+    mass=33,
+    dt=0.00025,
+    hulls=None,
+    springs=None,
+    setup_samples=None,
+    ring_schedule=None,
+    observe_failed_lift=False,
+):
     deg, shift = CASES[case]
     yaw = yaw_matrix(deg)
     offset = (OFFSET[0] + shift, *OFFSET[1:])
@@ -48,12 +58,21 @@ def solve(case, stroke, mass=33, dt=0.00025, hulls=None, springs=None):
         private_hulls=hulls,
     )
 
+    if ring_schedule is not None:
+        for digit in cfg["digits"]:
+            digit.update(start_s=-PREP_S, initial_stroke_m=0.0)
+        cfg["digits"].append(ring_schedule)
+        # Common 1.85 s preparation across all leads, release and grasp timing unchanged.
+        opt["prep"] = PREP_S + 1.0
+
     def gate(rows, result, target):
         return (
             result["approach_peak_N"] <= 25
             and all(
                 min(r[n + "_N"] for n in NAMES) > 0.01
                 and max(r[n + "_pull_N"] for n in NAMES) <= 25
+                and r.get("ring_N", 0.0) <= 0.001
+                and r.get("ring_pull_N", 0.0) <= 25
                 and r["plane_N"] == 0
                 and r["hard_N"] == 0
                 for r in rows
@@ -67,12 +86,12 @@ def solve(case, stroke, mass=33, dt=0.00025, hulls=None, springs=None):
             )
         )
 
-    result, rows = run(cfg, hanging_only=True, **opt)
+    result, rows = run(cfg, hanging_only=True, setup_samples=setup_samples, **opt)
     held = gate(rows, result, 0)
     lift = None
-    if held:
+    if held or observe_failed_lift:
         result, rows = run(cfg, **opt)
-        lift = gate(rows, result, 90)
+        lift = held and gate(rows, result, 90)
     floor = next((r["t_s"] for r in rows if r["plane_N"] > 0.001), None)
     return (
         dict(

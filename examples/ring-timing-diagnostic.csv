@@ -1,0 +1,2 @@
+case,shift_mm,yaw_deg,mass_g,middle_stroke_mm,dt_s,cad_hulls,index_release_N,thumb_release_N,middle_release_N,tripod_samples,plane_s,peak_approach_tension_N,peak_adjacent_normal_N,peak_adjacent_pair,hanging_pass,lift_pass,middle_release_gap_mm
+indexed,5,-15,33,28,0.00025,True,2.278160897466044,1.0945448557924873,0.0,0,,14.261879411741583,0.0,,False,,5.303752753675251

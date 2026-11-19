@@ -9,6 +9,30 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class FreeBallTest(unittest.TestCase):
     @unittest.skipUnless(importlib.util.find_spec("mujoco"), "MuJoCo required")
+    def test_ring_lead_and_failed_lift_replay(self):
+        from ring_timing import trial
+
+        prep = []
+        control, _ = trial(0, 12, setup_samples=prep)
+        early = []
+        result, rows = trial(0.5, 12, setup_samples=early, observe_failed_lift=True)
+        self.assertFalse(control["hanging_pass"])
+        self.assertIsNone(control["lift_pass"])
+        self.assertFalse(result["lift_pass"])
+        self.assertEqual(rows[-1]["t_s"], 4.2)
+        self.assertAlmostEqual(rows[-1]["elbow_deg"], 90, delta=1)
+        # Before tripod closure the ring responds to its earlier take-up.
+        before = next(r for r in prep if abs(r["t_s"] + 0.852) < 1e-8)
+        after = next(r for r in early if abs(r["t_s"] + 0.852) < 1e-8)
+        self.assertGreater(
+            sum(
+                after[f"angle_3_{i}_rad"] - before[f"angle_3_{i}_rad"] for i in range(3)
+            ),
+            0.1,
+        )
+        self.assertEqual(result["middle_release_N"], 0)
+
+    @unittest.skipUnless(importlib.util.find_spec("mujoco"), "MuJoCo required")
     def test_middle_index_stations_release_gate(self):
         from tripod_trial import CASES, solve
 
