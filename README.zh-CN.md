@@ -1,4 +1,8 @@
-# 轻型机器人肘关节与腱驱五指机械手
+# 七轴仿生机械臂与腱驱五指机械手
+
+**R4 整臂基础结构** · 贴身体的第一肩轴穿过安装圆盘中心，外侧第二肩轴与它垂直。视频展示手指张开时，七个关节分别动作和整臂联动。[观看 SolidWorks 演示（MP4）](assets/full-arm-r4/motion.mp4) · [查看关节布局与验证数据](docs/full-arm-r4.md)
+
+[![R4 SolidWorks assembly](assets/full-arm-r4/arm.jpg)](docs/full-arm-r4.md)
 
 [R3 机器人上臂安装版三轴肘部](docs/three-axis-elbow.md) · 左右摆单元位于肘上方，摆动时肘中心保持固定。查看实际 CAD 姿态、干涉采样与水平保持力矩。
 

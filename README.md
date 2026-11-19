@@ -1,4 +1,8 @@
-# A lightweight robotic elbow and tendon-driven hand
+# A seven-axis robotic arm with a tendon-driven hand
+
+**R4 · Integrated arm.** The inboard shoulder turns about the body flange normal. A second, perpendicular axis sits outboard. Watch the seven joints move separately and together, with the fingers open. [SolidWorks motion (MP4)](assets/full-arm-r4/motion.mp4) · [Design and CAD checks](docs/full-arm-r4.md)
+
+[![R4 SolidWorks assembly](assets/full-arm-r4/arm.jpg)](docs/full-arm-r4.md)
 
 [R3 upper-arm-mounted, fixed-center elbow](docs/three-axis-elbow.md) · The robot upper arm carries the yaw unit above the elbow. See the CAD poses, interference samples and horizontal holding loads.
 

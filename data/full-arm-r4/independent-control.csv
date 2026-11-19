@@ -1,0 +1,8 @@
+axis,command,actual,other_axis_max_drift_deg,interference_count,plane_box_lower_mm
+S1_FlangeRotation,22,22,8.17730353103928E-13,0,84
+S2_OutboardRotation,18,17.9999999999984,2.1316282072803E-14,0,84
+E2_ElbowSweep,-19,-19,2.1316282072803E-14,0,84
+E1_ElbowFlexion,96,96,5.16840135737822E-15,0,84
+F1_ForearmRoll,92.9999999999992,92.9999999999984,4.77083202219527E-15,0,84
+W1_Flexion,20,20,0,0,84
+W2_Deviation,14,14,0,0,84

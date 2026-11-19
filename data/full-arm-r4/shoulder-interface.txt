@@ -1,0 +1,7 @@
+J1_BodyFlange-1,FlangeNormalAxis,0,0.36,-0.179,0,0.36,-0.129
+J2_OuterShoulder-1,FlangeNormalAxis,0,0.36,-0.179,0,0.36,-0.129
+J2_OuterShoulder-1,OutboardAxis,0,0.36,0,0.05,0.36,0
+J2_OuterShoulder-1/R4_R3_W7_AS06_AK80_64_Case-1 minZ_mm -49.00000
+J1_BodyFlange-1/S4_BodyFlangeMotorCarrier-1 minZ_mm -179.00000
+Body flange OD124 axis centre and direction,0,0.36,-0.171,-0,-0,-1
+J1_BodyFlange-1/R4_R3_W7_AS06_AK80_64_Case-1 minZ_mm -148.90000

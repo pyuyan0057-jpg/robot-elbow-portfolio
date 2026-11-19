@@ -1,0 +1,72 @@
+[
+  {
+    "channel": "index",
+    "delta_min_mm": -0.21122668637422493,
+    "delta_max_mm": 0.09013170323262187,
+    "direct_positive_mm": 0.5842904589247553,
+    "biased_max_finger_deg": 0.45458156838708735,
+    "direct_max_finger_deg": 2.92766611892769,
+    "nominal_continuous_upper_mm": 0.5129980089334596,
+    "assembly_error_bound_mm": 2.9314041927210646
+  },
+  {
+    "channel": "middle",
+    "delta_min_mm": -0.2167317457763005,
+    "delta_max_mm": 0.06652982077362424,
+    "direct_positive_mm": 0.2576796489273505,
+    "biased_max_finger_deg": 0.26615268413776655,
+    "direct_max_finger_deg": 1.029045683833638,
+    "nominal_continuous_upper_mm": 0.399381777304386,
+    "assembly_error_bound_mm": 2.8200313601498004
+  },
+  {
+    "channel": "ring",
+    "delta_min_mm": -0.22832399269444892,
+    "delta_max_mm": 0.03242801607330392,
+    "direct_positive_mm": 0.059782263595735685,
+    "biased_max_finger_deg": 0.12978503635328126,
+    "direct_max_finger_deg": 0.23917475760299042,
+    "nominal_continuous_upper_mm": 0.264014679123237,
+    "assembly_error_bound_mm": 2.686437514223651
+  },
+  {
+    "channel": "little",
+    "delta_min_mm": -0.2360916751843689,
+    "delta_max_mm": 0.0,
+    "direct_positive_mm": 0.0,
+    "biased_max_finger_deg": 0.0,
+    "direct_max_finger_deg": 0.0,
+    "nominal_continuous_upper_mm": 0.13883391671112993,
+    "assembly_error_bound_mm": 2.53883391671113
+  },
+  {
+    "channel": "thumb_flex",
+    "delta_min_mm": -0.22832399269444892,
+    "delta_max_mm": 0.03242801607330392,
+    "direct_positive_mm": 0.059782263595735685,
+    "biased_max_finger_deg": 0.17111285648622018,
+    "direct_max_finger_deg": 0.3152827586305492,
+    "nominal_continuous_upper_mm": 0.264014679123237,
+    "assembly_error_bound_mm": 2.686437514223651
+  },
+  {
+    "channel": "opposition_A",
+    "delta_min_mm": -0.2167317457763005,
+    "delta_max_mm": 0.06652982077362424,
+    "direct_positive_mm": 0.2576796489273505,
+    "biased_max_finger_deg": null,
+    "direct_max_finger_deg": null,
+    "nominal_continuous_upper_mm": 0.399381777304386,
+    "assembly_error_bound_mm": 2.8200313601498004
+  },
+  {
+    "channel": "opposition_B",
+    "delta_min_mm": -0.21122668637422493,
+    "delta_max_mm": 0.09013170323262187,
+    "direct_positive_mm": 0.5842904589247553,
+    "biased_max_finger_deg": null,
+    "direct_max_finger_deg": null,
+    "nominal_continuous_upper_mm": 0.5129980089334596,
+    "assembly_error_bound_mm": 2.9314041927210646
+  }
+]
