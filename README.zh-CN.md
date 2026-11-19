@@ -1,6 +1,6 @@
 # 轻型机器人肘关节与腱驱五指机械手
 
-[R3 三轴肘部与前臂](docs/three-axis-elbow.md) · 查看左右摆、抬臂、180° 翻掌的实际 CAD 姿态及水平保持力矩复算。
+[R3 机器人上臂安装版三轴肘部](docs/three-axis-elbow.md) · 左右摆单元位于肘上方，摆动时肘中心保持固定。查看实际 CAD 姿态、干涉采样与水平保持力矩。
 
 [English](README.md) · [硬件授权说明](docs/sources-and-rights.md) · [计算、边界条件和网格收敛](docs/mechanics.md)
 

@@ -1,6 +1,6 @@
 # A lightweight robotic elbow and tendon-driven hand
 
-[R3 three-axis elbow and forearm](docs/three-axis-elbow.md) · The assembly adds yaw and 180° forearm roll. View the native CAD poses, interference checks and revised horizontal holding loads.
+[R3 upper-arm-mounted, fixed-center elbow](docs/three-axis-elbow.md) · The robot upper arm carries the yaw unit above the elbow. See the CAD poses, interference samples and horizontal holding loads.
 
 [中文说明](README.zh-CN.md) · [Hardware permissions](docs/sources-and-rights.md) · [Mechanics and FEA](docs/mechanics.md)
 
