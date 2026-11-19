@@ -39,6 +39,6 @@ R4 标准步长下，前 6 ms 三指法向力均大于 0.01 N。**8 ms** 首次�
 
 ## 复查
 
-安装 `requirements-free-ball.txt` 后，运行 `python ring_timing.py --r4-mount --observe-lift` 可复现公开的简化接触模型。该模型使用相同的安装变换和收绳输入，省略私有 CAD 硬件凸包，得到触及接球平面 **0.474 s**。上表两次带硬件求解的输入角记录与输出数据在本分支保留。[安装变换代码](../ring_mount.py) · [带硬件的验证记录](../examples/r4-ring-mount/)
+安装 `requirements-free-ball.txt` 后，运行 `python ring_timing.py --r4-mount --observe-lift` 可复现公开的简化接触模型。该模型使用相同的安装变换和收绳输入，省略私有 CAD 硬件凸包，得到触及接球平面 **0.474 s**。上表两次带硬件求解的输入角记录与输出数据在本分支保留。[安装变换代码](../ring_mount.py) · [带硬件的 33 g 求解摘要](../examples/r4-ring-mount/R4-33g-base.json)
 
 Yale OpenHand 的 Model O 展示了改变指根方位以调整包络抓取的设计思路。本项目采用固定安装斜角，在现有六路驱动内验证这个变量；角度、偏移量与干涉判定均来自本项目。SolidWorks 的两实体干涉 API 返回相交体，可把它转入两件零件各自的坐标系定位。[Yale OpenHand Model O](https://www.eng.yale.edu/grablab/openhand/model_o.html) · [SolidWorks API](https://help.solidworks.com/2022/English/api/sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IModeler~CheckInterferenceBetweenTwoBodies.html)
