@@ -1,0 +1,4 @@
+pose,all_local,top_components,S1,S2
+01_Down,519,31,0,-0
+12_S1_Forward90,519,31,90,-8.156411922456651E-13
+14_BackAndSide,519,31,-90,90
