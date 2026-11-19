@@ -1,0 +1,9 @@
+pose,moving_span,obstacle,gap_mm
+12_S1_Forward90,1,S4_BodyFlangeMotorCarrier,10.3455650137
+12_S1_Forward90,2,YokeTapBootV2,4.29014561865
+12_S1_Forward90,2,PWR_ArcTail2,7.67666752244
+12_S1_Forward90,2,CAN_ArcTail2,9.69798664844
+15_ForwardAndSide,1,S4_BodyFlangeMotorCarrier,10.3455650137
+15_ForwardAndSide,2,YokeTapBootV2,4.29432760041
+15_ForwardAndSide,2,PWR_ArcTail2,16.4332601756
+15_ForwardAndSide,2,CAN_ArcTail2,16.2496243632

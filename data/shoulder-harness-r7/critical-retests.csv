@@ -1,0 +1,3 @@
+s1_deg,s2_deg,elbow_deg,drop_mm,actual_s1,actual_s2,actual_elbow,resolved_instances,positive_pairs
+90,0,0,25,90,-8.17730353103928E-13,0,491,0
+90,90,0,25,90,90,-8.5265128291212E-14,491,0

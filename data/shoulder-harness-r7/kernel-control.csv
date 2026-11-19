@@ -1,0 +1,3 @@
+s1_deg,s2_deg,elbow_deg,down_mm,actual_s1,actual_s2,actual_elbow,total_solids,exact_pair_tests,positive_pairs
+90,0,0,25,90,-8.17730353103928E-13,0,486,32,4
+90,90,0,25,90,90,7.105427357601E-14,486,32,1

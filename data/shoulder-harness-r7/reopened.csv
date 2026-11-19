@@ -1,0 +1,9 @@
+assembly,arm_config,local_instances,positive_pairs
+R7_Assy_01_Down,01_Down,493,0
+R7_Assy_11_S1_Back90,11_S1_Back90,493,0
+R7_Assy_12_S1_Forward90_Drop25,12_S1_Forward90,491,0
+R7_Assy_12_S1_Forward90,12_S1_Forward90,493,0
+R7_Assy_13_S2_Side90,13_S2_Side90,493,0
+R7_Assy_14_BackAndSide,14_BackAndSide,493,0
+R7_Assy_15_ForwardAndSide_Drop25,15_ForwardAndSide,491,0
+R7_Assy_15_ForwardAndSide,15_ForwardAndSide,493,0
