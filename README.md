@@ -1,5 +1,7 @@
 # A lightweight robotic elbow and tendon-driven hand
 
+[R3 three-axis elbow and forearm](docs/three-axis-elbow.md) · The assembly adds yaw and 180° forearm roll. View the native CAD poses, interference checks and revised horizontal holding loads.
+
 [中文说明](README.zh-CN.md) · [Hardware permissions](docs/sources-and-rights.md) · [Mechanics and FEA](docs/mechanics.md)
 
 [Integral thumb recess and hanging-release results](docs/fixed-thumb.md) · A fixed concave pad prolonged initial two-finger contact with a 33 g ball. Both 33 g and 150 g spheres fell during the hanging test, before the lift.

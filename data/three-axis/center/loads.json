@@ -1,0 +1,96 @@
+{
+  "0": {
+    "yaw": {
+      "moving_mass_kg": 4.3727332737623525,
+      "center_from_axis_origin_mm": [
+        97.49908941170473,
+        -95.08262522035805,
+        13.748841667893661
+      ],
+      "inertia_kgm2": 0.11570663100010034,
+      "horizontal_gravity_Nm": 0,
+      "maximum_static_Nm": 0,
+      "peak_sampled_Nm": 0.16193564241576916,
+      "design_peak_Nm": 0.24290346362365373,
+      "peak_speed_rpm": 10.416666666666666,
+      "horizontal_overturning_Nm": 4.2223076910890995
+    },
+    "pitch": {
+      "moving_mass_kg": 2.8629073581445477,
+      "center_from_axis_origin_mm": [
+        157.82919869750444,
+        -0.0703796454042332,
+        1.4871970322065413
+      ],
+      "inertia_kgm2": 0.10808810789148063,
+      "horizontal_gravity_Nm": 4.431138472944173,
+      "maximum_static_Nm": 4.431138472944173,
+      "peak_sampled_Nm": 4.431138472944173,
+      "design_peak_Nm": 6.64670770941626,
+      "peak_speed_rpm": 23.4375,
+      "horizontal_overturning_Nm": null
+    },
+    "roll": {
+      "moving_mass_kg": 1.4764342662039829,
+      "center_from_axis_origin_mm": [
+        241.9280876723021,
+        -0.13648654216049225,
+        0.08199065704082241
+      ],
+      "inertia_kgm2": 0.0011840348489758708,
+      "horizontal_gravity_Nm": -0.001187132400397259,
+      "maximum_static_Nm": 0.002305327288949225,
+      "peak_sampled_Nm": 0.005388922941826411,
+      "design_peak_Nm": 0.008083384412739616,
+      "peak_speed_rpm": 23.4375,
+      "horizontal_overturning_Nm": null
+    }
+  },
+  "150": {
+    "yaw": {
+      "moving_mass_kg": 4.522733273762353,
+      "center_from_axis_origin_mm": [
+        111.2202813507156,
+        -95.29259295656202,
+        12.929496644458
+      ],
+      "inertia_kgm2": 0.1549256541025262,
+      "horizontal_gravity_Nm": 0,
+      "maximum_static_Nm": 0,
+      "peak_sampled_Nm": 0.21682409302673475,
+      "design_peak_Nm": 0.3252361395401021,
+      "peak_speed_rpm": 10.416666666666666,
+      "horizontal_overturning_Nm": 4.966158687573185
+    },
+    "pitch": {
+      "moving_mass_kg": 3.0129073581445476,
+      "center_from_axis_origin_mm": [
+        175.42276154041184,
+        -0.0874611208934294,
+        0.8677182089411639
+      ],
+      "inertia_kgm2": 0.14728915258356612,
+      "horizontal_gravity_Nm": 5.18313352582326,
+      "maximum_static_Nm": 5.18313352582326,
+      "peak_sampled_Nm": 5.18313352582326,
+      "design_peak_Nm": 7.77470028873489,
+      "peak_speed_rpm": 23.4375,
+      "horizontal_overturning_Nm": null
+    },
+    "roll": {
+      "moving_mass_kg": 1.6264342662039828,
+      "center_from_axis_origin_mm": [
+        266.76336225946994,
+        -0.1620325291943852,
+        -0.9359732305624139
+      ],
+      "inertia_kgm2": 0.0012020645487812707,
+      "horizontal_gravity_Nm": 0.01492865284539024,
+      "maximum_static_Nm": 0.015150701789729094,
+      "peak_sampled_Nm": 0.01492865284539024,
+      "design_peak_Nm": 0.02239297926808536,
+      "peak_speed_rpm": 23.4375,
+      "horizontal_overturning_Nm": null
+    }
+  }
+}
