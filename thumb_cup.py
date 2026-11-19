@@ -64,17 +64,7 @@ def cup_cells(center, axis, sectors, rings, cut=False):
     return cells
 
 
-def trial(
-    cup,
-    mass_g,
-    sectors=24,
-    rings=4,
-    dt=0.00025,
-    hard=None,
-    mu=0.35,
-    offset=OFFSET,
-    cut=False,
-):
+def configured_hand(cup, sectors, rings, offset, cut):
     cfg = pickup(
         json.loads((ROOT / "data/free-ball-model.json").read_text()), offset, ANGLE
     )
@@ -95,6 +85,21 @@ def trial(
                 [-0.046421613289039265, -0.026709018062755503, -0.051905064157416844]
             )
             cfg["pad_delta_com_m"] = PIVOT + rotation(ANGLE) @ (material_center - PIVOT)
+    return cfg
+
+
+def trial(
+    cup,
+    mass_g,
+    sectors=24,
+    rings=4,
+    dt=0.00025,
+    hard=None,
+    mu=0.35,
+    offset=OFFSET,
+    cut=False,
+):
+    cfg = configured_hand(cup, sectors, rings, offset, cut)
     options = dict(
         ball_mass=mass_g / 1000,
         dt=dt,

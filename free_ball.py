@@ -22,7 +22,7 @@ def vec(x):
 
 
 def link_name(i, j):
-    return f"E3_F{(0,4)[i]}_{j}-1"
+    return f"E3_F{(0,4,1)[i]}_{j}-1"
 
 
 def build(
@@ -136,6 +136,8 @@ def build(
         if i == 1 and cfg.get("cut_cup"):
             pad_geom.set("contype", "0")
             pad_geom.set("conaffinity", "0")
+        if cfg.get("adjacent_contact") and i in (0, 2):
+            pad_geom.set("contype" if i == 2 else "conaffinity", "6" if i == 2 else "5")
     reg = json.loads((ROOT / "data/registered-pinch.json").read_text())
     m = reg["moving_mass_empty_kg"] - finger_mass
     com = (
@@ -155,9 +157,13 @@ def build(
             name = f"hull{i}"
             vertices = np.array(entry["vertices"]) - origin
             ET.SubElement(asset, "mesh", name=name, vertex=vec(vertices.ravel()))
-            ET.SubElement(
+            geom = ET.SubElement(
                 body, "geom", name="hard_" + entry["name"], type="mesh", mesh=name
             )
+            if entry.get("side") == "middle":
+                geom.set("contype", "6")
+            elif entry.get("side") == "adjacent":
+                geom.set("conaffinity", "5")
     if "cup_cells" in cfg:
         asset = xml.find("asset")
         if asset is None:
@@ -253,7 +259,8 @@ def run(
     ball = m.body("ball").id
     palm = m.body("palm").id
     ballgeom = m.geom("ball_surface").id
-    padids = [m.geom("pad_" + s).id for s in ("index", "thumb")]
+    names = [digit["name"] for digit in cfg["digits"]]
+    padids = [m.geom("pad_" + s).id for s in names]
     padbodies = [m.geom_bodyid[g] for g in padids]
     pad_owner = {g: i for i, g in enumerate(padids)}
     for k in range(len(cfg.get("cup_cells", []))):
@@ -332,15 +339,18 @@ def run(
     first_loss = None
     first_hard = None
     free_spin_path = 0.0
-    rolling = [0.0, 0.0]
-    swipe = [0.0, 0.0]
-    previous_local = [None, None]
+    rolling = [0.0] * len(names)
+    swipe = [0.0] * len(names)
+    previous_local = [None] * len(names)
     last_pad_time = None
     at_release = None
     first_pad_break = None
     first_hard_time = None
     fixture_reaction = np.zeros(m.nv)
     ball_dof = m.jnt_dofadr[m.joint("ball_free").id]
+    approach_peak = 0.0
+    adjacent_pair = ""
+    adjacent_peak = 0.0
     for k in range(prep_ticks + round(end / dt) + 1):
         t = (k - prep_ticks) * dt
         if k == prep_ticks:
@@ -387,17 +397,25 @@ def run(
                 tension * (A * np.sin(q / 2) + H * np.cos(q / 2) - RC) - ks * q - 0.002
             )
         if k % sample_steps == 0 or k == prep_ticks:
+            if t <= 0:
+                approach_peak = max(approach_peak, max(tensions))
             mj.mj_forward(m, d)
             if not np.all(np.isfinite(d.qpos)) or any(w.number for w in d.warning):
                 raise RuntimeError(f"Physics warning at {t} s")
-            normal = [0.0, 0.0]
-            slip = [0.0, 0.0]
-            local = [None, None]
+            normal = [0.0] * len(names)
+            slip = [0.0] * len(names)
+            local = [None] * len(names)
             floor_force = 0.0
             hard_force = 0.0
             geo_names = []
             for ic, c in enumerate(d.contact):
                 if ballgeom not in (c.geom1, c.geom2):
+                    if cfg.get("adjacent_contact"):
+                        force = np.empty(6)
+                        mj.mj_contactForce(m, d, ic, force)
+                        if force[0] > adjacent_peak:
+                            adjacent_peak = float(force[0])
+                            adjacent_pair = " / ".join(m.geom(g).name for g in (c.geom1, c.geom2))
                     continue
                 other = c.geom2 if c.geom1 == ballgeom else c.geom1
                 f = np.empty(6)
@@ -412,7 +430,7 @@ def run(
                         m, d, padbodies[i], c.pos
                     )
                     slip[i] = max(slip[i], np.linalg.norm(rel - n * np.dot(n, rel)))
-                    if i == 0 or "cup_cells" not in cfg:
+                    if i != 1 or "cup_cells" not in cfg:
                         local[i] = d.geom_xmat[other].reshape(3, 3).T @ (
                             c.pos - d.geom_xpos[other]
                         )
@@ -448,7 +466,7 @@ def run(
                     first_hard_time = t
                 if t > 0 and first_floor is None:
                     free_spin_path += np.linalg.norm(omega - palmomega) * 0.002
-                    for i in range(2):
+                    for i in range(len(names)):
                         if local[i] is not None and previous_local[i] is not None:
                             rolling[i] += 0.0092 * math.acos(
                                 np.clip(np.dot(local[i], previous_local[i]), -1, 1)
@@ -474,11 +492,16 @@ def run(
                         thumb_slip_m_s=slip[1],
                         index_pull_N=tensions[0],
                         thumb_pull_N=tensions[1],
+                        **{f"{names[i]}_N": normal[i] for i in range(2, len(names))},
+                        **{
+                            f"{names[i]}_pull_N": tensions[i]
+                            for i in range(2, len(names))
+                        },
                         hard_N=hard_force,
                         plane_N=floor_force,
                         **{
                             f"{name}_pad_{axis}_m": float(value)
-                            for name, g in zip(("index", "thumb"), padids)
+                            for name, g in zip(names, padids)
                             for axis, value in zip("xyz", d.geom_xpos[g])
                         },
                         **{
@@ -493,7 +516,7 @@ def run(
             mj.mj_step(m, d)
     tail = [r for r in trace if r["t_s"] >= end - 0.25]
     stable = all(
-        min(r["index_N"], r["thumb_N"]) > 0.01
+        min(r[name + "_N"] for name in names) > 0.01
         and r["ball_rel_speed_m_s"] < 0.002
         and r["spin_rel_rad_s"] < 0.2
         and r["plane_N"] < 0.001
@@ -505,7 +528,7 @@ def run(
     )
     caught = all(
         r["plane_N"] > 0.01
-        and r["index_N"] + r["thumb_N"] + r["hard_N"] == 0
+        and sum(r[name + "_N"] for name in names) + r["hard_N"] == 0
         and r["travel_rel_mm"] > 2 * cfg["radius_m"] * 1000
         for r in tail
     )
@@ -514,6 +537,9 @@ def run(
     else:
         status = "settled pinch" if stable else "unresolved"
     result = dict(
+        approach_peak_N=approach_peak,
+        adjacent_peak_N=adjacent_peak,
+        adjacent_pair=adjacent_pair,
         status=status,
         release=at_release,
         first_single_pad_break_s=first_pad_break,

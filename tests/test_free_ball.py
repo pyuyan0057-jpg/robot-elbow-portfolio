@@ -8,6 +8,32 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class FreeBallTest(unittest.TestCase):
+    @unittest.skipUnless(importlib.util.find_spec("mujoco"), "MuJoCo required")
+    def test_middle_index_stations_release_gate(self):
+        from tripod_trial import CASES, solve
+
+        with (ROOT / "examples/tripod-cases.csv").open() as stream:
+            archived = list(csv.DictReader(stream))
+        for name in CASES:
+            with self.subTest(station=name):
+                result, samples = solve(name, 28)
+                reference = next(
+                    r
+                    for r in archived
+                    if r["case"] == name and r["cad_hulls"] == "False"
+                )
+                self.assertAlmostEqual(
+                    result["index_release_N"],
+                    float(reference["index_release_N"]),
+                    delta=0.03,
+                )
+                self.assertEqual(result["tripod_samples"], 0)
+                self.assertEqual(result["middle_release_N"], 0)
+                self.assertFalse(result["hanging_pass"])
+                self.assertIsNone(result["lift_pass"])
+                self.assertAlmostEqual(samples[-1]["t_s"], 1.0)
+                self.assertTrue(all("middle_pull_N" in row for row in samples))
+
     @unittest.skipUnless(
         importlib.util.find_spec("mujoco"),
         "Install requirements-free-ball.txt to run dynamics",

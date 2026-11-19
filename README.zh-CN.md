@@ -1,5 +1,8 @@
 # 轻型机器人肘关节与腱驱五指机械手
 
+[中指两档机械定位与三指抓球试验](docs/tripod-locked.md) · 保留六路驱动。两档均完成 33 g 下垂撤支撑试验，均未形成三指稳定夹持。
+
+
 [English](README.md) · [硬件授权说明](docs/sources-and-rights.md) · [计算、边界条件和网格收敛](docs/mechanics.md)
 
 [固定浅凹拇指指腹：CAD 与撤支撑对照](docs/fixed-thumb.md) · 对 Ø20 mm、33 g 球，双侧接触从 0.050 s 延至 0.084 s；33 g 与 150 g 两组均在手臂下垂时掉落。

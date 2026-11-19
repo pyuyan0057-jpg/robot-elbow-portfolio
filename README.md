@@ -1,5 +1,8 @@
 # A lightweight robotic elbow and tendon-driven hand
 
+[Locked middle MCP and 33 g tripod tests](docs/tripod-locked.md) · Two manual indexing positions share the existing six drives. Neither produced a three-pad grasp at release.
+
+
 [中文说明](README.zh-CN.md) · [Hardware permissions](docs/sources-and-rights.md) · [Mechanics and FEA](docs/mechanics.md)
 
 [Integral thumb recess and hanging-release results](docs/fixed-thumb.md) · A fixed concave pad prolonged initial two-finger contact with a 33 g ball. Both 33 g and 150 g spheres fell during the hanging test, before the lift.
