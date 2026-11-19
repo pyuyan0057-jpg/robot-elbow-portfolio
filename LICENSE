@@ -1,4 +1,4 @@
-Scope: calculate.py, examples.py, elbow_control.py, check_controls.py, grasp_lift.py, free_ball.py, pickup_pose.py, thumb_cup.py,
+Scope: calculate.py, examples.py, elbow_control.py, check_controls.py, grasp_lift.py, free_ball.py, pickup_pose.py, thumb_cup.py, tripod_reach.py,
 controls/replay.cpp, the code cells in notebooks/elbow_lab.ipynb and the Python files under tests/.
 
 MIT License
