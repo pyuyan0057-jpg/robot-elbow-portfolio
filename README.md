@@ -1,5 +1,7 @@
 # A lightweight robotic elbow and tendon-driven hand
 
+[Three-finger feedback × locked thumb spread](docs/tripod-coordination.md) · The combined change extends uninterrupted contact from 8 to 32 ms on immediate release. All four configurations drop the 33 g ball before lift.
+
 [Separating the middle and ring phalanges](docs/rolled-ring-mount.md) · A fixed rolled ring mount lets all three pads reach the 33 g ball. The middle pad loses contact 8 ms after release, before the elbow lift.
 
 [Recessed ring retainers and revised middle-finger springs](docs/recessed-ring.md) · The distal joint reached its stop 88 ms later. The 33 g ball still lost three-pad support.

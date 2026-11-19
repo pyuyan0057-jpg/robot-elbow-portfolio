@@ -253,6 +253,9 @@ def run(
     hanging_s=0.0,
     hanging_only=False,
     setup_samples=None,
+    hand_feedback=None,
+    trial_metrics=None,
+    release_contacts=None,
 ):
     m = build(
         cfg,
@@ -360,6 +363,8 @@ def run(
     approach_peak = 0.0
     adjacent_pair = ""
     adjacent_peak = 0.0
+    correction = np.zeros(3)
+    peak_pull = 0.0
     for k in range(prep_ticks + round(end / dt) + 1):
         t = (k - prep_ticks) * dt
         if k == prep_ticks:
@@ -369,6 +374,13 @@ def run(
             assert eqrows.sum() == 6
             multipliers[eqrows] = d.efc_force[eqrows]
             mj.mj_mulJacTVec(m, d, fixture_reaction, multipliers)
+            if trial_metrics is not None:
+                trial_metrics["fixture_force_N"] = float(
+                    np.linalg.norm(fixture_reaction[ball_dof : ball_dof + 3])
+                )
+                trial_metrics["fixture_torque_Nm"] = float(
+                    np.linalg.norm(fixture_reaction[ball_dof + 3 : ball_dof + 6])
+                )
             d.eq_active[0] = False
         if t >= 0 and transfer_s:
             # Linearly remove the last measured fixture wrench in the hanging pose.
@@ -397,12 +409,16 @@ def run(
         d.qfrc_applied[0] = torque
         tensions = []
         closure = min(1.0, (k * dt) / close_s) if close_s else 1.0
-        for entry, (qa, da, ref, ks, stroke) in zip(cfg["digits"], digits):
+        for i, (entry, (qa, da, ref, ks, stroke)) in enumerate(
+            zip(cfg["digits"], digits)
+        ):
             takeup = closure * stroke
             if "start_s" in entry:
                 start = entry["initial_stroke_m"]
                 fraction = np.clip((t - entry["start_s"]) / close_s, 0.0, 1.0)
                 takeup = start + fraction * (stroke - start)
+            if hand_feedback is not None and i < 3:
+                takeup += correction[i]
             q = ref + d.qpos[qa]
             short = np.sum(2 * A * (1 - np.cos(q / 2)) + 2 * H * np.sin(q / 2) - RC * q)
             tension = 10000 * max(0.0, takeup - short)
@@ -410,6 +426,8 @@ def run(
             d.qfrc_applied[da] = (
                 tension * (A * np.sin(q / 2) + H * np.cos(q / 2) - RC) - ks * q - 0.002
             )
+        if trial_metrics is not None:
+            peak_pull = max(peak_pull, max(tensions))
         if k % sample_steps == 0 or k == prep_ticks:
             if t <= 0:
                 approach_peak = max(approach_peak, max(tensions))
@@ -442,6 +460,16 @@ def run(
                     i = pad_owner[other]
                     normal[i] += float(f[0])
                     n = c.frame[:3]
+                    if release_contacts is not None and k == prep_ticks and i < 3:
+                        normal_on_ball = n if c.geom2 == ballgeom else -n
+                        release_contacts.append(
+                            dict(
+                                digit=names[i],
+                                normal=normal_on_ball.tolist(),
+                                arm_m=(c.pos - d.xpos[ball]).tolist(),
+                                normal_N=float(f[0]),
+                            )
+                        )
                     rel = point_velocity(m, d, ball, c.pos) - point_velocity(
                         m, d, padbodies[i], c.pos
                     )
@@ -456,6 +484,9 @@ def run(
                 else:
                     hard_force += f[0]
                     geo_names.append(m.geom(other).name)
+            if hand_feedback is not None:
+                # Sample after applying the previous command. Use the new command next step.
+                correction = hand_feedback.update(t, normal[:3], tensions[:3])
             R = d.xmat[palm].reshape(3, 3)
             offset = R.T @ (d.xpos[ball] - d.xpos[palm])
             omega, velocity = angular_velocity(m, d, ball)
@@ -504,6 +535,14 @@ def run(
                     dict(
                         t_s=t,
                         elbow_deg=math.degrees(d.qpos[arm]),
+                        **(
+                            {
+                                n + "_next_delta_mm": float(x * 1000)
+                                for n, x in zip(names, correction)
+                            }
+                            if hand_feedback is not None
+                            else {}
+                        ),
                         palm_x_mm=offset[0] * 1000,
                         palm_y_mm=offset[1] * 1000,
                         palm_z_mm=offset[2] * 1000,
@@ -546,6 +585,8 @@ def run(
                 )
         if k < prep_ticks + round(end / dt):
             mj.mj_step(m, d)
+    if trial_metrics is not None:
+        trial_metrics["all_step_peak_pull_N"] = peak_pull
     tail = [r for r in trace if r["t_s"] >= end - 0.25]
     stable = all(
         min(r[name + "_N"] for name in names) > 0.01
