@@ -8,6 +8,32 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class FreeBallTest(unittest.TestCase):
+    def test_pair_replay_bounds_include_reversal(self):
+        from swept_phalanges import replay_bounds
+
+        rows = []
+        for t, angle in [(0, 0), (0.1, 0.1), (0.2, 0)]:
+            rows.append(dict(t_s=t, angle_2_0_rad=angle, angle_2_1_rad=0,
+                             angle_3_0_rad=0, angle_3_1_rad=0))
+        checks = [dict(release_relative_s=t, mid2_ring2_mm=15) for t in (0, 0.2)]
+        self.assertAlmostEqual(replay_bounds(rows, checks)[0]["gap_lower_mm"], 5)
+
+    @unittest.skipUnless(importlib.util.find_spec("mujoco"), "MuJoCo required")
+    def test_ring_mount_geometry_and_mass_reference(self):
+        import numpy as np
+        from ring_timing import schedule
+        from ring_mount import reorient_ring
+
+        ring = schedule(0.5, 12, False)
+        old = np.array([link["root"] for link in ring["links"]])
+        com = np.array([link["com"] for link in ring["links"]])
+        U, b = reorient_ring(ring)
+        guide = np.array([0.0074, 0, -0.0063])
+        np.testing.assert_allclose(U @ guide + b, guide + [0.0025, -0.003, 0])
+        np.testing.assert_allclose([link["root"] for link in ring["links"]], old @ U.T + b)
+        np.testing.assert_allclose([link["ledger_com_m"] for link in ring["links"]], com)
+        np.testing.assert_allclose(U @ U.T, np.eye(3), atol=1e-14)
+
     @unittest.skipUnless(importlib.util.find_spec("mujoco"), "MuJoCo required")
     def test_revised_middle_coils_at_equal_takeup(self):
         from ring_timing import revised_middle_rates, trial

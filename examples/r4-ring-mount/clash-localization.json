@@ -1,0 +1,38 @@
+{
+  "previous_revision": "1f74fe9",
+  "trajectory": "R3 diagnostic with middle/ring collision disabled",
+  "release_relative_s": -0.6,
+  "winding_elapsed_s": 0.25,
+  "overlap_mm3": 364.45702511220554,
+  "palm_centroid_mm": [
+    4.2381161,
+    34.3600838,
+    -43.6553392
+  ],
+  "middle_local_centroid_mm": [
+    6.6023055,
+    14.852814,
+    -0.4253149
+  ],
+  "middle_box_mm": [
+    3.6005316,
+    8.2,
+    -7.4498119,
+    8.5,
+    27.9886902,
+    7.1754338
+  ],
+  "ring_local_centroid_mm": [
+    -6.7618839,
+    19.9532418,
+    2.5739961
+  ],
+  "ring_box_mm": [
+    -8.5,
+    12.3810136,
+    -3.241553,
+    -3.613822,
+    33.5,
+    8.8
+  ]
+}

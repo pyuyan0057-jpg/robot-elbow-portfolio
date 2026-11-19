@@ -1,5 +1,7 @@
 # A lightweight robotic elbow and tendon-driven hand
 
+[Separating the middle and ring phalanges](docs/rolled-ring-mount.md) · A fixed rolled ring mount lets all three pads reach the 33 g ball. The middle pad loses contact 8 ms after release, before the elbow lift.
+
 [Recessed ring retainers and revised middle-finger springs](docs/recessed-ring.md) · The distal joint reached its stop 88 ms later. The 33 g ball still lost three-pad support.
 
 [Native finger clearance and ring-finger timing](docs/ring-timing.md) · The elbow held horizontal, but the 33 g ball shifted 51.86 mm and rested on hard parts.

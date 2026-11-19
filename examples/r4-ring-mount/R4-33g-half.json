@@ -1,0 +1,19 @@
+{
+  "case": "indexed",
+  "shift_mm": 5,
+  "yaw_deg": -15,
+  "mass_g": 33,
+  "middle_stroke_mm": 28,
+  "dt_s": 0.000125,
+  "cad_hulls": true,
+  "index_release_N": 2.264979888548394,
+  "thumb_release_N": 1.1435749328723976,
+  "middle_release_N": 0.5210356216813506,
+  "tripod_samples": 7,
+  "plane_s": 0.5740000000000001,
+  "peak_approach_tension_N": 14.274666397304896,
+  "peak_adjacent_normal_N": 0.0,
+  "peak_adjacent_pair": "",
+  "hanging_pass": false,
+  "lift_pass": false
+}

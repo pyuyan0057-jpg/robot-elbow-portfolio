@@ -1,0 +1,2 @@
+E3_F1_1-1 | exact native extrema mm -8.5,-7.5,-8.3,8.5,35.5,8.8 | upper PIP radius mm 37.54916776707575
+E3_F2_1-1 | exact native extrema mm -8.5,-7.5,-8.3,8.5,33.5,8.8 | upper PIP radius mm 35.66426783210333

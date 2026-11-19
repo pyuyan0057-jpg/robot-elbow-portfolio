@@ -11,6 +11,7 @@ from elbow_control import write_csv
 from free_ball import A, H, RC
 from pickup_pose import PREP_S
 from tripod_trial import solve
+from ring_mount import reorient_ring
 
 
 def initial_angles(ring, stroke_mm):
@@ -68,7 +69,11 @@ def trial(
     setup_samples=None,
     observe_failed_lift=False,
     revised_middle=False,
+    revised_ring_mount=False,
 ):
+    ring = schedule(lead, initial_mm, hulls is not None)
+    if revised_ring_mount:
+        reorient_ring(ring)
     return solve(
         "indexed",
         28,
@@ -77,7 +82,7 @@ def trial(
         hulls,
         springs=revised_middle_rates() if revised_middle else None,
         setup_samples=setup_samples,
-        ring_schedule=schedule(lead, initial_mm, hulls is not None),
+        ring_schedule=ring,
         observe_failed_lift=observe_failed_lift,
     )
 
@@ -96,15 +101,20 @@ if __name__ == "__main__":
         action="store_true",
         help="Use the revised middle MCP and DIP springs.",
     )
+    parser.add_argument(
+        "--r4-mount", action="store_true",
+        help="Use the fixed rolled ring mount and revised middle springs (public pad-only geometry).",
+    )
     args = parser.parse_args()
     result, rows = trial(
         args.lead,
         args.initial_mm,
         observe_failed_lift=args.observe_lift,
-        revised_middle=args.revised_middle,
+        revised_middle=args.revised_middle or args.r4_mount,
+        revised_ring_mount=args.r4_mount,
     )
     print(json.dumps(result, indent=2))
-    suffix = "-revised" if args.revised_middle else ""
+    suffix = "-r4" if args.r4_mount else ("-revised" if args.revised_middle else "")
     out = (
         ROOT
         / "outputs"

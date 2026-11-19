@@ -106,7 +106,8 @@ def build(
             )
             m = link["mass"]
             com = np.array(link["com"])
-            global_com = PALM + com
+            # Subtract the original reference digit from the registered whole-arm ledger.
+            global_com = PALM + np.asarray(link.get("ledger_com_m", com))
             # Approximate the centroidal link moment with a finite-width rod.
             inertia = m * (link["length_m"] ** 2 + 0.012**2) / 12
             finger_mass += m
@@ -167,6 +168,10 @@ def build(
                 geom.set("contype", "6")
             elif entry.get("side") == "adjacent":
                 geom.set("conaffinity", "5")
+            if entry.get("ring_little_pair") == "ring":
+                geom.set("contype", "10")
+            elif entry.get("ring_little_pair") == "little":
+                geom.set("conaffinity", str(int(geom.get("conaffinity", "1")) | 8))
     if "cup_cells" in cfg:
         asset = xml.find("asset")
         if asset is None:

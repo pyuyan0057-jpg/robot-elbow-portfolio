@@ -1,0 +1,36 @@
+{
+  "middle_ring_poses": 80,
+  "ring_little_poses": 80,
+  "same_old_angles_poses": 80,
+  "pair_native_checks": 94,
+  "worst_middle_ring": {
+    "release_relative_s": "-0.662",
+    "min_mm": "0.755739473811963",
+    "middle_part": "E3_M2_Retainer-10",
+    "ring_part": "E3_F2_0-1",
+    "intersect_pairs": "0",
+    "max_overlap_mm3": "0",
+    "mid2_ring2_mm": "6.741657842097332"
+  },
+  "closest_middle_phalanges": {
+    "release_relative_s": "-0.654",
+    "mid2_ring2_mm": "6.597492873999366"
+  },
+  "closest_ring_little": {
+    "time_s": "-1.85",
+    "ring_part": "E4_Root_Optimized-3",
+    "little_part": "E3_M2_Retainer-19",
+    "min_mm": "0.5446144747216657"
+  },
+  "old_diagnostic_at_same_angles": {
+    "release_relative_s": "-0.6",
+    "min_mm": "7.31626382217632",
+    "middle_part": "E3_F1_1-1",
+    "ring_part": "E3_F2_1-1",
+    "intersect_pairs": "0",
+    "max_overlap_mm3": "0",
+    "mid2_ring2_mm": "7.31626382217632"
+  },
+  "old_diagnostic_min_new_mm": "6.597360518778652",
+  "conservative_pair_replay_min_mm": "5.71222195872684"
+}
