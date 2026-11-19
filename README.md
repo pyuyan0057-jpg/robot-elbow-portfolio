@@ -1,5 +1,7 @@
 # A lightweight robotic elbow and tendon-driven hand
 
+[Inverse spring and tendon preload design](docs/preload-design.md) · All three pads reached the 33 g ball. The middle pad lost effective contact at the 6 ms sample in each shortlisted hanging test.
+
 [Can the tendons acquire the target contacts?](docs/inverse-release.md) · Three six-drive configurations each dropped the 33 g ball before lift. Changing two index springs reduced the fingertip gap at release from 17.87 to 0.99 mm.
 
 [Three-finger feedback × locked thumb spread](docs/tripod-coordination.md) · The combined change extends uninterrupted contact from 8 to 32 ms on immediate release. All four configurations drop the 33 g ball before lift.

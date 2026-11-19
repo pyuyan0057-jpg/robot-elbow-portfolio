@@ -1,0 +1,206 @@
+[
+  {
+    "tag": "fine24",
+    "stage": "hang",
+    "dt": 0.000125,
+    "mass_g": 33,
+    "first_invalid_s": 0.006,
+    "failed_channels": [
+      "middle"
+    ],
+    "first_hardware_s": 0.046,
+    "end_hardware_N": 0.3966490350219163,
+    "end_floor_N": 0.0,
+    "end_parts": "hard_E3_F0_0-1|hard_E3_F0_1-1|hard_E3_F1_0-1",
+    "required_tangential_projection_N": 1.2573418103276763,
+    "max_available_projection_N": 0.35668512451031,
+    "outward_relaxed_wrench_feasible": false,
+    "world_inward_normals": [
+      [
+        -0.2059569222435944,
+        -0.5611432857630139,
+        0.8016856984024565
+      ],
+      [
+        0.8694342870866145,
+        0.34684369429812417,
+        -0.3518287540321564
+      ],
+      [
+        -0.9894937756004949,
+        0.07151318416517398,
+        0.1256500399460158
+      ]
+    ]
+  },
+  {
+    "tag": "fine24",
+    "stage": "hang",
+    "dt": 0.00025,
+    "mass_g": 33,
+    "first_invalid_s": 0.006,
+    "failed_channels": [
+      "middle"
+    ],
+    "first_hardware_s": 0.046,
+    "end_hardware_N": 0.4010819285420356,
+    "end_floor_N": 0.0,
+    "end_parts": "hard_E3_F0_0-1|hard_E3_F0_1-1|hard_E3_F1_0-1",
+    "required_tangential_projection_N": 1.2564446826988973,
+    "max_available_projection_N": 0.35657237752543747,
+    "outward_relaxed_wrench_feasible": false,
+    "world_inward_normals": [
+      [
+        -0.20595669530804184,
+        -0.5617094555457256,
+        0.8012891657874298
+      ],
+      [
+        0.8694238621085493,
+        0.3468578276677028,
+        -0.35184058234077586
+      ],
+      [
+        -0.9895062187155466,
+        0.07144301154760258,
+        0.12559195525299513
+      ]
+    ]
+  },
+  {
+    "tag": "fine48",
+    "stage": "hang",
+    "dt": 0.000125,
+    "mass_g": 33,
+    "first_invalid_s": 0.006,
+    "failed_channels": [
+      "middle"
+    ],
+    "first_hardware_s": 0.03,
+    "end_hardware_N": 0.42433670243282123,
+    "end_floor_N": 0.0,
+    "end_parts": "hard_E3_F0_0-1|hard_E3_F0_1-1|hard_E3_F1_0-1",
+    "required_tangential_projection_N": 1.5191446196449256,
+    "max_available_projection_N": 0.46800089581507753,
+    "outward_relaxed_wrench_feasible": false,
+    "world_inward_normals": [
+      [
+        -0.20603483492591973,
+        -0.5776709394020216,
+        0.7898391814587542
+      ],
+      [
+        0.8902766239993194,
+        0.31803947233886826,
+        -0.3259730461169891
+      ],
+      [
+        -0.9643983777635248,
+        0.1627710632535759,
+        0.20842588595081524
+      ]
+    ]
+  },
+  {
+    "tag": "fine48",
+    "stage": "hang",
+    "dt": 0.00025,
+    "mass_g": 33,
+    "first_invalid_s": 0.006,
+    "failed_channels": [
+      "middle"
+    ],
+    "first_hardware_s": 0.03,
+    "end_hardware_N": 0.42769196331648573,
+    "end_floor_N": 0.0,
+    "end_parts": "hard_E3_F0_0-1|hard_E3_F0_1-1|hard_E3_F1_0-1",
+    "required_tangential_projection_N": 1.5275058592589645,
+    "max_available_projection_N": 0.45765951145032946,
+    "outward_relaxed_wrench_feasible": false,
+    "world_inward_normals": [
+      [
+        -0.20603781807951466,
+        -0.5703236461060852,
+        0.7951599563693418
+      ],
+      [
+        0.8902691740859525,
+        0.3180504637678581,
+        -0.3259826685107143
+      ],
+      [
+        -0.9645890370320558,
+        0.16174334720200934,
+        0.20834365666720353
+      ]
+    ]
+  },
+  {
+    "tag": "fine52",
+    "stage": "hang",
+    "dt": 0.000125,
+    "mass_g": 33,
+    "first_invalid_s": 0.006,
+    "failed_channels": [
+      "middle"
+    ],
+    "first_hardware_s": 0.036000000000000004,
+    "end_hardware_N": 0.5529595156192657,
+    "end_floor_N": 0.0,
+    "end_parts": "hard_E3_F1_0-1|hard_E3_F1_1-1|hard_E3_M2_Retainer-4",
+    "required_tangential_projection_N": 0.6229082895023721,
+    "max_available_projection_N": 0.3313280299340341,
+    "outward_relaxed_wrench_feasible": false,
+    "world_inward_normals": [
+      [
+        -0.20573127904844607,
+        -0.5629279630807809,
+        0.8004915672277962
+      ],
+      [
+        0.7719990248459645,
+        0.46391782667527776,
+        -0.4345086371175688
+      ],
+      [
+        -0.9979496571976263,
+        0.04064196841610608,
+        0.04944402999760891
+      ]
+    ]
+  },
+  {
+    "tag": "fine52",
+    "stage": "hang",
+    "dt": 0.00025,
+    "mass_g": 33,
+    "first_invalid_s": 0.006,
+    "failed_channels": [
+      "middle"
+    ],
+    "first_hardware_s": 0.036000000000000004,
+    "end_hardware_N": 0.5484305006362105,
+    "end_floor_N": 0.0,
+    "end_parts": "hard_E3_F1_0-1|hard_E3_F1_1-1|hard_E3_M2_Retainer-4",
+    "required_tangential_projection_N": 0.6230149646236196,
+    "max_available_projection_N": 0.33153296099521246,
+    "outward_relaxed_wrench_feasible": false,
+    "world_inward_normals": [
+      [
+        -0.20573132288384754,
+        -0.5628154943262302,
+        0.8005706353163242
+      ],
+      [
+        0.7719739826402208,
+        0.4639456905896259,
+        -0.4345233783237802
+      ],
+      [
+        -0.9979480040394111,
+        0.04066065989149369,
+        0.049462025544289
+      ]
+    ]
+  }
+]
