@@ -1,5 +1,7 @@
 # 七轴仿生机械臂与腱驱五指机械手
 
+**R5 肩部扩大行程** · 第一轴 −90°～+90°，第二轴 0°～90°。[极限姿态、SolidWorks 干涉检查与线束余量评审](docs/shoulder-r5.md)
+
 **R4 整臂基础结构** · 贴身体的第一肩轴穿过安装圆盘中心，外侧第二肩轴与它垂直。视频展示手指张开时，七个关节分别动作和整臂联动。[观看 SolidWorks 演示（MP4）](assets/full-arm-r4/motion.mp4) · [查看关节布局与验证数据](docs/full-arm-r4.md)
 
 [![R4 SolidWorks assembly](assets/full-arm-r4/arm.jpg)](docs/full-arm-r4.md)

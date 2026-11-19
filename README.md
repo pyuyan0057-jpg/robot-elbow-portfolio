@@ -1,5 +1,7 @@
 # A seven-axis robotic arm with a tendon-driven hand
 
+**R5 shoulder travel** · Inboard ±90°, outboard 0–90°. See the native CAD end poses, interference samples and the open cable-length question. [Shoulder travel review](docs/shoulder-r5.md)
+
 **R4 · Integrated arm.** The inboard shoulder turns about the body flange normal. A second, perpendicular axis sits outboard. Watch the seven joints move separately and together, with the fingers open. [SolidWorks motion (MP4)](assets/full-arm-r4/motion.mp4) · [Design and CAD checks](docs/full-arm-r4.md)
 
 [![R4 SolidWorks assembly](assets/full-arm-r4/arm.jpg)](docs/full-arm-r4.md)
