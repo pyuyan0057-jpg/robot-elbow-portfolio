@@ -1,0 +1,46 @@
+{
+  "same_input_trimmed": {
+    "dt": 0.00025,
+    "first_air": 1.026,
+    "end_height_mm": -19169.393475540666,
+    "max_digits": 4,
+    "min_air_digits": 0,
+    "lost": true,
+    "back": true,
+    "hold_span_mm": 11583.422806667744,
+    "passed": false
+  },
+  "retuned_250us": {
+    "dt": 0.00025,
+    "first_air": 1.09725,
+    "end_height_mm": 227.8372304880596,
+    "max_digits": 4,
+    "min_air_digits": 1,
+    "lost": false,
+    "back": false,
+    "hold_span_mm": 0.34046356963012003,
+    "passed": false
+  },
+  "retuned_125us": {
+    "dt": 0.000125,
+    "first_air": 1.0971250000000001,
+    "end_height_mm": 227.68387690783837,
+    "max_digits": 4,
+    "min_air_digits": 2,
+    "lost": false,
+    "back": false,
+    "hold_span_mm": 0.3654562240778224,
+    "passed": false
+  },
+  "retuned_500us": {
+    "dt": 0.0005,
+    "first_air": 1.0965,
+    "end_height_mm": 228.0278430293402,
+    "max_digits": 4,
+    "min_air_digits": 2,
+    "lost": false,
+    "back": false,
+    "hold_span_mm": 0.311596871657261,
+    "passed": false
+  }
+}
