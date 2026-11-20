@@ -1,5 +1,9 @@
 # 七轴仿生机械臂与腱驱五指机械手
 
+**R8.8 右手翻掌修正** · 从掌心朝下翻到朝上时，拇指现在向上经过握手姿态。SolidWorks 往返共检查 38 个采样姿态，均未检出实体相交。[修改原因、验证范围与逐角度记录](studies/right-forearm-r88/README.md)
+
+[![R8.8 掌心朝下、拇指朝上、掌心朝上](studies/right-forearm-r88/solidworks-poses.png)](studies/right-forearm-r88/README.md)
+
 **R8.4 肩部线束回收** · 五条联动路径在目标阻力下保持张紧。高阻力时，即使每程放慢到 8 秒，途中仍会松出约 35 mm。实际阻力待测。[整臂实图、回程曲线与可复算数据](studies/shoulder-return-r84/README.md)
 
 **R7 肩部线束** · 保留第一肩轴 −90°～+90°、第二肩轴 0°～90°。查看原碰撞位置在 25 mm 下垂偏移时的重新测量。[走线修改与行程验证](docs/shoulder-harness-r7.md)

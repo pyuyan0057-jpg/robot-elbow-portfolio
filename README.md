@@ -1,5 +1,9 @@
 # A seven-axis robotic arm with a tendon-driven hand
 
+**R8.8 · Right-hand forearm rotation.** The thumb now passes upward through the handshake position as the palm turns up. All 38 SolidWorks samples on the forward and return paths were free of detected solid interference. [What changed and how it was checked](studies/right-forearm-r88/README.md)
+
+[![R8.8 palm down, thumb up and palm up](studies/right-forearm-r88/solidworks-poses.png)](studies/right-forearm-r88/README.md)
+
 **R8.4 shoulder cable return** · Five paths stayed taut at the target drag. Slowing the high-friction case to 8 seconds each way still left 35 mm of free cable. [SolidWorks images, return traces and reproducible model](studies/shoulder-return-r84/README.md)
 
 **R7 shoulder harness** · The arm keeps its full shoulder range. See the revised routing, the 25 mm displacement cases and the measured gaps at the previous collision points. [R7 shoulder study](docs/shoulder-harness-r7.md).
