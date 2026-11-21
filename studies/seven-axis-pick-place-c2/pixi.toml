@@ -1,0 +1,10 @@
+[workspace]
+name = "arm-control"
+channels = ["https://prefix.dev/robostack-jazzy", "conda-forge"]
+platforms = ["win-64"]
+[dependencies]
+ros-jazzy-rclpy = "*"
+ros-jazzy-std-msgs = "*"
+ros-jazzy-trajectory-msgs = "*"
+ros-jazzy-ros2topic = "*"
+ros-jazzy-rosbag2 = "*"

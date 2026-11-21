@@ -1,0 +1,9 @@
+{
+  "distribution": "jazzy",
+  "bag": "full_ball_20261121_100342_136989",
+  "messages": {
+    "/arm/joint_trajectory": 1,
+    "/arm_hand/feedback": 4661,
+    "/arm_hand/command": 4661
+  }
+}

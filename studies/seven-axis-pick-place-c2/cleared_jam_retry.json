@@ -1,0 +1,20 @@
+[
+  {
+    "task": "ball",
+    "initial_stop_s": 0.484,
+    "retry_s": 1.734,
+    "object_shift_before_retry_mm": 0.06951726649184753,
+    "hold": true,
+    "released": true,
+    "passed": true
+  },
+  {
+    "task": "cylinder",
+    "initial_stop_s": 0.886,
+    "retry_s": 2.136,
+    "object_shift_before_retry_mm": 0.7009875731389013,
+    "hold": true,
+    "released": true,
+    "passed": true
+  }
+]

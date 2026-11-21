@@ -1,0 +1,21 @@
+{
+  "physics_acceptance": 34,
+  "expected_fault_responses": 4,
+  "matched_trials": 42,
+  "cleared_jam_retries": 2,
+  "control_axes": 7,
+  "ros_vs_direct_absolute_differences": {
+    "ball": {
+      "hold_height_mm": 0.0,
+      "hold_span_mm": 0.0,
+      "placement_error_mm": 0.0,
+      "table_hand_N": 0.0
+    },
+    "cylinder": {
+      "hold_height_mm": 0.0,
+      "hold_span_mm": 0.0,
+      "placement_error_mm": 0.0,
+      "table_hand_N": 0.0
+    }
+  }
+}

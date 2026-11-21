@@ -1,0 +1,58 @@
+{
+  "axes": [
+    {
+      "axis": "shoulder_flange",
+      "excursion_deg": 8.0397140558041,
+      "active_error_deg": 0.059583095292991356,
+      "other_error_deg": 0.05830284790796523,
+      "return_error_deg": 0.0005748062438261162
+    },
+    {
+      "axis": "shoulder_out",
+      "excursion_deg": 8.076722881154549,
+      "active_error_deg": 0.10183317505217894,
+      "other_error_deg": 0.06326598514730279,
+      "return_error_deg": 0.0008980784975352252
+    },
+    {
+      "axis": "elbow_sweep",
+      "excursion_deg": 8.022078906390746,
+      "active_error_deg": 0.034146303076404594,
+      "other_error_deg": 0.02653441404941767,
+      "return_error_deg": 0.000553291613981317
+    },
+    {
+      "axis": "elbow",
+      "excursion_deg": 8.030705293894917,
+      "active_error_deg": 0.0529122699424006,
+      "other_error_deg": 0.0217210426260483,
+      "return_error_deg": 4.059155210008947e-05
+    },
+    {
+      "axis": "roll",
+      "excursion_deg": 8.002320103697532,
+      "active_error_deg": 0.00569790280072113,
+      "other_error_deg": 0.014222937077502953,
+      "return_error_deg": 1.907613218559204e-05
+    },
+    {
+      "axis": "wrist_flex",
+      "excursion_deg": 8.005242679270536,
+      "active_error_deg": 0.014222937077502953,
+      "other_error_deg": 0.005402566682974426,
+      "return_error_deg": 0.0002918870221093503
+    },
+    {
+      "axis": "wrist_dev",
+      "excursion_deg": 8.003182293169962,
+      "active_error_deg": 0.010513267374012102,
+      "other_error_deg": 0.014222937077502953,
+      "return_error_deg": 2.9385611716295067e-05
+    }
+  ],
+  "rejected_commands": {
+    "user_elbow_80": "trajectory violates configured ranges",
+    "unreachable_object_position": "pickup point outside permitted approach range",
+    "low_velocity": "planned joint speed above configured limit"
+  }
+}

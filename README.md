@@ -1,5 +1,7 @@
 # A seven-axis robotic arm with a tendon-driven hand
 
+**C2 · ROS 2 pick and place.** A seven-axis arm with a six-drive hand lifts and sets down two free tabletop objects. The sphere and upright cylinder were held 229 and 298 mm above the desk. [Videos, controller comparisons and runnable physics](studies/seven-axis-pick-place-c2/README.md)
+
 **R8.9 · The little finger now carries load.** An 18° root cartridge brings it into the tabletop ball grasp. At 100° the simulated 33 g ball was held by the thumb, index, middle and little fingers. [Motion replay, CAD part and force traces](studies/little-finger-r89/README.md)
 
 **R8.8 · Right-hand forearm rotation.** The thumb now passes upward through the handshake position as the palm turns up. All 38 SolidWorks samples on the forward and return paths were free of detected solid interference. [What changed and how it was checked](studies/right-forearm-r88/README.md)

@@ -1,0 +1,7 @@
+dynamics.dll
+dynamics.so
+recomputed.json
+full_*/
+*.npy
+*.npz
+*_timeline.json

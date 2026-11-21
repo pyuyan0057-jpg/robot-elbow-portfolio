@@ -1,6 +1,8 @@
 Scope: calculate.py, examples.py, elbow_control.py, check_controls.py, grasp_lift.py, free_ball.py, pickup_pose.py, thumb_cup.py,
 controls/replay.cpp, the code cells in notebooks/elbow_lab.ipynb and the Python files under tests/ and studies/shoulder-return-r84/.
 
+The scope also includes Python and C++ source files in studies/seven-axis-pick-place-c2/.
+
 MIT License
 
 Copyright (c) 2026 Robot Elbow Design contributors
