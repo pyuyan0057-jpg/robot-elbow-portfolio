@@ -6,7 +6,7 @@ import numpy as np, mujoco as mj
 from physics import plant, integrate
 
 
-def execute(o, c, tag=None, remote=None, observer=None, disturbance=None):
+def execute(o, c, tag=None, remote=None, observer=None, disturbance=None, reflex=None):
     dt = c.get("dt", 0.0005)
     period = 0.002
     sub = round(period / dt)
@@ -71,6 +71,8 @@ def execute(o, c, tag=None, remote=None, observer=None, disturbance=None):
             disturbance(d, r, t, pl["times"])
         if observer is not None:
             observer.sample(m, d, r, k, t, pl["times"])
+        if reflex is not None:
+            reflex(k, t, pl["times"], ref, supervis is not None and supervis.fault is not None or blocked)
         integrate(m, d, r, np.ascontiguousarray(ref), sub, sense, out[k])
         if tag and k % 5 == 0:
             status.append(ref.copy())

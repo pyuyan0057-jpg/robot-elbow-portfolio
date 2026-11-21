@@ -67,7 +67,7 @@ class Recorder:
             self.glove = np.array([m.geom(i).name.startswith("skin_") for i in range(m.ngeom)],np.int32)
             self.zmap = np.array([owners.get(m.geom_bodyid[i],-1) if self.glove[i] else -1
                                   for i in range(m.ngeom)],np.int32)
-            self.lib = ct.CDLL(str(LIB))
+            self.lib = ct.CDLL(str(getattr(self, "library", LIB)))
             ni = np.ctypeslib.ndpointer(np.int32,flags="C_CONTIGUOUS")
             nd = np.ctypeslib.ndpointer(np.float64,flags="C_CONTIGUOUS")
             self.lib.read_zones.argtypes = [ct.c_void_p,ct.c_void_p,ni,ni,ct.c_int,ct.c_int,ni,nd,nd]

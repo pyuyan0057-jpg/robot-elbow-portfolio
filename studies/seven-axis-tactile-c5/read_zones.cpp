@@ -12,7 +12,8 @@ static void point_velocity(const mjModel* m, const mjData* d, int body,
                            const mjtNum* point, double* v) {
     double twist[6], radius[3], arm[3];
     mj_objectVelocity(m, d, mjOBJ_BODY, body, twist, 0);
-    mju_sub3(radius, point, d->xpos + 3*body);
+    // mjOBJ_BODY reports velocity at the inertial frame (body COM).
+    mju_sub3(radius, point, d->xipos + 3*body);
     mju_cross(arm, twist, radius);
     mju_add3(v, twist+3, arm);
 }
