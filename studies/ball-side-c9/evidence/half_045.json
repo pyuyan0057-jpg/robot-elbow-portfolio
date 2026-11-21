@@ -1,0 +1,101 @@
+{
+  "oblique_1_1": {
+    "case": "oblique_1_1",
+    "held": false,
+    "error_mm": null,
+    "passed": false,
+    "loss_s": 2.94800000000073,
+    "touchdown_s": null,
+    "effective_friction": {
+      "table": [
+        0.45,
+        0.45,
+        0.0004,
+        0.0003,
+        0.0003
+      ],
+      "hand": [
+        0.45,
+        0.45,
+        1e-05,
+        1e-05,
+        1e-05
+      ]
+    },
+    "targeting": {
+      "last_fit_s": 14.9,
+      "local_mm": [
+        -8.89182635479588,
+        -22.33928986809736,
+        -56.65171544530826
+      ],
+      "fit_residual_mm": 0.0002753368101548766
+    }
+  },
+  "oblique_2_1": {
+    "case": "oblique_2_1",
+    "held": true,
+    "error_mm": 0.7957747133138894,
+    "passed": true,
+    "loss_s": null,
+    "touchdown_s": 8.875999999996875,
+    "effective_friction": {
+      "table": [
+        0.45,
+        0.45,
+        0.0004,
+        0.0003,
+        0.0003
+      ],
+      "hand": [
+        0.45,
+        0.45,
+        1e-05,
+        1e-05,
+        1e-05
+      ]
+    },
+    "targeting": {
+      "last_fit_s": 8.86,
+      "local_mm": [
+        -13.66073347406152,
+        -17.642335886450173,
+        -66.22700407040436
+      ],
+      "fit_residual_mm": 0.003336112633288953
+    }
+  },
+  "v_side_h": {
+    "case": "v_side_h",
+    "held": true,
+    "error_mm": 0.8113731371101626,
+    "passed": true,
+    "loss_s": null,
+    "touchdown_s": 8.871999999996856,
+    "effective_friction": {
+      "table": [
+        0.45,
+        0.45,
+        0.0004,
+        0.0003,
+        0.0003
+      ],
+      "hand": [
+        0.45,
+        0.45,
+        1e-05,
+        1e-05,
+        1e-05
+      ]
+    },
+    "targeting": {
+      "last_fit_s": 8.86,
+      "local_mm": [
+        -13.68035492974306,
+        -17.63336134658828,
+        -66.30638571130432
+      ],
+      "fit_residual_mm": 0.004753893635260466
+    }
+  }
+}

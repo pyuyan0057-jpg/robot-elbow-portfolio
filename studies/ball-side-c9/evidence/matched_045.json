@@ -1,0 +1,98 @@
+{
+  "original": {
+    "n": 14,
+    "totals": {
+      "baseline_held": 14,
+      "new_held": 14,
+      "baseline_pass": 14,
+      "new_pass": 14,
+      "new_strict": 11
+    },
+    "gained": 0,
+    "lost": 0
+  },
+  "expanded": {
+    "n": 20,
+    "totals": {
+      "baseline_held": 9,
+      "new_held": 11,
+      "baseline_pass": 7,
+      "new_pass": 10,
+      "new_strict": 8
+    },
+    "gained": 3,
+    "lost": 0
+  },
+  "blind": {
+    "n": 24,
+    "totals": {
+      "baseline_held": 10,
+      "new_held": 13,
+      "baseline_pass": 10,
+      "new_pass": 13,
+      "new_strict": 13
+    },
+    "gained": 3,
+    "lost": 0
+  },
+  "blind_0.6": {
+    "n": 8,
+    "totals": {
+      "baseline_held": 5,
+      "new_held": 6,
+      "baseline_pass": 5,
+      "new_pass": 6,
+      "new_strict": 6
+    },
+    "gained": 1,
+    "lost": 0
+  },
+  "blind_2.5": {
+    "n": 8,
+    "totals": {
+      "baseline_held": 3,
+      "new_held": 4,
+      "baseline_pass": 3,
+      "new_pass": 4,
+      "new_strict": 4
+    },
+    "gained": 1,
+    "lost": 0
+  },
+  "blind_5.0": {
+    "n": 8,
+    "totals": {
+      "baseline_held": 2,
+      "new_held": 3,
+      "baseline_pass": 2,
+      "new_pass": 3,
+      "new_strict": 3
+    },
+    "gained": 1,
+    "lost": 0
+  },
+  "directional": {
+    "n": 78,
+    "totals": {
+      "baseline_held": 53,
+      "new_held": 61,
+      "baseline_pass": 53,
+      "new_pass": 61,
+      "new_strict": 61
+    },
+    "gained": 8,
+    "lost": 0
+  },
+  "light": {
+    "n": 78,
+    "totals": {
+      "baseline_held": 78,
+      "new_held": 78,
+      "baseline_pass": 78,
+      "new_pass": 78,
+      "new_strict": 78
+    },
+    "gained": 0,
+    "lost": 0
+  }
+}

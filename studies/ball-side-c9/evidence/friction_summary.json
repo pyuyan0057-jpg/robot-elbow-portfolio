@@ -1,0 +1,49 @@
+{
+  "checks": {
+    "oblique_1_1": 0.0,
+    "oblique_6_2": 0.0,
+    "v_side_h": 0.0
+  },
+  "summary": {
+    "blind/30": {
+      "held": 10,
+      "passed": 10,
+      "strict": 9
+    },
+    "blind/45": {
+      "held": 13,
+      "passed": 13,
+      "strict": 13
+    },
+    "blind/60": {
+      "held": 14,
+      "passed": 14,
+      "strict": 14
+    },
+    "blind/90": {
+      "held": 14,
+      "passed": 14,
+      "strict": 14
+    },
+    "side/30": {
+      "held": 4,
+      "passed": 4,
+      "strict": 2
+    },
+    "side/45": {
+      "held": 4,
+      "passed": 4,
+      "strict": 1
+    },
+    "side/60": {
+      "held": 4,
+      "passed": 4,
+      "strict": 2
+    },
+    "side/90": {
+      "held": 4,
+      "passed": 4,
+      "strict": 4
+    }
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "six_axis_screen": {
+    "ordinary_n": 800,
+    "ring_release_n": 125,
+    "directions": [
+      "+X",
+      "+Y",
+      "+Z",
+      "-X",
+      "-Y",
+      "-Z"
+    ],
+    "peak_N": 5.0,
+    "duration_s": 0.18
+  },
+  "alternatives": {
+    "axis541": {
+      "setup": {
+        "idx": 541,
+        "params": {
+          "mm": [
+            0.26,
+            1.12,
+            0.99,
+            0.0,
+            -0.32
+          ],
+          "deg": -0.61,
+          "entry_mm": [
+            0.6,
+            0,
+            0,
+            0,
+            0
+          ],
+          "register": true
+        },
+        "axes": [
+          0.36,
+          3.11,
+          86.72,
+          37.76,
+          23.7,
+          86.71
+        ],
+        "rank": 122.474
+      },
+      "full_trials": {
+        "v_quiet": {
+          "held": true,
+          "passed": true,
+          "error_mm": 0.7093533994135562
+        },
+        "v_side_h": {
+          "held": false,
+          "passed": false,
+          "error_mm": 62.771719460325
+        },
+        "v_high": {
+          "held": true,
+          "passed": true,
+          "error_mm": 0.7488200792632281
+        },
+        "new_03_1": {
+          "held": true,
+          "passed": true,
+          "error_mm": 1.5273501005341112
+        },
+        "new_05_1": {
+          "held": false,
+          "passed": false,
+          "error_mm": null
+        },
+        "new_06_1": {
+          "held": false,
+          "passed": false,
+          "error_mm": null
+        },
+        "new_06_2": {
+          "held": false,
+          "passed": false,
+          "error_mm": null
+        },
+        "new_08_2": {
+          "held": false,
+          "passed": false,
+          "error_mm": null
+        }
+      }
+    },
+    "axis290": {
+      "setup": {
+        "idx": 290,
+        "params": {
+          "mm": [
+            1.1,
+            0.54,
+            1.83,
+            0.0,
+            5.9
+          ],
+          "deg": 1.25,
+          "entry_mm": [
+            0.6,
+            0,
+            0,
+            0,
+            0
+          ],
+          "register": true
+        },
+        "axes": [
+          0.82,
+          2.29,
+          9.98,
+          26.56,
+          20.12,
+          100.0
+        ],
+        "rank": 123.9655
+      },
+      "full_trials": {
+        "v_quiet": {
+          "held": true,
+          "passed": true,
+          "error_mm": 0.13532948021403854
+        },
+        "v_side_h": {
+          "held": false,
+          "passed": false,
+          "error_mm": 68.23729613017979
+        },
+        "v_high": {
+          "held": true,
+          "passed": true,
+          "error_mm": 0.25191625063121037
+        },
+        "new_03_1": {
+          "held": true,
+          "passed": true,
+          "error_mm": 0.7488455887317949
+        },
+        "new_05_1": {
+          "held": false,
+          "passed": false,
+          "error_mm": null
+        },
+        "new_06_1": {
+          "held": false,
+          "passed": false,
+          "error_mm": null
+        },
+        "new_06_2": {
+          "held": false,
+          "passed": false,
+          "error_mm": null
+        },
+        "new_08_2": {
+          "held": false,
+          "passed": false,
+          "error_mm": 109.77093724049519
+        }
+      }
+    },
+    "ring28": {
+      "setup": {
+        "idx": 28,
+        "params": {
+          "mm": [
+            1.08,
+            0.37,
+            1.68,
+            -11.94,
+            7.59
+          ],
+          "deg": -2.8,
+          "entry_mm": [
+            0.6,
+            0,
+            0,
+            0,
+            0
+          ],
+          "register": true
+        },
+        "axes": [
+          0.35,
+          3.55,
+          12.08,
+          30.16,
+          23.04,
+          97.05
+        ],
+        "rank": 121.9845
+      },
+      "full_trials": {
+        "v_quiet": {
+          "held": true,
+          "passed": true,
+          "error_mm": 0.42970362050500216
+        },
+        "v_side_h": {
+          "held": false,
+          "passed": false,
+          "error_mm": 54.93524182517385
+        },
+        "v_high": {
+          "held": true,
+          "passed": true,
+          "error_mm": 0.24852784147847437
+        },
+        "new_03_1": {
+          "held": true,
+          "passed": true,
+          "error_mm": 0.4654777308533213
+        },
+        "new_05_1": {
+          "held": false,
+          "passed": false,
+          "error_mm": null
+        },
+        "new_06_1": {
+          "held": false,
+          "passed": false,
+          "error_mm": null
+        },
+        "new_06_2": {
+          "held": false,
+          "passed": false,
+          "error_mm": null
+        },
+        "new_08_2": {
+          "held": false,
+          "passed": false,
+          "error_mm": null
+        }
+      }
+    }
+  },
+  "retained_candidate": {
+    "v_quiet": {
+      "held": true,
+      "passed": true,
+      "error_mm": 0.816041283452858
+    },
+    "v_side_h": {
+      "held": true,
+      "passed": true,
+      "error_mm": 0.5936980012438174
+    },
+    "v_high": {
+      "held": true,
+      "passed": true,
+      "error_mm": 0.8022650429789645
+    },
+    "new_03_1": {
+      "held": false,
+      "passed": false,
+      "error_mm": null
+    },
+    "new_05_1": {
+      "held": false,
+      "passed": false,
+      "error_mm": null
+    },
+    "new_06_1": {
+      "held": false,
+      "passed": false,
+      "error_mm": null
+    },
+    "new_06_2": {
+      "held": false,
+      "passed": false,
+      "error_mm": null
+    },
+    "new_08_2": {
+      "held": true,
+      "passed": true,
+      "error_mm": 0.3854583377144128
+    }
+  }
+}
