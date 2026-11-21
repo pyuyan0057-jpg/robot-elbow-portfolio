@@ -1,4 +1,29 @@
-# 七轴仿生机械臂与腱驱五指机械手
+# 七轴仿生机械臂｜桌面抓放与轨迹控制
+
+[English](README.md) · [圆柱复跑说明](studies/seven-axis-control-c4/README.md) · [设计分工与资料来源](docs/sources-and-rights.md)
+
+七轴机械臂配合六路腱驱机械手，从桌面抓起自由放置的物体，屈肘至 100°，保持，再放回桌面。下面是 ROS 2 Jazzy 与 MuJoCo 联合仿真的圆柱抓放回放。圆柱直立，机械手侧握，拇指在上、小指在下。
+
+[![圆柱从桌面抓起、保持、放回并松手](studies/seven-axis-control-c4/media/cylinder.gif)](studies/seven-axis-control-c4/media/cylinder.mp4)
+
+**完整视频** · [圆柱抓放 MP4](studies/seven-axis-control-c4/media/cylinder.mp4) · [小球抓放 MP4](studies/seven-axis-control-c4/media/sphere.mp4)
+
+### 同样的抓放时间，误差改善了多少？
+
+C4 加入惯性前馈，分别调整各轴控制刚度，并修正放置指令的落点偏差。两版使用同一圆柱、同一实际目标点和同样的 9.47 秒动作周期。
+
+| 圆柱抓放仿真 | 优化前 C2 | 优化后 C4 |
+|---|---:|---:|
+| 手掌轨迹最大误差 | 5.04 mm | 2.90 mm |
+| 手掌轨迹均方根误差 | 1.65 mm | 0.89 mm |
+| 圆柱最终落点误差 | 3.47 mm | 0.36 mm |
+| 保持阶段圆柱移动幅度 | 0.49 mm | 0.62 mm |
+
+![圆柱完整抓放周期内，两版手掌位置误差对照](studies/seven-axis-control-c4/media/cylinder-error.png)
+
+**在仓库根目录复跑。** Windows 执行 `py -3.11 run_cylinder.py`，Linux 执行 `python3.11 run_cylinder.py`。需要 Python 3.11 和支持 C++17 的 g++。命令会编译求解器，重做两遍完整抓放，在 `outputs/cylinder-control/` 生成误差曲线、逐时刻 CSV 和验收结果。[实验说明与失败工况](studies/seven-axis-control-c4/README.md) · [ROS 动作接口源码](studies/seven-axis-control-c4/trajectory_action.py)
+
+## 机械结构如何迭代
 
 **C2 · ROS 2 七轴抓取控制。** 小球与直立圆柱从桌面抓起、举至 100° 并放回。提供完整动作、掉球对照、三种控制律的匹配试验和复跑入口。[查看控制项目](studies/seven-axis-pick-place-c2/README.zh-CN.md)
 
@@ -46,7 +71,7 @@
 
 *左图来自实际 SolidWorks 装配运动。右图采用相同视角和比例，橙色标出新增环体和背脊连接。环外径从 94 增至 106 mm，新增的 26.93 g 留在上臂固定侧。点击图片可查看大图。*
 
-## 快速复算
+## 独立肘部扭矩复算
 
 在仓库根目录用 Python 3.11–3.14 和 pip 运行。计算和绘图无需 SolidWorks，可在无图形界面的环境中完成。[核验环境和命令](docs/verification.md)
 

@@ -1,0 +1,578 @@
+[
+  {
+    "control": "C2",
+    "task": "ball",
+    "condition": "right2",
+    "change": {
+      "unknown_mm": [
+        2,
+        0,
+        0
+      ]
+    },
+    "passed": true,
+    "rest": true,
+    "hold": true,
+    "retained": true,
+    "reseated": true,
+    "released": true,
+    "blocked": false,
+    "hold_span_mm": 0.4214286775793344,
+    "placement_error_mm": 12.76523396488819,
+    "peak_torque": [
+      13.899030350568484,
+      20.048493003722896,
+      4.398141253566318,
+      6.476767635647873,
+      0.3719648413740304,
+      0.54438260953037,
+      0.20258086777297624
+    ],
+    "peak_tension": [
+      2.6318394728039665,
+      1.2443203978323645,
+      14.526231087096871,
+      7.507167440926118,
+      9.350064987313015
+    ],
+    "table_hand_N": 2.5699923990126194
+  },
+  {
+    "control": "C2",
+    "task": "ball",
+    "condition": "left2",
+    "change": {
+      "unknown_mm": [
+        -2,
+        0,
+        0
+      ]
+    },
+    "passed": true,
+    "rest": true,
+    "hold": true,
+    "retained": true,
+    "reseated": true,
+    "released": true,
+    "blocked": false,
+    "hold_span_mm": 0.5442541885776684,
+    "placement_error_mm": 13.068429057706355,
+    "peak_torque": [
+      13.899220955351964,
+      20.103813774509522,
+      4.398572130886169,
+      6.477011430694528,
+      0.37186863452744845,
+      0.5446086097844809,
+      0.2029299143721678
+    ],
+    "peak_tension": [
+      2.2638330900264654,
+      1.8037457568436701,
+      15.506205152006277,
+      7.507171765240009,
+      9.350141441588008
+    ],
+    "table_hand_N": 2.6157324169671026
+  },
+  {
+    "control": "C2",
+    "task": "ball",
+    "condition": "friction055",
+    "change": {
+      "mu_override": 0.55
+    },
+    "passed": true,
+    "rest": true,
+    "hold": true,
+    "retained": true,
+    "reseated": true,
+    "released": true,
+    "blocked": false,
+    "hold_span_mm": 0.6393005629060089,
+    "placement_error_mm": 6.66283723097696,
+    "peak_torque": [
+      13.90126610142417,
+      20.106970415145685,
+      4.3987511422782966,
+      6.481653798496255,
+      0.3726985442169423,
+      0.548488008050662,
+      0.2046328532968196
+    ],
+    "peak_tension": [
+      2.739813812815475,
+      1.3807974307621442,
+      15.659437802469853,
+      7.5071695350797905,
+      9.350491973129268
+    ],
+    "table_hand_N": 3.173013119376892
+  },
+  {
+    "control": "C2",
+    "task": "ball",
+    "condition": "sensor12ms",
+    "change": {
+      "lag_ms": 12
+    },
+    "passed": true,
+    "rest": true,
+    "hold": true,
+    "retained": true,
+    "reseated": true,
+    "released": true,
+    "blocked": false,
+    "hold_span_mm": 0.3556101506234713,
+    "placement_error_mm": 9.56704193520482,
+    "peak_torque": [
+      13.89886235624091,
+      20.072970272907153,
+      4.397851836978474,
+      6.4764414781247375,
+      0.37173307162699054,
+      0.5441015275384703,
+      0.20241613895399552
+    ],
+    "peak_tension": [
+      2.3532871102412143,
+      1.7824427413172874,
+      14.615054876846653,
+      7.506404819375989,
+      9.349861444112838
+    ],
+    "table_hand_N": 2.8492168931145807
+  },
+  {
+    "control": "C2",
+    "task": "cylinder",
+    "condition": "right2",
+    "change": {
+      "unknown_mm": [
+        2,
+        0,
+        0
+      ]
+    },
+    "passed": true,
+    "rest": true,
+    "hold": true,
+    "retained": true,
+    "reseated": true,
+    "released": true,
+    "blocked": false,
+    "hold_span_mm": 0.5041204202227423,
+    "placement_error_mm": 3.4344234893272936,
+    "peak_torque": [
+      8.649193132568067,
+      25.049556652056545,
+      5.280832231095438,
+      5.674562167223755,
+      0.31775103572662144,
+      0.5603314243764574,
+      0.6394555838412168
+    ],
+    "peak_tension": [
+      13.247830766320336,
+      12.000714797738288,
+      25.0,
+      15.354651137960024,
+      25.0
+    ],
+    "table_hand_N": 0.0
+  },
+  {
+    "control": "C2",
+    "task": "cylinder",
+    "condition": "left2",
+    "change": {
+      "unknown_mm": [
+        -2,
+        0,
+        0
+      ]
+    },
+    "passed": true,
+    "rest": true,
+    "hold": true,
+    "retained": true,
+    "reseated": true,
+    "released": true,
+    "blocked": false,
+    "hold_span_mm": 0.49737512314951965,
+    "placement_error_mm": 3.445366838885165,
+    "peak_torque": [
+      8.649201584907415,
+      25.021125531893784,
+      5.282064742554558,
+      5.674553008190937,
+      0.3177972526025342,
+      0.5799317763483274,
+      0.67134741346616
+    ],
+    "peak_tension": [
+      13.338489882195569,
+      12.60879839229732,
+      25.0,
+      15.304562800880761,
+      25.0
+    ],
+    "table_hand_N": 0.0
+  },
+  {
+    "control": "C2",
+    "task": "cylinder",
+    "condition": "friction055",
+    "change": {
+      "mu_override": 0.55
+    },
+    "passed": false,
+    "rest": true,
+    "hold": false,
+    "retained": true,
+    "reseated": true,
+    "released": true,
+    "blocked": false,
+    "hold_span_mm": 23.951989907200502,
+    "placement_error_mm": 0.9008169980881543,
+    "peak_torque": [
+      8.83509744792766,
+      25.03021765074171,
+      5.252804618814624,
+      5.67409690230099,
+      0.31755867255674697,
+      0.37366519883056404,
+      0.8070155450160401
+    ],
+    "peak_tension": [
+      14.04799322379826,
+      14.195443713757253,
+      25.0,
+      15.347464307068524,
+      25.0
+    ],
+    "table_hand_N": 0.0
+  },
+  {
+    "control": "C2",
+    "task": "cylinder",
+    "condition": "sensor12ms",
+    "change": {
+      "lag_ms": 12
+    },
+    "passed": true,
+    "rest": true,
+    "hold": true,
+    "retained": true,
+    "reseated": true,
+    "released": true,
+    "blocked": false,
+    "hold_span_mm": 0.4979487086029591,
+    "placement_error_mm": 3.4612764992828082,
+    "peak_torque": [
+      8.649186915839602,
+      25.04572122959307,
+      5.274466346115434,
+      5.67456152091305,
+      0.31777136969753905,
+      0.4967973369710616,
+      0.7310839584612064
+    ],
+    "peak_tension": [
+      13.273566201680055,
+      12.401345165190154,
+      25.0,
+      15.531744243055792,
+      25.0
+    ],
+    "table_hand_N": 0.0
+  },
+  {
+    "control": "C4",
+    "task": "ball",
+    "condition": "right2",
+    "change": {
+      "unknown_mm": [
+        2,
+        0,
+        0
+      ]
+    },
+    "passed": true,
+    "rest": true,
+    "hold": true,
+    "retained": true,
+    "reseated": true,
+    "released": true,
+    "blocked": false,
+    "hold_span_mm": 0.448528021497252,
+    "placement_error_mm": 7.200670958600466,
+    "peak_torque": [
+      14.320521415053928,
+      20.049822690653123,
+      4.369753812808174,
+      6.685659289219978,
+      0.37874786265336796,
+      0.5510454186398435,
+      0.2043036690488308
+    ],
+    "peak_tension": [
+      2.8012411939835196,
+      1.244307068676287,
+      14.521903782940653,
+      7.50717893472812,
+      9.350106984112697
+    ],
+    "table_hand_N": 2.6907558809595926
+  },
+  {
+    "control": "C4",
+    "task": "ball",
+    "condition": "left2",
+    "change": {
+      "unknown_mm": [
+        -2,
+        0,
+        0
+      ]
+    },
+    "passed": true,
+    "rest": true,
+    "hold": true,
+    "retained": true,
+    "reseated": true,
+    "released": true,
+    "blocked": false,
+    "hold_span_mm": 0.5488299310770703,
+    "placement_error_mm": 7.0507765939669,
+    "peak_torque": [
+      14.3206418403333,
+      20.119170667930785,
+      4.3700695610507845,
+      6.685791144611942,
+      0.37866735451270445,
+      0.5511817390067129,
+      0.20457932786951627
+    ],
+    "peak_tension": [
+      2.3295080335184597,
+      1.8035065119079499,
+      15.464205388691262,
+      7.5071864062873335,
+      9.350149968276218
+    ],
+    "table_hand_N": 2.619636951388446
+  },
+  {
+    "control": "C4",
+    "task": "ball",
+    "condition": "friction055",
+    "change": {
+      "mu_override": 0.55
+    },
+    "passed": true,
+    "rest": true,
+    "hold": true,
+    "retained": true,
+    "reseated": true,
+    "released": true,
+    "blocked": false,
+    "hold_span_mm": 0.6391508607344054,
+    "placement_error_mm": 7.780893859965682,
+    "peak_torque": [
+      14.322390571465894,
+      20.121891651900697,
+      4.37019891304687,
+      6.690011080064758,
+      0.379509340637757,
+      0.554895742925059,
+      0.20627202237949133
+    ],
+    "peak_tension": [
+      2.7384996703219007,
+      1.3842552800429933,
+      15.716796723589352,
+      7.507180657381259,
+      9.350475170497273
+    ],
+    "table_hand_N": 3.606747402159202
+  },
+  {
+    "control": "C4",
+    "task": "ball",
+    "condition": "sensor12ms",
+    "change": {
+      "lag_ms": 12
+    },
+    "passed": true,
+    "rest": true,
+    "hold": true,
+    "retained": true,
+    "reseated": true,
+    "released": true,
+    "blocked": false,
+    "hold_span_mm": 0.3970124967599964,
+    "placement_error_mm": 0.5223788102870474,
+    "peak_torque": [
+      14.320436877978963,
+      20.064035833903805,
+      4.3695131048818165,
+      6.685458200856495,
+      0.3787235520325881,
+      0.550862662778045,
+      0.2041547132414056
+    ],
+    "peak_tension": [
+      2.8525419966948102,
+      1.3267415517541867,
+      14.631920619303553,
+      7.506439610549839,
+      9.349804746617112
+    ],
+    "table_hand_N": 2.809523060579143
+  },
+  {
+    "control": "C4",
+    "task": "cylinder",
+    "condition": "right2",
+    "change": {
+      "unknown_mm": [
+        2,
+        0,
+        0
+      ]
+    },
+    "passed": true,
+    "rest": true,
+    "hold": true,
+    "retained": true,
+    "reseated": true,
+    "released": true,
+    "blocked": false,
+    "hold_span_mm": 0.6089575987701725,
+    "placement_error_mm": 0.061379207831612013,
+    "peak_torque": [
+      8.63030851904325,
+      24.950116582593054,
+      5.277196765295538,
+      5.694272814724331,
+      0.31655649137478564,
+      0.8255413754488462,
+      0.668804247734005
+    ],
+    "peak_tension": [
+      13.5103039856313,
+      14.215155562864664,
+      25.0,
+      15.392301854023938,
+      25.0
+    ],
+    "table_hand_N": 0.0
+  },
+  {
+    "control": "C4",
+    "task": "cylinder",
+    "condition": "left2",
+    "change": {
+      "unknown_mm": [
+        -2,
+        0,
+        0
+      ]
+    },
+    "passed": true,
+    "rest": true,
+    "hold": true,
+    "retained": true,
+    "reseated": true,
+    "released": true,
+    "blocked": false,
+    "hold_span_mm": 0.6122270796025953,
+    "placement_error_mm": 0.1635353338873725,
+    "peak_torque": [
+      8.63028560619871,
+      24.927586891856702,
+      5.279126313881652,
+      5.6942726071060505,
+      0.31655924002492086,
+      0.8391252333755398,
+      0.7899128924766299
+    ],
+    "peak_tension": [
+      12.63331672575623,
+      14.906756950106415,
+      25.0,
+      15.352596458551668,
+      25.0
+    ],
+    "table_hand_N": 0.0
+  },
+  {
+    "control": "C4",
+    "task": "cylinder",
+    "condition": "friction055",
+    "change": {
+      "mu_override": 0.55
+    },
+    "passed": false,
+    "rest": true,
+    "hold": false,
+    "retained": true,
+    "reseated": true,
+    "released": true,
+    "blocked": false,
+    "hold_span_mm": 23.892445400048846,
+    "placement_error_mm": 3.3326327449476296,
+    "peak_torque": [
+      8.84435458097507,
+      25.014320455472372,
+      5.254200424700962,
+      5.693702625964214,
+      0.316010269349086,
+      0.4337470600554605,
+      0.9959231546780197
+    ],
+    "peak_tension": [
+      15.736311974588467,
+      15.081621673026772,
+      25.0,
+      15.353529271481287,
+      25.0
+    ],
+    "table_hand_N": 0.0
+  },
+  {
+    "control": "C4",
+    "task": "cylinder",
+    "condition": "sensor12ms",
+    "change": {
+      "lag_ms": 12
+    },
+    "passed": true,
+    "rest": true,
+    "hold": true,
+    "retained": true,
+    "reseated": true,
+    "released": true,
+    "blocked": false,
+    "hold_span_mm": 0.6183686189500104,
+    "placement_error_mm": 0.12993595599285762,
+    "peak_torque": [
+      8.630338424200978,
+      24.987121715032607,
+      5.284659985589902,
+      5.694293226484368,
+      0.3165696794573259,
+      0.7435270144617396,
+      0.8242330040997152
+    ],
+    "peak_tension": [
+      12.789672971989276,
+      13.646559451316502,
+      25.0,
+      15.530947982563463,
+      25.0
+    ],
+    "table_hand_N": 0.0
+  }
+]

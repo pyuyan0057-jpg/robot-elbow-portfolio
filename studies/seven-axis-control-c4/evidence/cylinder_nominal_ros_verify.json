@@ -1,0 +1,18 @@
+{
+  "distribution": "jazzy",
+  "bag": "full_cylinder_20261121_105428_593972",
+  "messages": {
+    "/arm/joint_trajectory": 1,
+    "/arm_hand/feedback": 4736,
+    "/arm_hand/command": 4736
+  },
+  "action": {
+    "mode": "nominal",
+    "status": 4,
+    "result_code": 0,
+    "client_feedback": 191,
+    "end_feedback_s": 9.47,
+    "first_fault": null,
+    "controller_stop": null
+  }
+}

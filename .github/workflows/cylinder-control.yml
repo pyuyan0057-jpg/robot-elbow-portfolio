@@ -1,0 +1,39 @@
+name: Cylinder control comparison
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'run_cylinder.py'
+      - 'studies/seven-axis-control-c4/**'
+      - 'studies/seven-axis-pick-place-c2/**'
+      - '.github/workflows/cylinder-control.yml'
+  pull_request:
+    paths:
+      - 'run_cylinder.py'
+      - 'studies/seven-axis-control-c4/**'
+      - 'studies/seven-axis-pick-place-c2/**'
+      - '.github/workflows/cylinder-control.yml'
+permissions:
+  contents: read
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: |
+            studies/seven-axis-pick-place-c2/requirements.txt
+            studies/seven-axis-control-c4/requirements.txt
+      - name: Build and run baseline and tuned cylinder grasps
+        run: python run_cylinder.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cylinder-control-comparison
+          path: |
+            outputs/cylinder-control/summary.json
+            outputs/cylinder-control/tracking.csv
+            outputs/cylinder-control/tracking.png

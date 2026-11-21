@@ -1,4 +1,29 @@
-# A seven-axis robotic arm with a tendon-driven hand
+# Seven-axis biomimetic arm | tabletop grasp and trajectory control
+
+[中文首页](README.zh-CN.md) · [Reproduce the cylinder experiment](studies/seven-axis-control-c4/README.md) · [Model, sources and contributions](docs/sources-and-rights.md)
+
+A seven-axis arm and a six-drive tendon hand pick up a free object, lift it to 100° elbow flexion and set it down on the table. The cylinder starts upright, with the thumb above the little finger. The replay is from the ROS 2 Jazzy / MuJoCo simulation.
+
+[![Full cylinder pick, lift, hold and release](studies/seven-axis-control-c4/media/cylinder.gif)](studies/seven-axis-control-c4/media/cylinder.mp4)
+
+**Full videos** · [Cylinder pick and place (MP4)](studies/seven-axis-control-c4/media/cylinder.mp4) · [Sphere pick and place (MP4)](studies/seven-axis-control-c4/media/sphere.mp4)
+
+### What changed in the controller?
+
+C4 combines inertial feedforward, joint-specific stiffness tuning and a small correction to the placement command. Both versions run the same 9.47 s cylinder task and are scored against the same physical placement target.
+
+| Cylinder simulation | C2 baseline | C4 tuned |
+|---|---:|---:|
+| Peak palm tracking error | 5.04 mm | 2.90 mm |
+| RMS palm tracking error | 1.65 mm | 0.89 mm |
+| Final cylinder placement error | 3.47 mm | 0.36 mm |
+| Cylinder excursion during hold | 0.49 mm | 0.62 mm |
+
+![Palm position error over the full cylinder cycle](studies/seven-axis-control-c4/media/cylinder-error.png)
+
+**Run it from the repository root.** Windows: `py -3.11 run_cylinder.py`. Linux: `python3.11 run_cylinder.py`. Requires Python 3.11 and a C++17 g++ compiler. The command builds the solver, runs both grasps and writes the comparison plot, CSV and acceptance results to `outputs/cylinder-control/`. [Experiment and failure cases](studies/seven-axis-control-c4/README.md) · [ROS action adapter](studies/seven-axis-control-c4/trajectory_action.py)
+
+## How the mechanical design evolved
 
 **C2 · ROS 2 pick and place.** A seven-axis arm with a six-drive hand lifts and sets down two free tabletop objects. The sphere and upright cylinder were held 229 and 298 mm above the desk. [Videos, controller comparisons and runnable physics](studies/seven-axis-pick-place-c2/README.md)
 
@@ -40,7 +65,7 @@ A single-axis elbow raises an existing hand and six-drive forearm through 90°. 
 
 *Left: actual SolidWorks assembly motion. Right: matched bracket views and mount sections. The ring OD grew from 94 to 106 mm and the local spine tie widened. The extra 26.93 g stays on the fixed upper arm. Click either figure to enlarge.*
 
-## Quick start
+## Standalone elbow torque example
 
 Use Python 3.11–3.14 with pip in the repository root. The calculator reads local JSON and produces its plot headlessly; the command line requires no CAD software. Tested interpreter and validation commands are listed in [verification](docs/verification.md).
 

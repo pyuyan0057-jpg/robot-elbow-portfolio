@@ -22,7 +22,7 @@ def build():
     target = directory / name
     library = sdk / "mujoco.dll" if windows else next(sdk.glob("libmujoco.so*"))
     flags = (
-        ["-static-libgcc", "-static-libstdc++"]
+        ["-static", "-static-libgcc", "-static-libstdc++"]
         if windows
         else ["-fPIC", "-Wl,-rpath," + str(sdk)]
     )

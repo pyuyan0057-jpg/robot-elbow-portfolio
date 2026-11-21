@@ -30,6 +30,7 @@ class Reg(C.Structure):
             for s in "A H radius elastic dt tau sensorTransmission".split()
         ]
         + [(s, C.c_double * 7) for s in ["maxTorque", "kp", "kd"]]
+        + [("feedforward", C.c_double), ("last_velocity", C.c_double * 7)]
     )
 
 
@@ -86,6 +87,12 @@ def plant(o, pl, dt):
     reg.maxTorque[:] = [48, 48, 8.3, 8.3, 8.3, 1.3, 1.3]
     reg.kp[:] = [950, 950, 400, 340, 110, 75, 75]
     reg.kd[:] = [55, 55, 15, 13, 3, 1.45, 1.45]
+    scale = np.asarray(pl["c"].get("stiffness_scale", [1.] * 7))
+    if scale.shape != (7,) or not np.all(np.isfinite(scale) & (scale > 0)):
+        raise ValueError("Expected seven positive joint gain scales")
+    reg.kp[:] = np.asarray(reg.kp) * scale
+    reg.kd[:] = np.asarray(reg.kd) * np.sqrt(scale)
+    reg.feedforward = pl["c"].get("inertia_gain", 0.)
     opp = m.joint("thumb_opposition")
     reg.oppq = opp.qposadr[0]
     reg.oppv = opp.dofadr[0]

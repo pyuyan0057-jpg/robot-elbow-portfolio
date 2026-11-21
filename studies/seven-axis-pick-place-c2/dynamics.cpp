@@ -2,6 +2,7 @@
 #include <cmath>
 #include <algorithm>
 #include <cstring>
+#include <vector>
 #ifdef _WIN32
 #define EXPORT_STEP __declspec(dllexport)
 #else
@@ -10,16 +11,27 @@
 extern "C" {
 struct Register {
  int armq[7],armv[7],fq[14],fv[14],digit[14],oppq,oppv,ball,ballv,table,body,palm,little,thumb,labels[1024];
- double spring[14],A,H,radius,elastic,dt,tau,sensorTransmission,maxTorque[7],kp[7],kd[7];
+ double spring[14],A,H,radius,elastic,dt,tau,sensorTransmission,maxTorque[7],kp[7],kd[7],feedforward,last_velocity[7];
 };
 // Returns the true simulated loads for OFFLINE evaluation. The only hand measurement
 // sent to the control process is the delayed tension bridge voltage converted to N.
-EXPORT_STEP void advance(mjModel* m,mjData* d,const Register* s,const double* refs,int count,double* sensor,double* out){
+EXPORT_STEP void advance(mjModel* m,mjData* d,Register* s,const double* refs,int count,double* sensor,double* out){
  double* dest=out;const double dt=m->opt.timestep;
+ // Estimate reference acceleration from consecutive 500 Hz velocity commands.
+ std::vector<mjtNum> inertia(m->nv, 0.);
+ if (s->feedforward != 0.) {
+  std::vector<mjtNum> acceleration(m->nv, 0.);
+  for (int i=0; i<7; ++i) {
+   const double velocity=refs[i+7];
+   acceleration[s->armv[i]]=std::clamp((velocity-s->last_velocity[i])/(count*dt), -11.34464, 11.34464);
+   s->last_velocity[i]=velocity;
+  }
+  mj_mulM(m,d,inertia.data(),acceleration.data());
+ }
  for(int n=0;n<count;n++,dest+=44){
   std::fill(dest,dest+44,0.);double take[5]={},f[5]={},jac[14];
   for(int i=0;i<7;i++){
-    const int a=s->armv[i];const double tau=d->qfrc_bias[a]+s->kp[i]*(refs[i]-d->qpos[s->armq[i]])+s->kd[i]*(refs[i+7]-d->qvel[a]);
+    const int a=s->armv[i];const double tau=d->qfrc_bias[a]+s->feedforward*inertia[a]+s->kp[i]*(refs[i]-d->qpos[s->armq[i]])+s->kd[i]*(refs[i+7]-d->qvel[a]);
     d->qfrc_applied[a]=std::clamp(tau,-s->maxTorque[i],s->maxTorque[i]);dest[28+i]=d->qfrc_applied[a];dest[35+i]=d->qpos[s->armq[i]];
   }
   for(int j=0;j<14;j++){

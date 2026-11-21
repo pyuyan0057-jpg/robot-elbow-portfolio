@@ -1,0 +1,21 @@
+{
+  "distribution": "jazzy",
+  "bag": "full_ball_20261121_105208_599681",
+  "messages": {
+    "/arm/joint_trajectory": 1,
+    "/arm_hand/feedback": 4661,
+    "/arm_hand/command": 4661
+  },
+  "action": {
+    "mode": "cancel_loaded",
+    "status": 5,
+    "result_code": 0,
+    "client_feedback": 188,
+    "end_feedback_s": 9.32,
+    "first_fault": [
+      "cancel",
+      3.5020000000000002
+    ],
+    "controller_stop": "set_down"
+  }
+}

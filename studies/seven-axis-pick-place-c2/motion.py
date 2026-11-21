@@ -151,7 +151,8 @@ def plan(o, settings, period):
         place_target[[0, 2]] -= radial * c.get("place_in_mm", 50) * 0.001
         if "drop_delta_mm" in c:
             place_target = wp + np.array(c["drop_delta_mm"]) * 0.001
-        goal = place_target + np.array([0, c.get("preload_mm", 0.25) * 0.001, 0])
+        trim_x, trim_z = c.get("placement_trim_xz_mm", [0., 0.])
+        goal = place_target + .001 * np.array([trim_x, c.get("preload_mm", 0.25), trim_z])
         axis_local = np.array(reg["axis"])
         axis_goal = np.array([0, -1 if (hand(q)[1].apply(axis_local))[1] < 0 else 1, 0])
 
