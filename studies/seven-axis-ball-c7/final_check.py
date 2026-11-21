@@ -13,6 +13,8 @@ if __name__=="__main__":
     elif group=="timestep":
         jobs=[(case,m,.000125) for case in ("push_y3","val_push_down","v_heavy_z","v_return_side")
               for m in ("off","both",FINAL_POLICY)]
+    elif group=="rescue_step":
+        jobs=[("v_heavy_z2",m,dt) for dt in (.000125,.0001) for m in ("off","both","preload_only",FINAL_POLICY)]
     else:
         raise ValueError(group)
     batch(jobs,6)
