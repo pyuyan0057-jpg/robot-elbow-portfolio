@@ -53,6 +53,18 @@ PRE.update(LONG)
 SELECTED="mid_i"
 PRE["preload_only"]=(PRE[SELECTED][0],(0.,0.))
 
+# Scale the added stroke by measured local motion only while pad load is rising.
+ADAPT={
+ "motion_lo":(1.5,12.,.50,.70), "motion_mid":(3.,18.,.50,.70),
+ "motion_high":(5.,24.,.50,.70), "motion_trim":(3.,18.,.36,.55),
+ "motion_9":(9.,24.,.50,.70), "motion_12":(12.,25.,.50,.70),
+ "motion_15":(15.,31.,.50,.70), "motion_10t":(10.,24.,.42,.9),
+ "motion_plus":(3.,20.,.55,.95), "motion_fast":(2.5,15.,.55,.95)
+}
+WINDOW={"window6":(6.,2.8),"window8":(8.,3.0),"window10":(10.,3.0),"window12":(12.,3.15)}
+for key,(low,cap) in WINDOW.items(): ADAPT[key]=(low,26.,.5,.7)
+for key in ADAPT: PRE[key]=((1.45,.70),ADAPT[key][2:])
+
 class Recorder(c6.baseline.Recorder):
     def sample(self,m,d,r,k,t,times):
         super().sample(m,d,r,k,t,times)
@@ -72,6 +84,7 @@ class Feedback:
         self.stroke=np.zeros(2)
         self.det=Detector("ball")
         self.log=[]
+        self.gain=0.
         self.preloaded=False
         self.support_ticks=0
         self.baseline=None
@@ -119,6 +132,19 @@ class Feedback:
         trigger=False
         self.target[:]=start if self.preloaded else (0.,0.)
         if not self.preloaded:return 5.,False
+        if self.mode in ADAPT:
+            low,full,di,dt=ADAPT[self.mode]
+            gain=np.clip((y[1,1]-low)/(full-low),0,1) if (
+                ph[1]+.05<=t<ph[3]-.55 and growth[0]>.25 and load[1]>.06) else 0.
+            if self.mode in WINDOW:
+                # Initial evidence must occur before the thumb is already strongly compressed.
+                # The brief eligibility window lets an early slip receive its full response.
+                if gain>0 and load[0]<WINDOW[self.mode][1]:
+                    self.until=t+.07
+                if t>=self.until: gain=0.
+            self.gain=max(gain,self.gain*np.exp(-DT/.06))
+            self.target+=self.gain*np.array([di,dt])
+            return (30. if self.mode=="motion_fast" else 22.) if t>=ph[1] else 5., gain>0
         pulse=growth[0]>.4 or (max(y[:,1])>18 and max(growth)>.08 and max(y[:,2])>.12)
         if not pulse and max(growth)<.16:self.armed=True
         if ph[1]+.05<=t<ph[3]-.55 and pulse and self.armed and t-self.last>.34:
@@ -169,19 +195,43 @@ TEST={
  "return_side":([-.25,0,.35],[-2.9,.4,.2],1.57,.197)
 }
 
+# Second unseen group for the corrected policy. Includes return disturbances and
+# variants of the archived transverse component, timing and initial pose.
+FINAL_TEST={
+ "v_quiet":([.21,0,-.32],[0,0,0],.43,.165),
+ "v_light":([-.56,0,.31],[.12,2.65,.21],.41,.186),
+ "v_three":([.36,0,.13],[.08,3.08,-.18],.49,.173),
+ "v_mid":([-.32,0,.16],[.18,3.55,-.21],.375,.177),
+ "v_midlate":([.48,0,-.53],[-.21,3.92,.2],.56,.195),
+ "v_heavy":([-.6,0,.35],[-.18,4.34,-.12],.445,.181),
+ "v_heavy_z":([.88,0,.09],[.05,4.46,.71],.38,.182),
+ "v_heavy_z2":([.92,0,-.14],[-.06,4.54,.84],.54,.176),
+ "v_heavy_z3":([.7,0,.2],[.09,4.12,.68],.40,.182),
+ "v_side_l":([.28,0,-.29],[-2.45,.32,.16],.455,.172),
+ "v_side_h":([-.37,0,.41],[-3.22,.36,-.19],.54,.19),
+ "v_return_down":([.35,0,-.26],[-.08,3.88,.19],1.54,.182),
+ "v_return_side":([-.31,0,.27],[-2.74,.38,.17],1.46,.187),
+ "v_high":([.14,0,-.41],[.10,5.1,.58],.46,.17)
+}
+
 def recipe(case):
-    if case in TEST:
+    novel=TEST|FINAL_TEST
+    if case in novel:
         cfg,*_=c6.params("ball","nominal")
-        shift,force,offset,duration=TEST[case]
+        shift,force,offset,duration=novel[case]
         cfg["unknown_mm"]=shift
         if case=="quiet_mu":cfg["mu_override"]=.61
-        return cfg,np.array(force),offset,duration,8107+list(TEST).index(case)
+        return cfg,np.array(force),offset,duration,8107+list(novel).index(case)
     return (*c6.params("ball",case),c6.seed("ball",case))
 
 def solve(job):
     from trial import execute
-    case,mode=job
+    case,mode=job[:2]
     cfg,force,offset,duration,seed=recipe(case)
+    suffix=""
+    if len(job)==3:
+        cfg["dt"]=job[2]
+        suffix=f"_dt{round(1e6*job[2])}"
     rec=Recorder();rec.library=c6.LIB
     fixed=[]
     if mode.startswith("fixed_"):
@@ -191,7 +241,7 @@ def solve(job):
     def pulse(d,r,t,ph):
         elapsed=t-ph[1]-offset
         d.xfrc_applied[r.body,:3]=force*(np.sin(np.pi*elapsed/duration)**2 if 0<=elapsed<=duration else 0.)
-    tag=OUT/(case+"_"+mode)
+    tag=OUT/(case+"_"+mode+suffix)
     result=execute("ball",cfg,tag=str(tag),observer=rec,disturbance=pulse,reflex=fb)
     np.savez_compressed(str(tag)+"_data.npz",feedback=fb.log,trace=rec.data[:rec.count],
                         directions=rec.directions[:rec.count],times=rec.times)
