@@ -1,0 +1,33 @@
+name: Seven-axis tabletop control
+on:
+  push:
+    paths:
+      - 'studies/seven-axis-pick-place-c2/**'
+      - '.github/workflows/seven-axis-pick-place.yml'
+  pull_request:
+    paths:
+      - 'studies/seven-axis-pick-place-c2/**'
+      - '.github/workflows/seven-axis-pick-place.yml'
+permissions:
+  contents: read
+jobs:
+  recompute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: studies/seven-axis-pick-place-c2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: studies/seven-axis-pick-place-c2/requirements.txt
+      - run: python -m pip install -r requirements.txt
+      - name: Build the native solver and recompute both full cycles
+        run: python reproduce.py
+      - name: Verify a user elbow limit blocks both 100-degree trajectories
+        run: |
+          if python reproduce.py --elbow-max-deg 80 --output refused.json; then exit 1; fi
+          python -c "import json; rows=json.load(open('refused.json')); assert len(rows)==2 and all('configured ranges' in r['refused'] for r in rows)"
