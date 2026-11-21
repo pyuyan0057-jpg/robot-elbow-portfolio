@@ -43,7 +43,7 @@ def source():
     return (D / "arm_hand.xml").read_text("utf-8")
 
 
-def plant(o, pl, dt):
+def plant(o, pl, dt, configure=None):
     import xml.etree.ElementTree as E
 
     root = E.fromstring(source())
@@ -64,6 +64,8 @@ def plant(o, pl, dt):
             friction=f".45 .45 .0004 {roll} {roll}",
             solref=".008 1",
         )
+    if configure is not None:
+        configure(root)
     m = mj.MjModel.from_xml_string(E.tostring(root, encoding="unicode"))
     m.opt.timestep = dt
     d = mj.MjData(m)

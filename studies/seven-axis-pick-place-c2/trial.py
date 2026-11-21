@@ -6,13 +6,13 @@ import numpy as np, mujoco as mj
 from physics import plant, integrate
 
 
-def execute(o, c, tag=None, remote=None):
+def execute(o, c, tag=None, remote=None, observer=None, disturbance=None):
     dt = c.get("dt", 0.0005)
     period = 0.002
     sub = round(period / dt)
     assert abs(sub * dt - period) < 1e-9
     pl = plan(o, c, period)
-    m, d, r, table_y, over = plant(o, pl, dt)
+    m, d, r, table_y, over = plant(o, pl, dt, observer.configure if observer is not None else None)
     lt, high, down, seat, release, end = pl["times"]
     from supervisor import Supervisor
 
@@ -67,6 +67,10 @@ def execute(o, c, tag=None, remote=None):
             )
         if tag and k % 20 == 0:
             frames.append(d.qpos.copy())
+        if disturbance is not None:
+            disturbance(d, r, t, pl["times"])
+        if observer is not None:
+            observer.sample(m, d, r, k, t, pl["times"])
         integrate(m, d, r, np.ascontiguousarray(ref), sub, sense, out[k])
         if tag and k % 5 == 0:
             status.append(ref.copy())

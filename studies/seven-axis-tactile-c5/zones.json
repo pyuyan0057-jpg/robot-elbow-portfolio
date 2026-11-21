@@ -1,0 +1,8 @@
+{
+  "thumb":  {"body":"E3_F4_1-1","center_mm":[-15.37,27.33,-7.23],"radii_mm":[10,9,10]},
+  "index":  {"body":"E3_F0_2-1","center_mm":[5,24,-9],"radii_mm":[12,13,9]},
+  "middle": {"body":"E3_F1_2-1","center_mm":[0,25,-9],"radii_mm":[12,13,9]},
+  "ring":   {"body":"E3_F2_2-1","center_mm":[0,25,-9],"radii_mm":[12,13,9]},
+  "little": {"body":"E3_F3_2-1","center_mm":[0,24,-9],"radii_mm":[12,12,9]},
+  "palm":   {"body":"palm","center_mm":[0,-54,-22],"radii_mm":[25,32,12]}
+}
