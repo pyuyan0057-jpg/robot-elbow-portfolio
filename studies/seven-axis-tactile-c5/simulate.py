@@ -44,7 +44,7 @@ def build():
     sdk = Path(mj.__file__).parent
     flags = ["-static"] if os.name=="nt" else ["-fPIC","-Wl,-rpath,"+str(sdk)]
     lib = sdk/"mujoco.dll" if os.name=="nt" else next(sdk.glob("libmujoco.so*"))
-    subprocess.run([os.environ.get("CXX","g++"),"-std=c++17","-O2","-shared",*flags,
+    subprocess.run([os.environ.get("CXX","g++"),"-std=c++17","-O2","-shared","-DREPRODUCE_C5_LEGACY_ORIGIN",*flags,
                     "-I"+str(sdk/"include"),str(HERE/"read_zones.cpp"),str(lib),"-o",str(LIB)],check=True)
 
 

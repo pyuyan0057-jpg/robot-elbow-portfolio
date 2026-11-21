@@ -1,0 +1,89 @@
+﻿group,obj,case,events,hits,fp,detached,in_hand,detected_in_hand,misses,false_times,alarms,times
+historical,cylinder,nominal,1,1,0,[],1,1,[],[],[np.float64(2.056)],[np.float64(2.104)]
+historical,ball,nominal,0,0,0,[],0,0,[],[],[],[]
+historical,cylinder,right2,1,1,0,[],1,1,[],[],[np.float64(2.052)],[np.float64(2.09)]
+historical,ball,right2,0,0,0,[],0,0,[],[],[],[]
+historical,cylinder,left2,1,1,1,[],1,1,[],[np.float64(2.256)],"[np.float64(2.056), np.float64(2.256)]",[np.float64(2.1)]
+historical,ball,left2,0,0,0,[],0,0,[],[],[],[]
+historical,cylinder,delay12,1,1,0,[],1,1,[],[],[np.float64(2.056)],[np.float64(2.094)]
+historical,ball,delay12,0,0,0,[],0,0,[],[],[],[]
+historical,cylinder,mu055,1,1,0,[],1,1,[],[],[np.float64(4.072)],[np.float64(4.02)]
+historical,ball,mu055,0,0,0,[],0,0,[],[],[],[]
+historical,cylinder,mu035,2,2,0,[],2,2,[],[],"[np.float64(2.07), np.float64(2.838)]","[np.float64(2.082), np.float64(2.802)]"
+historical,ball,mu035,1,1,0,[],1,1,[],[],[np.float64(5.528)],[np.float64(5.494)]
+historical,cylinder,mu075,1,1,0,[],1,1,[],[],[np.float64(4.424)],[np.float64(4.334)]
+historical,ball,mu075,0,0,0,[],0,0,[],[],[],[]
+historical,cylinder,mu045,1,1,0,[],1,1,[],[],[np.float64(3.786)],[np.float64(3.694)]
+historical,ball,mu045,0,0,0,[],0,0,[],[],[],[]
+historical,cylinder,mu025,1,1,2,[],1,1,[],"[np.float64(2.02), np.float64(2.198)]","[np.float64(2.02), np.float64(2.04), np.float64(2.198)]",[np.float64(2.136)]
+historical,ball,mu025,0,0,0,[],0,0,[],[],[],[]
+historical,cylinder,mu055_right2,1,1,0,[],1,1,[],[],[np.float64(4.06)],[np.float64(4.008)]
+historical,ball,mu055_right2,0,0,1,[],0,0,[],[np.float64(4.358)],[np.float64(4.358)],[]
+historical,cylinder,push_x1,1,1,0,[],1,1,[],[],[np.float64(2.054)],[np.float64(2.104)]
+historical,ball,push_x1,0,0,0,[],0,0,[],[],[],[]
+historical,cylinder,push_x3,1,1,0,[],1,1,[],[],[np.float64(2.056)],[np.float64(2.104)]
+historical,ball,push_x3,0,0,0,[],0,0,[],[],[],[]
+historical,cylinder,push_nx3,2,2,0,[],2,2,[],[],"[np.float64(2.056), np.float64(3.862)]","[np.float64(2.104), np.float64(3.802)]"
+historical,ball,push_nx3,2,2,1,[],2,2,[],[np.float64(5.006)],"[np.float64(3.632), np.float64(3.768), np.float64(5.006)]","[np.float64(3.598), np.float64(3.826)]"
+historical,cylinder,push_y1,1,1,0,[],1,1,[],[],[np.float64(2.056)],[np.float64(2.104)]
+historical,ball,push_y1,0,0,0,[],0,0,[],[],[],[]
+historical,cylinder,push_y3,1,1,0,[],1,1,[],[],[np.float64(2.056)],[np.float64(2.104)]
+historical,ball,push_y3,0,0,1,[],0,0,[],[np.float64(3.748)],[np.float64(3.748)],[]
+historical,cylinder,push_y6,2,2,0,[],2,2,[],[],"[np.float64(2.054), np.float64(3.788)]","[np.float64(2.104), np.float64(3.772)]"
+historical,ball,push_y6,1,1,1,[],1,1,[],[np.float64(3.708)],"[np.float64(3.634), np.float64(3.708)]",[np.float64(3.628)]
+historical,cylinder,val_mu062_offset,1,1,0,[],1,1,[],[],[np.float64(4.198)],[np.float64(4.124)]
+historical,ball,val_mu062_offset,0,0,0,[],0,0,[],[],[],[]
+historical,cylinder,val_mu040_offset,1,1,1,[],1,1,[],[np.float64(3.254)],"[np.float64(3.21), np.float64(3.254)]",[np.float64(3.188)]
+historical,ball,val_mu040_offset,0,0,0,[],0,0,[],[],[],[]
+historical,cylinder,val_push_diag,1,1,0,[],1,1,[],[],[np.float64(2.054)],[np.float64(2.08)]
+historical,ball,val_push_diag,1,1,1,[],1,1,[],[np.float64(3.738)],"[np.float64(3.614), np.float64(3.738)]",[np.float64(3.604)]
+historical,cylinder,val_push_down,2,2,1,[],2,2,[],[np.float64(2.254)],"[np.float64(2.054), np.float64(2.254), np.float64(3.8)]","[np.float64(2.092), np.float64(3.786)]"
+historical,ball,val_push_down,2,2,1,[],2,2,[],[np.float64(3.708)],"[np.float64(1.722), np.float64(3.622), np.float64(3.708)]","[np.float64(1.7), np.float64(3.63)]"
+A,cylinder,a_quiet,1,1,0,[],1,1,[],[],[np.float64(2.052)],[np.float64(2.118)]
+A,ball,a_quiet,0,0,0,[],0,0,[],[],[],[]
+A,cylinder,a_friction,1,1,0,[],1,1,[],[],[np.float64(4.11)],[np.float64(4.052)]
+A,ball,a_friction,0,0,0,[],0,0,[],[],[],[]
+A,cylinder,a_horizontal,2,2,1,[],2,2,[],[np.float64(4.22)],"[np.float64(2.056), np.float64(4.006), np.float64(4.22)]","[np.float64(2.098), np.float64(3.972)]"
+A,ball,a_horizontal,1,1,3,[],1,1,[],"[np.float64(3.93), np.float64(3.956), np.float64(5.116)]","[np.float64(3.782), np.float64(3.93), np.float64(3.956), np.float64(5.116)]",[np.float64(3.772)]
+A,cylinder,a_gravity,2,2,1,[],2,2,[],[np.float64(2.262)],"[np.float64(2.056), np.float64(2.262), np.float64(3.924)]","[np.float64(2.104), np.float64(3.91)]"
+A,ball,a_gravity,1,1,0,[],1,1,[],[],[np.float64(3.79)],[np.float64(3.752)]
+A,cylinder,a_return,2,2,0,[],2,2,[],[],"[np.float64(2.056), np.float64(4.934)]","[np.float64(2.104), np.float64(4.914)]"
+A,ball,a_return,2,2,2,[],2,2,[],"[np.float64(4.804), np.float64(4.856)]","[np.float64(4.774), np.float64(4.804), np.float64(4.856), np.float64(5.108)]","[np.float64(4.728), np.float64(5.078)]"
+A,cylinder,a_return_load,2,2,0,[],2,2,[],[],"[np.float64(2.054), np.float64(5.062)]","[np.float64(2.094), np.float64(5.048)]"
+A,ball,a_return_load,1,1,1,[],1,1,[],[np.float64(4.978)],"[np.float64(4.888), np.float64(4.978)]",[np.float64(4.9)]
+B,cylinder,b_quiet,1,1,0,[],1,1,[],[],[np.float64(2.052)],[np.float64(2.108)]
+B,ball,b_quiet,0,0,0,[],0,0,[],[],[],[]
+B,cylinder,b_friction,1,1,0,[],1,1,[],[],[np.float64(4.018)],[np.float64(3.944)]
+B,ball,b_friction,1,1,0,[],1,1,[],[],[np.float64(5.43)],[np.float64(5.482)]
+B,cylinder,b_diag,2,2,0,[],2,2,[],[],"[np.float64(2.054), np.float64(3.782)]","[np.float64(2.096), np.float64(3.74)]"
+B,ball,b_diag,1,1,2,[],1,1,[],"[np.float64(3.648), np.float64(5.216)]","[np.float64(3.564), np.float64(3.648), np.float64(5.216)]",[np.float64(3.548)]
+B,cylinder,b_down,2,2,0,[],2,2,[],[],"[np.float64(2.056), np.float64(4.062)]","[np.float64(2.084), np.float64(4.048)]"
+B,ball,b_down,1,1,1,[],1,1,[],[np.float64(3.988)],"[np.float64(3.908), np.float64(3.988)]",[np.float64(3.904)]
+B,cylinder,b_return,2,2,0,[],2,2,[],[],"[np.float64(2.056), np.float64(4.988)]","[np.float64(2.088), np.float64(4.968)]"
+B,ball,b_return,1,1,2,[],1,1,[],"[np.float64(4.89), np.float64(4.916)]","[np.float64(4.842), np.float64(4.89), np.float64(4.916)]",[np.float64(4.802)]
+B,cylinder,b_return_down,2,2,0,[],2,2,[],[],"[np.float64(2.056), np.float64(4.84)]","[np.float64(2.11), np.float64(4.828)]"
+B,ball,b_return_down,2,2,0,[],2,2,[],[],"[np.float64(4.648), np.float64(4.746)]","[np.float64(4.666), np.float64(4.826)]"
+C,cylinder,c_soft,1,1,0,[],1,1,[],[],[np.float64(2.056)],[np.float64(2.11)]
+C,ball,c_soft,0,0,0,[],0,0,[],[],[],[]
+C,cylinder,c_friction,1,1,0,[],1,1,[],[],[np.float64(4.118)],[np.float64(4.06)]
+C,ball,c_friction,0,0,0,[],0,0,[],[],[],[]
+C,cylinder,c_diag,4,3,1,[3],3,3,[np.float64(5.476)],[np.float64(4.344)],"[np.float64(2.054), np.float64(4.002), np.float64(4.344), np.float64(5.226)]","[np.float64(2.094), np.float64(3.976), np.float64(5.2), np.float64(5.476)]"
+C,ball,c_diag,1,1,1,[],1,1,[],[np.float64(3.964)],"[np.float64(3.83), np.float64(3.964)]",[np.float64(3.782)]
+C,cylinder,c_down,2,2,0,[],2,2,[],[],"[np.float64(2.056), np.float64(3.844)]","[np.float64(2.084), np.float64(3.83)]"
+C,ball,c_down,2,2,0,[],2,2,[],[],"[np.float64(3.67), np.float64(3.756)]","[np.float64(3.684), np.float64(3.818)]"
+C,cylinder,c_return_side,2,2,1,[],2,2,[],[np.float64(5.68)],"[np.float64(2.054), np.float64(4.968), np.float64(5.68)]","[np.float64(2.092), np.float64(4.948)]"
+C,ball,c_return_side,1,1,4,[],1,1,[],"[np.float64(4.886), np.float64(4.908), np.float64(4.96), np.float64(5.088)]","[np.float64(4.842), np.float64(4.886), np.float64(4.908), np.float64(4.96), np.float64(5.088)]",[np.float64(4.776)]
+C,cylinder,c_return_load,2,2,0,[],2,2,[],[],"[np.float64(2.056), np.float64(4.888)]","[np.float64(2.096), np.float64(4.876)]"
+C,ball,c_return_load,2,2,0,[],2,2,[],[],"[np.float64(4.71), np.float64(4.802)]","[np.float64(4.732), np.float64(4.866)]"
+D,cylinder,d_quiet,1,1,0,[],1,1,[],[],[np.float64(2.056)],[np.float64(2.114)]
+D,ball,d_quiet,0,0,0,[],0,0,[],[],[],[]
+D,cylinder,d_lowmu,1,1,0,[],1,1,[],[],[np.float64(4.074)],[np.float64(4.022)]
+D,ball,d_lowmu,0,0,0,[],0,0,[],[],[],[]
+D,cylinder,d_diag,2,2,0,[],2,2,[],[],"[np.float64(2.056), np.float64(3.96)]","[np.float64(2.094), np.float64(3.89)]"
+D,ball,d_diag,2,2,4,[],2,2,[],"[np.float64(3.766), np.float64(4.024), np.float64(4.098), np.float64(4.804)]","[np.float64(3.7), np.float64(3.766), np.float64(3.95), np.float64(4.024), np.float64(4.098), np.float64(4.804)]","[np.float64(3.69), np.float64(4.034)]"
+D,cylinder,d_gravity,2,2,0,[],2,2,[],[],"[np.float64(2.056), np.float64(3.91)]","[np.float64(2.12), np.float64(3.896)]"
+D,ball,d_gravity,2,2,0,[],2,2,[],[],"[np.float64(3.75), np.float64(3.824)]","[np.float64(3.752), np.float64(3.882)]"
+D,cylinder,d_return_side,2,2,1,[],2,2,[],[np.float64(5.232)],"[np.float64(2.054), np.float64(4.912), np.float64(5.232)]","[np.float64(2.108), np.float64(4.892)]"
+D,ball,d_return_side,1,1,6,[],1,1,[],"[np.float64(4.782), np.float64(4.84), np.float64(4.852), np.float64(4.872), np.float64(4.926), np.float64(5.02)]","[np.float64(4.752), np.float64(4.782), np.float64(4.84), np.float64(4.852), np.float64(4.872), np.float64(4.926), np.float64(5.02)]",[np.float64(4.71)]
+D,cylinder,d_return_load,2,2,0,[],2,2,[],[],"[np.float64(2.054), np.float64(4.968)]","[np.float64(2.106), np.float64(4.956)]"
+D,ball,d_return_load,2,2,0,[],2,2,[],[],"[np.float64(4.788), np.float64(4.88)]","[np.float64(4.804), np.float64(4.952)]"

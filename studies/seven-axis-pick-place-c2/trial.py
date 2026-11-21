@@ -72,7 +72,8 @@ def execute(o, c, tag=None, remote=None, observer=None, disturbance=None, reflex
         if observer is not None:
             observer.sample(m, d, r, k, t, pl["times"])
         if reflex is not None:
-            reflex(k, t, pl["times"], ref, supervis is not None and supervis.fault is not None or blocked)
+            faulted = blocked or (supervis is not None and supervis.fault is not None)
+            reflex(k, t, pl["times"], ref, faulted)
         integrate(m, d, r, np.ascontiguousarray(ref), sub, sense, out[k])
         if tag and k % 5 == 0:
             status.append(ref.copy())
