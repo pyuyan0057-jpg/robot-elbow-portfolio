@@ -66,9 +66,10 @@ class Detector:
         if self.obj=="ball" and t>=phase[2]:
             if t-self.last_fast<.65 and load[0]<.06 and .06<load[1]<.4:
                 weak=speed[1]/2.4
-            if .065<t-self.last_fast<.5 and any((load>.10) & (load<.58*self.peak_load)):
-                unload=max(speed)/8.
+
             strong=max(min(v/1.7,s/.33,n/.25) for n,v,s in y)
+        if self.obj=="ball" and .065<t-self.last_fast<.5 and any((load>.10) & (load<.58*self.peak_load)):
+            unload=max(speed)/8.
         flag=False
         for j,(ratio,dwell) in enumerate(((fast,10),(slow,17),(weak,3),(unload,5),(strong,5))):
             self.high[j]=self.high[j]+1 if ratio>=1 else 0

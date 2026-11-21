@@ -42,13 +42,22 @@ C={
  "c_return_load":({"lag_ms":9},[.2,4.85,-.45],1.43,.20),
 }
 
+FINAL={
+ "d_quiet":({"unknown_mm":[-.22,0,.62]},[.1,.2,0],.3,.25),
+ "d_lowmu":({"mu_override":.545,"unknown_mm":[.4,0,-.6]},[0,0,0],.3,.2),
+ "d_diag":({"unknown_mm":[.15,0,-.35]},[-3.10,.75,.4],.435,.205),
+ "d_gravity":({"unknown_mm":[-.65,0,.32]},[-.3,4.55,.15],.465,.17),
+ "d_return_side":({"unknown_mm":[.18,0,-.52]},[-3.45,.6,-.26],1.46,.20),
+ "d_return_load":({"lag_ms":10.5},[-.25,4.45,.35],1.51,.205),
+}
+
 def params(obj,case):
     cfg=json.loads((baseline.ENGINE/f"recipe_{obj}.json").read_text())
     cfg.update(json.loads((baseline.C4/f"{obj}_changes.json").read_text()))
     if case in baseline.CASES:
         cfg.update(baseline.CASES[case])
         return cfg,np.array(baseline.PULSES.get(case,[0,0,0])),.35,.18
-    extra,force,offset,duration=(NEW|B|C)[case]
+    extra,force,offset,duration=(NEW|B|C|FINAL)[case]
     cfg.update(extra)
     return cfg,np.array(force),offset,duration
 
@@ -63,7 +72,7 @@ def build():
                     "-I"+str(sdk/"include"),str(C5/"read_zones.cpp"),str(lib),"-o",str(LIB)],check=True)
 
 def seed(obj,case):
-    return 481+2*list(dict.fromkeys([*baseline.CASES,*NEW,*B,*C])).index(case)+int(obj=="ball")
+    return 481+2*list(dict.fromkeys([*baseline.CASES,*NEW,*B,*C,*FINAL])).index(case)+int(obj=="ball")
 
 def run(pair):
     from trial import execute
@@ -87,13 +96,13 @@ def run(pair):
 
 if __name__=="__main__":
     p=argparse.ArgumentParser()
-    p.add_argument("group",choices=["historical","A","B","C","focus","all"])
+    p.add_argument("group",choices=["historical","A","B","C","D","focus","all"])
     p.add_argument("--mode",default="off")
     p.add_argument("--build",action="store_true")
     p.add_argument("--workers",type=int,default=5)
     args=p.parse_args()
     if args.build: build()
-    groups={"historical":baseline.CASES,"A":NEW,"B":B,"C":C,"all":list(baseline.CASES)+list(NEW)+list(B)+list(C),
+    groups={"historical":baseline.CASES,"A":NEW,"B":B,"C":C,"D":FINAL,"all":list(baseline.CASES)+list(NEW)+list(B)+list(C)+list(FINAL),
             "focus":["nominal","mu055","mu075","mu045","val_mu062_offset","push_nx3","val_push_diag","val_push_down","push_y6"]}
     with ProcessPoolExecutor(args.workers) as pool:
         list(pool.map(run,[(obj,case,args.mode) for case in groups[args.group] for obj in ("ball","cylinder")]))
