@@ -1,0 +1,147 @@
+{
+  "scope": "Touchdown-only review; 2 mm horizontal tolerance; strict C8 retained separately.",
+  "graded": [
+    {
+      "case": "v_quiet",
+      "loss_s": null,
+      "first_table_s": 9.024000000001644,
+      "first_contact_error_mm": 0.5558538614429228,
+      "accepted": true
+    },
+    {
+      "case": "v_light",
+      "loss_s": null,
+      "first_table_s": 8.994000000001714,
+      "first_contact_error_mm": 0.9739530062248449,
+      "accepted": true
+    },
+    {
+      "case": "v_three",
+      "loss_s": 3.829999999999237,
+      "first_table_s": null,
+      "first_contact_error_mm": null,
+      "accepted": false
+    },
+    {
+      "case": "v_mid",
+      "loss_s": null,
+      "first_table_s": 9.076000000001523,
+      "first_contact_error_mm": 0.24805440401508402,
+      "accepted": true
+    },
+    {
+      "case": "v_midlate",
+      "loss_s": null,
+      "first_table_s": 9.052000000001579,
+      "first_contact_error_mm": 0.26119868727326395,
+      "accepted": true
+    },
+    {
+      "case": "v_heavy",
+      "loss_s": null,
+      "first_table_s": 9.018000000001658,
+      "first_contact_error_mm": 0.6387409394805079,
+      "accepted": true
+    },
+    {
+      "case": "v_heavy_z",
+      "loss_s": 3.6719999999993247,
+      "first_table_s": null,
+      "first_contact_error_mm": null,
+      "accepted": false
+    },
+    {
+      "case": "v_heavy_z2",
+      "loss_s": null,
+      "first_table_s": 8.972000000001765,
+      "first_contact_error_mm": 1.2848246735325246,
+      "accepted": true
+    },
+    {
+      "case": "v_heavy_z3",
+      "loss_s": 3.701999999999308,
+      "first_table_s": null,
+      "first_contact_error_mm": null,
+      "accepted": false
+    },
+    {
+      "case": "v_side_l",
+      "loss_s": 5.558000000001047,
+      "first_table_s": 5.714000000001238,
+      "first_contact_error_mm": 80.16078859080709,
+      "accepted": false
+    },
+    {
+      "case": "v_side_h",
+      "loss_s": 5.820000000001367,
+      "first_table_s": 5.948000000001524,
+      "first_contact_error_mm": 58.0176646118556,
+      "accepted": false
+    },
+    {
+      "case": "v_return_down",
+      "loss_s": null,
+      "first_table_s": 9.092000000001486,
+      "first_contact_error_mm": 0.3787215424912064,
+      "accepted": true
+    },
+    {
+      "case": "v_return_side",
+      "loss_s": 5.604000000001103,
+      "first_table_s": 5.752000000001284,
+      "first_contact_error_mm": 73.73647909663526,
+      "accepted": false
+    },
+    {
+      "case": "v_high",
+      "loss_s": null,
+      "first_table_s": 9.028000000001635,
+      "first_contact_error_mm": 0.5114684736608904,
+      "accepted": true
+    }
+  ],
+  "side_push_forces": [
+    {
+      "case": "v_side_l",
+      "sample_s": 3.742,
+      "applied_x_N": -2.449182739253544,
+      "opposing_x_by_digit_N": {
+        "index": 0.759227598837386,
+        "thumb": 0.5299805126137921,
+        "middle": 0.0,
+        "ring": 0.0,
+        "little": 0.0,
+        "palm": 1.748801577524892
+      },
+      "sum_hand_x_N": 3.0380096889760697
+    },
+    {
+      "case": "v_side_h",
+      "sample_s": 3.8360000000000003,
+      "applied_x_N": -3.2191197443188906,
+      "opposing_x_by_digit_N": {
+        "index": 0.0,
+        "thumb": 0.6545314384091097,
+        "middle": 0.0,
+        "ring": 0.0,
+        "little": 0.0,
+        "palm": 1.8761291751144633
+      },
+      "sum_hand_x_N": 2.530660613523573
+    },
+    {
+      "case": "v_return_side",
+      "sample_s": 4.7540000000000004,
+      "applied_x_N": -2.7398066710513365,
+      "opposing_x_by_digit_N": {
+        "index": 0.0,
+        "thumb": 0.7361057313877721,
+        "middle": 0.0,
+        "ring": 0.0,
+        "little": 0.0,
+        "palm": 1.5496089031843452
+      },
+      "sum_hand_x_N": 2.285714634572117
+    }
+  ]
+}
