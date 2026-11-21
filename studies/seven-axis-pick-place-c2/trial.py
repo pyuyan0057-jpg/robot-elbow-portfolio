@@ -6,12 +6,12 @@ import numpy as np, mujoco as mj
 from physics import plant, integrate
 
 
-def execute(o, c, tag=None, remote=None, observer=None, disturbance=None, reflex=None):
+def execute(o, c, tag=None, remote=None, observer=None, disturbance=None, reflex=None, planner=None):
     dt = c.get("dt", 0.0005)
     period = 0.002
     sub = round(period / dt)
     assert abs(sub * dt - period) < 1e-9
-    pl = plan(o, c, period)
+    pl = (planner or plan)(o, c, period)
     m, d, r, table_y, over = plant(o, pl, dt, observer.configure if observer is not None else None)
     lt, high, down, seat, release, end = pl["times"]
     from supervisor import Supervisor
