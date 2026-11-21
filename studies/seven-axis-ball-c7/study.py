@@ -24,6 +24,35 @@ TUNES={
  "early_firm":(1.30,1.30,.23,30.,.16), "late":(.35,.20,1.0,10.,.12)
 }
 
+# First pair is preload in mm; second pair is transient added travel (index, thumb).
+PRE={
+ "pre_i":((.65,0),(.20,0)), "pre_t":((0,.65),(0,.20)),
+ "pre_i1":((1.15,.18),(.20,.10)), "pre_t1":((.18,1.15),(.10,.20)),
+ "pre_half":((.45,.45),(.18,.12)), "pre_pair":((.85,.85),(.18,.12)),
+ "pre_pair1":((1.25,1.25),(.20,.15)), "pre_t2":((.70,1.45),(.20,.10)),
+ "pre_i2":((1.45,.70),(.20,.10)), "pre_soft":((.2,.2),(.16,.10)),
+ "pre_full":((1.6,1.6),(.20,.10)), "pre_asym":((1.70,1.10),(.20,.10)),
+ "pre_lead":((1.85,1.05),(.15,.15)), "pre_lead_t":((1.85,1.45),(.15,.15)),
+ "pre_high":((1.95,1.25),(.05,.20)), "pre_high_t":((1.95,1.75),(.05,.15)),
+ "pre_equal":((1.85,1.85),(.15,.15)), "pre_high_i":((1.95,.8),(.05,.25)),
+}
+
+# A longer corrective pulse retains stroke through the peak disturbance.
+LONG={
+ "reserve_i":((1.35,.55),(.65,.80)), "reserve_pair":((1.2,1.),(.8,.8)),
+ "reserve_bias":((1.6,.85),(.4,1.05)), "reserve_t":((1.65,.65),(.35,1.35)),
+ "reserve_soft":((1.4,.8),(.40,.55)), "reserve_small":((1.0,.7),(.55,.65)),
+ "reserve_even":((.9,.9),(.95,.95)), "reserve_fast":((1.25,.55),(.75,1.30))
+}
+LONG.update({
+ "mid":((1.38,.68),(.52,.68)), "mid_i":((1.45,.70),(.50,.70)),
+ "mid_t":((1.35,.80),(.55,.7)), "mid_stiff":((1.60,1.0),(.30,.6)),
+ "mid_late":((1.50,.90),(.45,.70)), "mid_light":((1.45,.72),(.48,.62))
+})
+PRE.update(LONG)
+SELECTED="mid_i"
+PRE["preload_only"]=(PRE[SELECTED][0],(0.,0.))
+
 class Recorder(c6.baseline.Recorder):
     def sample(self,m,d,r,k,t,times):
         super().sample(m,d,r,k,t,times)
@@ -43,12 +72,16 @@ class Feedback:
         self.stroke=np.zeros(2)
         self.det=Detector("ball")
         self.log=[]
+        self.preloaded=False
+        self.support_ticks=0
         self.baseline=None
         self.last=-10.
         self.until=-10.
         self.armed=False
 
     def step_policy(self,t,ph,y,alarm):
+        if self.mode in PRE:
+            return self.preload(t,ph,y)
         if self.mode not in TUNES:
             pair={"off":(0,0),"index":(.65,0),"thumb":(0,.65),"both":(.65,.65),
                   "fixed_index":(.65,0),"fixed_thumb":(0,.65)}[self.mode]
@@ -71,6 +104,30 @@ class Feedback:
         self.stroke+=np.clip(self.target-self.stroke,-rate*DT,rate*DT)
         ref[14:16]+=self.stroke*.001
         self.log.append([t,alarm,trigger,*self.stroke,*y.ravel()])
+
+    def preload(self,t,ph,y):
+        start,extra=PRE[self.mode]
+        load=y[:,0]
+        if self.baseline is None: self.baseline=load.copy()
+        growth=load-self.baseline
+        self.baseline+=(1-np.exp(-DT/.14))*growth
+        if ph[0]<=t<ph[1] and min(load)>=.10:
+            self.support_ticks+=1
+        else:
+            self.support_ticks=0
+        if self.support_ticks>=15: self.preloaded=True
+        trigger=False
+        self.target[:]=start if self.preloaded else (0.,0.)
+        if not self.preloaded:return 5.,False
+        pulse=growth[0]>.4 or (max(y[:,1])>18 and max(growth)>.08 and max(y[:,2])>.12)
+        if not pulse and max(growth)<.16:self.armed=True
+        if ph[1]+.05<=t<ph[3]-.55 and pulse and self.armed and t-self.last>.34:
+            self.until=t+(.18 if self.mode in LONG else .10)
+            self.last=t
+            self.armed=False
+            trigger=True
+        if t<self.until:self.target+=extra
+        return ((22. if self.mode in LONG else 12.) if t>=ph[1] else 5.),trigger
 
     def tuned(self,t,ph,y,alarm):
         index,thumb,threshold,rate,width=TUNES[self.mode]
