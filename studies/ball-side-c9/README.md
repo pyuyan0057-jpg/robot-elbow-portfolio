@@ -1,6 +1,6 @@
 # 七轴机械臂 · 把自由球送到指定触点
 
-本地试验分支保留 C8 基线 `7605f69`。对象是直径 40 mm、质量 33 g 的自由球。机械臂有七个关节，手部使用原有六路驱动。球从桌面拿起、抬升、保持，再下降。评价结束在球第一次碰桌。
+[C8 对照版本](https://github.com/pyuyan0057-jpg/robot-elbow-portfolio/commit/7605f69)保留了修改前的抓放记录。对象是直径 40 mm、质量 33 g 的自由球。机械臂有七个关节，手部使用原有六路驱动。球从桌面拿起、抬升、保持，再下降。评价结束在球第一次碰桌。
 
 ## 实际复测结果
 
@@ -36,7 +36,7 @@
 
 ## 泛化验证
 
-原 14 组保留固定的初始位置、噪声、扰动力和时刻。扩展 20 组覆盖正负坐标轴和斜向，峰值 2.5 或 5 N。最后另留 24 组，覆盖八个象限内的随机斜向、0.6 / 2.5 / 5 N 三档、变化的初始球位和扰动时刻。26 方向面板另在每个方向分别测试抬升、高位、下降三个阶段，共 78 组。每次都从桌面静止状态重新积分。原球胎体、手套、噪声与控制参数在同一对照内一致。世界坐标 +Y 朝下，桌面为 XZ 平面。0.6 N 方向面板的推力为峰值，持续 180 ms，按正弦平方加载。轻推面板为同组参数的 0.10 N 版本。
+原 14 组保留固定的初始位置、噪声、扰动力和时刻。扩展 20 组覆盖正负坐标轴和斜向，峰值 2.5 或 5 N。最后另留 24 组，覆盖八个象限内的随机斜向、0.6 / 2.5 / 5 N 三档、变化的初始球位和扰动时刻。26 方向面板另在每个方向分别测试抬升、高位、下降三个阶段，共 78 组。每次都从桌面静止状态重新积分。球体、手套、噪声与控制参数在同一对照内一致。世界坐标 +Y 朝下，桌面为 XZ 平面。0.6 N 方向面板的推力为峰值，持续 180 ms，按正弦平方加载。轻推面板为同组参数的 0.10 N 版本。
 
 [所有工况逐组记录](evidence/all_trials.csv) · [基线与当前控制结果](evidence/panel_summary.json) · [三组侧推与高位扰动的半步长复核](evidence/half_step.json)
 
@@ -52,7 +52,14 @@
 
 ## 复跑
 
-从仓库根目录运行，环境与前一阶段一致，使用 MuJoCo 3.3.7 和项目原生动力学库。以下四条复现同一套 24 组保持独立的方向测试。每个输出目录都有控制指令、实际姿态、接触与首次触桌评分。原始记录在本工作副本 `outputs/ball-c9/` 下。
+从干净副本开始，先按[圆柱复跑说明](../seven-axis-control-c4/README.md)创建 Python 3.11 环境。在 Windows PowerShell 的仓库根目录执行以下命令，构建触觉读出库，再复查摩擦系数 0.45 下的一组成功侧推和一组掉球。Linux 将解释器路径换成 `.venv/cylinder/bin/python`。
+
+```powershell
+& ./.venv/cylinder/Scripts/python.exe studies/seven-axis-ball-c7/study.py --build --cases push_y3 --modes window6
+& ./.venv/cylinder/Scripts/python.exe studies/ball-side-c9/batch.py verify45 --params studies/ball-side-c9/friction_45.json --workers 1 --cases v_side_h oblique_1_1
+```
+
+以下四条在上述环境中运行。将 python 指向该环境的解释器，即可复现同一套 24 组独立方向测试。每个输出目录都有控制指令、实际姿态、接触与首次触桌评分。原始记录在本工作副本 `outputs/ball-c9/` 下。
 
 ```powershell
 python studies/ball-side-c9/batch.py blindA --params studies/ball-side-c9/frozen.json --suite blind

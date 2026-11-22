@@ -1,12 +1,12 @@
 # R8.9 · Little-finger opposition at the palm
 
-[Watch the solved tabletop lift](grasp.mp4) · [Download the revised little-finger root (STEP)](little-root.step) · [Open-palm SolidWorks view](palm.png) · [250 µs force and height trace](r89-250us.csv)
+[Watch the solved tabletop lift](grasp.mp4) · [Compare finger-root settings](root-sweep.csv) · [Open-palm SolidWorks view](palm.png) · [250 µs force and height trace](r89-250us.csv)
 
 **小指现在能和拇指、食指、中指一起承力。** 在原分段手套模型中，Ø40 mm、33 g 的自由球从桌上被拾起。肘角由 45° 升到 99.98°，末态球底高出桌面 226.7 mm，小指对球的法向力为 0.75 N。无名指末态为 0 N，离桌初段也曾只有一指超过计数阈值。全程五指持续夹持的目标尚未通过。软套邻指接触对结果有显著影响，详见下方。
 
 ## What changed
 
-The root cartridge keeps the old two-screw M3 mounting interface. It turns the little finger’s flexion plane 18° toward the palm and shifts its pivot 6 mm distally and 13 mm toward the palm surface. The preset is fixed during a grasp. The existing six hand drives are retained. The palm has a local relief; a curved tendon guide replaces the old straight entry. Its 1.36 mm bore takes the nominal 0.60 mm tendon. The final cartridge adds screw-head clearance and ends the guide before the proximal phalanx. The local archive contains the full revised assembly, palm, open-position tendon and the original R8.8 comparison. The STEP download contains the project-designed cartridge. [Hardware permissions](../../docs/sources-and-rights.md)
+The root cartridge keeps the old two-screw M3 mounting interface. It turns the little finger’s flexion plane 18° toward the palm and shifts its pivot 6 mm distally and 13 mm toward the palm surface. The preset is fixed during a grasp. The existing six hand drives are retained. The palm has a local relief; a curved tendon guide replaces the old straight entry. Its 1.36 mm bore takes the nominal 0.60 mm tendon. The final cartridge adds screw-head clearance and ends the guide before the proximal phalanx. The local archive contains the full revised assembly, palm, open-position tendon and the original R8.8 comparison. [Hardware permissions](../../docs/sources-and-rights.md)
 
 ## What carried the ball
 

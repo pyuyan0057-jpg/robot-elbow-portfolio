@@ -1,1 +1,1 @@
-Reproducible torque sizing and CAD/FEA comparison for a lightweight robot elbow, with a configurable Python lift model, bracket revision images and mesh-convergence data.
+Seven-axis biomimetic arm with a tendon-driven hand. SolidWorks design, ROS 2 Jazzy control and reproducible MuJoCo experiments in trajectory tracking, grasp stability and placement.

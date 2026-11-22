@@ -1,20 +1,26 @@
-# 七轴仿生机械臂｜桌面抓放与轨迹控制
+# 七轴仿生机械臂
 
-[English](README.md) · [圆柱复跑说明](studies/seven-axis-control-c4/README.md) · [设计分工与资料来源](docs/sources-and-rights.md)
+**从腱绳传动设计到抗扰抓放控制**　·　[English](README.md)　·　[复跑指南](studies/seven-axis-control-c4/README.md)
 
-七轴机械臂配合六路腱驱机械手，从桌面抓起自由放置的物体，屈肘至 100°，保持，再放回桌面。下面是 ROS 2 Jazzy 与 MuJoCo 联合仿真的圆柱抓放回放。圆柱直立，机械手侧握，拇指在上、小指在下。
+七个关节控制手臂姿态，六路驱动控制五指手。本项目用 SolidWorks 设计结构，用 MuJoCo 检验手臂能否把物体从桌面拿起，经受扰动，再送到指定触点。
 
-[![圆柱从桌面抓起、保持、放回并松手](studies/seven-axis-control-c4/media/cylinder.gif)](studies/seven-axis-control-c4/media/cylinder.mp4)
+| 整臂装配 · SolidWorks | 圆柱抓放 · MuJoCo |
+|:---:|:---:|
+| [![整臂装配 · SolidWorks](assets/full-arm-r4/arm.jpg)](docs/full-arm-r4.md) | [![圆柱抓放 · MuJoCo](studies/seven-axis-control-c4/media/cylinder.gif)](studies/seven-axis-control-c4/media/cylinder.mp4) |
 
-**完整视频** · [圆柱抓放 MP4](studies/seven-axis-control-c4/media/cylinder.mp4) · [小球抓放 MP4](studies/seven-axis-control-c4/media/sphere.mp4)
+[圆柱抓放](studies/seven-axis-control-c4/media/cylinder.mp4) · [小球抓放](studies/seven-axis-control-c4/media/sphere.mp4) · [七轴 CAD 动作](assets/full-arm-r4/motion.mp4)
 
-### 从不同方向推球，手还能稳稳放到目标点吗？
+## 球受推后，手能否把它放到指定点？
 
-在 MuJoCo 中，对直径 40 mm、质量 33 g 的球从 26 个方向施加推力，每个方向分别在抬升、高位保持和下降时测试。球与手套的滑动摩擦系数设为 0.45 时，**0.10 N 轻推的 78/78 组**、**0.60 N 推力的 61/78 组**持球到首次触桌，落点偏差在 2 mm 内。同样的抓法在摩擦系数 0.30、推力 0.60 N 下通过 53/78 组。摩擦系数为仿真假设。[抓法修改与掉球分析](studies/ball-side-c9/README.md) · [214 组逐项对照](studies/ball-side-c9/evidence/matched_045.csv)
+对同一颗 **直径 40 mm、质量 33 g** 的球，从 26 个方向分别在抬升、高位保持和下降时推一次。保持手指动作一致，推力峰值为 **0.60 N** 时，把球与手套的仿真摩擦系数从 **0.30 调到 0.45**，通过数从 **53/78 增到 61/78**。轻推 **0.10 N** 时，两种设置都通过 **78/78**。通过要求同时满足持球到首次触桌和水平落点偏差不超过 2 mm。
 
-### 同样的抓放时间，误差改善了多少？
+![各方向推球在三个动作阶段的通过次数](studies/ball-side-c9/evidence/directional-grasp.png)
 
-C4 加入惯性前馈，分别调整各轴控制刚度，并修正放置指令的落点偏差。两版使用同一圆柱、同一实际目标点和同样的 9.47 秒动作周期。
+每格对应一个推力方向，数字表示三个阶段中有几次通过。推力含负 Z 分量时，部分方向即使提高摩擦也会掉球。[抓法修改与掉球分析](studies/ball-side-c9/README.md) · [214 组逐项对照](studies/ball-side-c9/evidence/matched_045.csv)
+
+## 圆柱抓放的轨迹误差
+
+两版执行相同的 9.47 秒抓放动作。加入惯性前馈、分轴调整控制刚度并修正放置指令后，手掌轨迹和圆柱落点更准，保持阶段圆柱的移动幅度略有增加。
 
 | 圆柱抓放仿真 | 优化前 C2 | 优化后 C4 |
 |---|---:|---:|
@@ -25,13 +31,34 @@ C4 加入惯性前馈，分别调整各轴控制刚度，并修正放置指令�
 
 ![圆柱完整抓放周期内，两版手掌位置误差对照](studies/seven-axis-control-c4/media/cylinder-error.png)
 
-**在仓库根目录复跑。** Windows 执行 `py -3.11 run_cylinder.py`，Linux 执行 `python3.11 run_cylinder.py`。需要 Python 3.11 和支持 C++17 的 g++。命令会编译求解器，重做两遍完整抓放，在 `outputs/cylinder-control/` 生成误差曲线、逐时刻 CSV 和验收结果。[实验说明与失败工况](studies/seven-axis-control-c4/README.md) · [ROS 动作接口源码](studies/seven-axis-control-c4/trajectory_action.py)
+## 在自己的电脑上复跑
+
+安装 64 位 Python 3.11 和支持 C++17 的 g++，在仓库根目录运行。首次执行会安装依赖并生成两版误差曲线和逐时刻数据。
+
+| Windows | Linux |
+|---|---|
+| `py -3.11 run_cylinder.py` | `python3.11 run_cylinder.py` |
+
+[运行说明与验收标准](studies/seven-axis-control-c4/README.md) · [ROS 2 轨迹动作接口](studies/seven-axis-control-c4/trajectory_action.py)
+
+## 设计与实验记录
+
+| 想了解什么 | 直接查看 |
+|---|---|
+| 七轴怎么连接，驱动和载荷如何传递 | [整臂关节布局](docs/full-arm-r4.md) · [肘部受力与刚度](docs/mechanics.md) |
+| 手指如何发现打滑并收绳 | [虚拟触觉布置](studies/seven-axis-tactile-c5/README.md) · [两指补偿](studies/seven-axis-reflex-c6/README.md) · [收绳时序对照](studies/seven-axis-ball-c7/README.md) |
+| 球为什么会掉，落点怎么量 | [首次触桌](studies/ball-placement-c8/README.md) · [侧推与摩擦对照](studies/ball-side-c9/README.md) |
+
+张一展确定设计目标、载荷工况和验收要求，并推进方案评审。建模、计算、求解与项目整理使用工具辅助。公开结果来自 CAD 和仿真，实物表现待测。[贡献与授权](docs/sources-and-rights.md)
+
+<details>
+<summary>展开完整版本沿革、肘部计算和有限元记录</summary>
 
 ## 机械结构如何迭代
 
 **C2 · ROS 2 七轴抓取控制。** 小球与直立圆柱从桌面抓起、举至 100° 并放回。提供完整动作、掉球对照、三种控制律的匹配试验和复跑入口。[查看控制项目](studies/seven-axis-pick-place-c2/README.zh-CN.md)
 
-**R8.9 · 小指参与抓球。** 小指指根内收 18°。从桌面抓起 Ø40 mm、33 g 球并抬到 100° 后，仿真末态由拇指、食指、中指和小指共同承力。 [查看动作回放、支架 STEP 和逐指受力对照](studies/little-finger-r89/README.md)
+**R8.9 · 小指参与抓球。** 小指指根内收 18°。从桌面抓起 Ø40 mm、33 g 球并抬到 100° 后，仿真末态由拇指、食指、中指和小指共同承力。 [查看动作回放、指根参数 和逐指受力对照](studies/little-finger-r89/README.md)
 
 **R8.8 右手翻掌修正** · 从掌心朝下翻到朝上时，拇指现在向上经过握手姿态。SolidWorks 往返共检查 38 个采样姿态，均未检出实体相交。[修改原因、验证范围与逐角度记录](studies/right-forearm-r88/README.md)
 
@@ -118,3 +145,5 @@ python examples.py
 同一静力工况下，支架估算质量由 **293.80 增至 320.73 g**，支架引起的中指下沉降低 **78.4%**。R2 支架和转接件两项贡献合计约 **0.179 mm**。齿轮箱、轴承、前臂等柔度仍需单独获得。CLI 修改负载只更新动力学；仓库中的有限元数据来自原先完成的九项研究。[网格收敛与反力 CSV](data/mesh-convergence.csv)
 
 申请人确定目标、载荷工况和验收要求，推进方案评审；建模、求解、代码与展示资料使用工具辅助。项目为数字样机，未做实测。计算代码使用 MIT 许可。硬件设计文件按需评审，使用项目设计进行商业生产请先联系作者取得书面许可。[来源与授权范围](docs/sources-and-rights.md)
+
+</details>

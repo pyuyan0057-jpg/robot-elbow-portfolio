@@ -1,20 +1,26 @@
-# Seven-axis biomimetic arm | tabletop grasp and trajectory control
+# Seven-axis biomimetic arm
 
-[中文首页](README.zh-CN.md) · [Reproduce the cylinder experiment](studies/seven-axis-control-c4/README.md) · [Model, sources and contributions](docs/sources-and-rights.md)
+**Tendon-driven grasping and disturbance recovery**　·　[中文](README.zh-CN.md)　·　[Reproduce the experiment](studies/seven-axis-control-c4/README.md)
 
-A seven-axis arm and a six-drive tendon hand pick up a free object, lift it to 100° elbow flexion and set it down on the table. The cylinder starts upright, with the thumb above the little finger. The replay is from the ROS 2 Jazzy / MuJoCo simulation.
+A seven-joint arm and a six-drive tendon hand lift objects from a table and return them to a target. SolidWorks captures the mechanism. MuJoCo tests whether the hand can retain the object during a push and where it first touches down.
 
-[![Full cylinder pick, lift, hold and release](studies/seven-axis-control-c4/media/cylinder.gif)](studies/seven-axis-control-c4/media/cylinder.mp4)
+| Arm assembly · SolidWorks | Cylinder pick and place · MuJoCo |
+|:---:|:---:|
+| [![Arm assembly · SolidWorks](assets/full-arm-r4/arm.jpg)](docs/full-arm-r4.md) | [![Cylinder pick and place · MuJoCo](studies/seven-axis-control-c4/media/cylinder.gif)](studies/seven-axis-control-c4/media/cylinder.mp4) |
 
-**Full videos** · [Cylinder pick and place (MP4)](studies/seven-axis-control-c4/media/cylinder.mp4) · [Sphere pick and place (MP4)](studies/seven-axis-control-c4/media/sphere.mp4)
+[Cylinder replay](studies/seven-axis-control-c4/media/cylinder.mp4) · [Sphere replay](studies/seven-axis-control-c4/media/sphere.mp4) · [Seven-axis CAD motion](assets/full-arm-r4/motion.mp4)
 
-### Can the hand keep a sphere through a sideways push?
+## Holding a sphere through a push
 
-A 40 mm, 33 g sphere was pushed from 26 directions during lifting, holding and lowering in MuJoCo. With a hand–sphere sliding friction coefficient of 0.45, the hand retained the sphere until first table contact and landed within 2 mm of the target in **78/78 trials at 0.10 N** and **61/78 at 0.60 N**. At 0.30 friction the same controller passed **53/78** at 0.60 N. The friction values are simulation assumptions. [Grasp changes and failure analysis](studies/ball-side-c9/README.md) · [214 paired trials](studies/ball-side-c9/evidence/matched_045.csv)
+The same hand motion was tested on a **40 mm, 33 g sphere**. Each of 26 push directions was applied during lift, hold and descent. At a peak force of **0.60 N**, increasing the assumed hand–sphere friction coefficient from **0.30 to 0.45** raised passes from **53/78 to 61/78**. At **0.10 N**, both settings passed **78/78**. A pass requires retention until first table contact and a landing within 2 mm of the target.
 
-### What changed in the controller?
+![Passes by push direction and hand–sphere friction](studies/ball-side-c9/evidence/directional-grasp.png)
 
-C4 combines inertial feedforward, joint-specific stiffness tuning and a small correction to the placement command. Both versions run the same 9.47 s cylinder task and are scored against the same physical placement target.
+Each cell shows how many of the three phases passed for one direction. With a negative Z component, some pushes still dislodged the sphere at the higher friction setting. [Grasp changes and failure analysis](studies/ball-side-c9/README.md) · [214 paired trials](studies/ball-side-c9/evidence/matched_045.csv)
+
+## Tracking the cylinder trajectory
+
+Both controllers execute the same 9.47 s cycle. Inertial feedforward, joint-specific stiffness tuning and a placement correction improved palm tracking and final object placement. The cylinder moved slightly more during the hold.
 
 | Cylinder simulation | C2 baseline | C4 tuned |
 |---|---:|---:|
@@ -25,7 +31,28 @@ C4 combines inertial feedforward, joint-specific stiffness tuning and a small co
 
 ![Palm position error over the full cylinder cycle](studies/seven-axis-control-c4/media/cylinder-error.png)
 
-**Run it from the repository root.** Windows: `py -3.11 run_cylinder.py`. Linux: `python3.11 run_cylinder.py`. Requires Python 3.11 and a C++17 g++ compiler. The command builds the solver, runs both grasps and writes the comparison plot, CSV and acceptance results to `outputs/cylinder-control/`. [Experiment and failure cases](studies/seven-axis-control-c4/README.md) · [ROS action adapter](studies/seven-axis-control-c4/trajectory_action.py)
+## Reproduce the cylinder comparison
+
+Install 64-bit Python 3.11 and a C++17 g++ compiler. Run from the repository root to install dependencies, simulate both controllers and generate the error plot and time histories.
+
+| Windows | Linux |
+|---|---|
+| `py -3.11 run_cylinder.py` | `python3.11 run_cylinder.py` |
+
+[Setup and acceptance criteria](studies/seven-axis-control-c4/README.md) · [ROS 2 trajectory action adapter](studies/seven-axis-control-c4/trajectory_action.py)
+
+## Design and experiment records
+
+| Engineering question | Explore |
+|---|---|
+| How do the seven axes connect and carry load? | [Arm layout](docs/full-arm-r4.md) · [Elbow loading and stiffness](docs/mechanics.md) |
+| Can the hand detect slip and adjust tendon travel? | [Virtual tactile zones](studies/seven-axis-tactile-c5/README.md) · [Two-pad reflex](studies/seven-axis-reflex-c6/README.md) · [Tendon timing](studies/seven-axis-ball-c7/README.md) |
+| Where does the sphere escape or touch down? | [First table contact](studies/ball-placement-c8/README.md) · [Directional push trials](studies/ball-side-c9/README.md) |
+
+Yizhan Zhang defined the design goals, load cases and acceptance criteria and directed the design reviews. Modelling, calculations, simulation runs and documentation used software and AI assistance. The published results cover CAD and simulation. Physical performance remains untested. [Contributions and permissions](docs/sources-and-rights.md)
+
+<details>
+<summary>Open the revision history, elbow calculations and finite element records</summary>
 
 ## How the mechanical design evolved
 
@@ -110,3 +137,5 @@ The lift peak occurs at 75°, on the cruise side of the deceleration switch. At 
 - **Drive and load path.** An AK70-10 mounted on the upper arm transmits torque through a sliding coupling. Two external bearings support the forearm spindle. The 150 g design hold is 3.585 N·m; the smaller AK60-6 has a 3 N·m rated output. Zero-speed thermal endurance remains unverified. [Force diagram](assets/free-body.png) · [Model and assumptions](docs/mechanics.md)
 - **Historical FEA.** With identical loads on both revisions, fixed-yoke mass changes from 293.80 to 320.73 g and its mapped fingertip sag falls by **78.4%**. Two aluminium submodels together contribute about **0.179 mm** in R2. Gear, bearing, connection and forearm flexibility are additional unknowns. A custom CLI run does not rerun FEA. [Nine mesh results](data/mesh-convergence.csv)
 - **Project scope and attribution.** This is a CAD and simulation project. The applicant set the goals and acceptance criteria; modelling, calculations, solver runs and preparation of the repository used tool assistance. The public materials include design comparisons, load cases and numerical summaries. The original hardware design files are available for review by arrangement. Manufacturer material is linked at source. [Sources, contributions and permissions](docs/sources-and-rights.md)
+
+</details>
