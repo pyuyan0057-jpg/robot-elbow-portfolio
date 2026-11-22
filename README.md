@@ -8,6 +8,10 @@ A seven-axis arm and a six-drive tendon hand pick up a free object, lift it to 1
 
 **Full videos** · [Cylinder pick and place (MP4)](studies/seven-axis-control-c4/media/cylinder.mp4) · [Sphere pick and place (MP4)](studies/seven-axis-control-c4/media/sphere.mp4)
 
+### Can the hand keep a sphere through a sideways push?
+
+A 40 mm, 33 g sphere was pushed from 26 directions during lifting, holding and lowering in MuJoCo. With a hand–sphere sliding friction coefficient of 0.45, the hand retained the sphere until first table contact and landed within 2 mm of the target in **78/78 trials at 0.10 N** and **61/78 at 0.60 N**. At 0.30 friction the same controller passed **53/78** at 0.60 N. The friction values are simulation assumptions. [Grasp changes and failure analysis](studies/ball-side-c9/README.md) · [214 paired trials](studies/ball-side-c9/evidence/matched_045.csv)
+
 ### What changed in the controller?
 
 C4 combines inertial feedforward, joint-specific stiffness tuning and a small correction to the placement command. Both versions run the same 9.47 s cylinder task and are scored against the same physical placement target.
